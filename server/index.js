@@ -4,6 +4,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser');
 const initDatabase = require('./config/database');
 const router = require('./routes');
+const cookieParser = require('cookie-parser');
 
 startServer()
 async function startServer() {
