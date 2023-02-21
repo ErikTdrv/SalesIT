@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors')
 const bodyParser = require('body-parser');
 const initDatabase = require('./config/database');
+const router = require('./routes');
 
 startServer()
 async function startServer() {
@@ -16,13 +17,12 @@ async function startServer() {
             allowedHeaders: ['Content-Type, X-Authorization, X-RapidAPI-Key, X-RapidAPI-Host'],
             optionsSuccessStatus: 200,
         }))
-
         app.use(cookieParser())
         app.use(bodyParser.json({ limit: '50mb' }));
         app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
         app.use(express.json())
         // app.use(authMiddleware)
-        // app.use(routes)
+        app.use(router)
 
         //Initializing database
         let port = process.env.PORT || 3000
