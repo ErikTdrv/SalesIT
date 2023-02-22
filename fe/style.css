@@ -20,7 +20,7 @@ body {
     font-weight: 900;
     margin: 1px;
 }
-ul li {
+.navigation ul li {
     text-decoration: none;
     list-style: none;
     display: inline-block;
@@ -29,7 +29,7 @@ ul li {
     font-weight: 550;
     font-size: 15px;
 }
-ul li::after {
+.navigation ul li::after {
     content: '';
     width: 0%;
     height: 1.5px;
@@ -38,7 +38,7 @@ ul li::after {
     margin-top: -3px;
     transition: .4s;
 }
-ul li:hover::after {
+.navigation ul li:hover::after {
     width: 100%;
 }
 .itlogo {
@@ -90,7 +90,7 @@ img {
 /* Top discounts */
 .top-discounts {
     width: 100%;
-    height: 400px;
+    height: 500px;
     background-color: rgb(180, 179, 179);
 }
 .top-discounts .title {
@@ -105,4 +105,42 @@ img {
     text-align: center;
     font-style: italic;
     color: rgb(49, 48, 48);
+}
+.discounts-section {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 10px;
+    height: 320px;
+    background-color: gray;
+    border-radius: 20px;
+}
+
+/* Footer */
+.footer {
+    position: relative;
+    width: 100%;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.contact-us h1 {
+    font-size: 16px;
+}
+.footer ul li {
+    display: flex;
+    margin: 20px;
+}
+.copyright {
+    width: 100%;
+    background-color: black;
+    color: white;
+
+}
+.copyright h1 {
+    margin: 0px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
 }
