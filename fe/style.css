@@ -72,6 +72,11 @@ img {
     font-size: 16px;
     padding: 8px 15px; 
     border: none;
+    cursor: pointer;
+}
+.home-buttons button:hover {
+    transition: 0.5s ease-out;
+    background-color: rgb(255, 0, 0);
 }
 .titles {
     width: 600px;
