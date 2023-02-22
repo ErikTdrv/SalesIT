@@ -131,6 +131,10 @@ img {
 .footer ul li {
     display: flex;
     margin: 20px;
+    cursor: pointer;
+}
+.footer ul li:hover {
+    color: red;
 }
 .copyright {
     width: 100%;
@@ -143,4 +147,19 @@ img {
     text-align: center;
     font-size: 18px;
     font-weight: 700;
+}
+.contact-us .icons {
+    display: flex;
+    justify-content: space-around;
+}
+.contact-us h1 {
+    margin-bottom: 0px;
+}
+.contact-us .icons a{
+    color: white;
+    font-size: 20px;
+}
+.contact-us .icons a:hover{
+    color: rgb(255, 0, 0);
+    
 }
