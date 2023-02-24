@@ -4,7 +4,7 @@ body {
     margin: 0px;
     padding: 0px;
     /* background: linear-gradient(to right, #2C3E50, #000); */
-    background-color: gray;
+    background-color: rgb(88, 88, 88);
 }
 .container {
     position: relative;
@@ -15,7 +15,7 @@ body {
     justify-content: space-around;
     /* background-color: black; */
     /* color: white; */
-    color: black;
+    color: white;
     height: 40px;
 }
 .mainlogo {
@@ -105,6 +105,9 @@ input:focus + .email-span {
 input:focus + .password-span {
     transform: translateY(-80%);
 }
+/* .value-there {
+    transform: translateY(-80%); - To add with JavaScript
+} */ 
 .email input, .password input{
     border: none;
     border-bottom: 2px solid gray;
@@ -113,21 +116,21 @@ input:focus + .password-span {
 }
 .email input:focus, .password input:focus {
     border-bottom: 2px solid rgb(89, 0, 255);
+    border-bottom: 2px solid #f44336;
 }
 .copyright {
     position: absolute;
     bottom: 0px;
     width: 100%;
-        background: linear-gradient(to right, #2C3E50, #000);
-
-    color: white;
+    /* background: linear-gradient(to right, #2C3E50, #000); */
+    color: black;
 
 }
 .copyright h1 {
     margin: 5px;
     text-align: center;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 600;
 }
 input[type="submit"] {
     text-align: center;
@@ -146,6 +149,8 @@ input[type="submit"] {
 input[type="submit"]:hover {
     transition: 0.3s;
     background-color: rgb(89, 0, 255);
+    background-color: #f44336;
+    
 }
 .text {    
     position: absolute;
@@ -156,6 +161,7 @@ input[type="submit"]:hover {
 }
 .text a {
     color: rgb(89, 0, 255);
+    color: #f44336;
     font-weight: 600;
 }
 .text a:hover {
