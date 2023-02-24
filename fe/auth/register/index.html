@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header class="navigation">
+        <div class="mainlogo">
+            Sales<span class="itlogo">IT</span>
+        </div>
+        <ul class="mainul">
+            <li><a>Home</a></li>
+            <li><a>Add Item</a></li>
+            <li><a>About</a></li>
+        </ul>
+        <ul class="authul">
+            <li><a>Login</a></li>
+            <li><a>Register</a></li>
+            <li><i class="fa-solid fa-user"></i></li>
+        </ul>
+    </header>
+    <div class="login">
+        <!-- <img src="" alt=""> -->
+        <div class="form">
+            <h1>Register</h1>
+            <form class="login-form">
+                <img class="avatarImg" src="blank-profile-picture-973460_1280.webp" alt="">
+                <div class="inputs">
+                    <div class="username">
+                        <input type="text" name="" id="">
+                        <span class="username-span">Username</span>
+                    </div>
+                    <div class="email">
+                        <input type="text" name="" id="">
+                        <span class="email-span">Email</span>
+                    </div>
+                    <div class="password">
+                        <input type="password" name="" id="">
+                        <span class="password-span value-there">Password</span>
+                    </div>
+                    <div class="re-password">
+                        <input type="text" name="" id="">
+                        <span class="repass-span">Repeat Password</span>
+                    </div>
+                    <div class="avatar">
+                        <label for="avatar"><i class="fa-solid fa-plus"></i>Add avatar</label>
+                        <input type="file" name="avatar" id="avatar">
+                    </div>
+                </div>
+                <input type="submit" value="Login" id="loginBtn" class="login-btn">
+            </form>
+            <p class="text">Don't have an account? <a routerLink="/register">Sign Up</a></p>
+        </div>
+    </div>
+    <div class="copyright">
+        <h1>© 2023 SalesIT. All rights reserved.</h1>
+    </div>
+</body>
+</html>
