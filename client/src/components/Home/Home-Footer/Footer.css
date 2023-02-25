@@ -1,0 +1,35 @@
+.footer {
+    position: relative;
+    width: 100%;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.contact-us h1 {
+    font-size: 16px;
+}
+.footer ul li {
+    display: flex;
+    margin: 20px;
+    cursor: pointer;
+}
+.footer ul li:hover {
+    color: red;
+}
+.contact-us .icons {
+    display: flex;
+    justify-content: space-around;
+}
+.contact-us h1 {
+    margin-bottom: 0px;
+}
+.contact-us .icons a{
+    color: white;
+    font-size: 20px;
+}
+.contact-us .icons a:hover{
+    color: rgb(255, 0, 0);
+    
+}
