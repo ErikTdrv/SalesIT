@@ -1,5 +1,6 @@
 import React from "react";
 import "./Home.css";
+import TopDiscounts from "./TopDiscounts/TopDiscounts";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
         </div>
       </div>
     </div>
+    <TopDiscounts/>
     </>
   );
 }
