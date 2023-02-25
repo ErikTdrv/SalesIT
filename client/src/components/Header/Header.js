@@ -5,18 +5,18 @@ export default function Header(){
     return (
         <header className="navigation">
         <div className="mainlogo">
-            <Link to={'/'}>
+            <Link className='Link' to='/'>
             Sales<span className="itlogo">IT</span>
             </Link>
         </div>
         <ul className="mainul">
-            <li><Link to={'/'}>Home</Link></li>
-            <li><Link to={'/add-item'}>Add Item</Link></li>
-            <li><Link to={'/about'}>About</Link></li>
+            <li><Link className='Link' to='/'>Home</Link></li>
+            <li><Link className='Link' to='/add-item'>Add Item</Link></li>
+            <li><Link className='Link' to='/about'>About</Link></li>
         </ul>
         <ul className="authul">
-            <li><Link to={'/login'}>Login</Link></li>
-            <li><Link to={'/register'}>Register</Link></li>
+            <li><Link className='Link' to='/login'>Login</Link></li>
+            <li><Link className='Link' to='/register'>Register</Link></li>
             <li><i className="fa-solid fa-user"></i></li>
         </ul>
     </header>   

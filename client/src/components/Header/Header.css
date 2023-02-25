@@ -2,8 +2,13 @@
     display: flex;
     justify-content: space-around;
     /* background-color: black; */
-    color: white;
+    color: black;
     height: 40px;
+}
+.Link {
+    text-decoration: none;
+    list-style: none;
+    color: white;
 }
 .mainlogo {
     font-size: 25px;
