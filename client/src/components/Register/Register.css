@@ -1,0 +1,114 @@
+.register {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 380px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    background-color: white;
+    color: black;
+    height: 75%;
+    
+}
+input[type="file"] {
+    display: none;
+}
+.fa-solid {
+    margin-right: 10px;
+    transition: 0.3s ease-in-out;
+}
+.fa-solid:hover {
+    transform: rotate(45deg);
+}
+.register h1 {
+    text-align: center;
+}
+
+.register-inputs {
+    margin-top: 40px;
+    margin-left: 40px;
+}
+.register-inputs div {
+    margin: 30px 0px;
+}
+.register-email {
+    position: relative;
+}
+.register-password, .register-username, .re-password {
+    position: relative;
+}
+
+.reg-password-span, .reg-email-span, .reg-username-span, .repass-span{
+    position: absolute;
+    left: 0px;
+    font-size: 14px;
+    color: rgb(138, 138, 138);
+    transform: translate(0%, +50%);
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+input:focus {
+    outline: none;
+}
+input:focus + .reg-email-span, input:focus + .reg-password-span, input:focus + .reg-username-span,input:focus + .repass-span {
+    transform: translateY(-80%);
+}
+/* .value-there {
+    transform: translateY(-80%); - To add with JavaScript
+} */ 
+.register-email input, .register-password input, .register-username input, .re-password input{
+    border: none;
+    border-bottom: 2px solid gray;
+    width: 85%;
+    height: 35px;
+}
+.register-email input:focus, .register-password input:focus, .register-username input:focus, .re-password input:focus {
+    border-bottom: 2px solid rgb(89, 0, 255);
+    border-bottom: 2px solid #f44336;
+}
+.register-btn {
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 84%;
+    width: 200px;
+    padding: 10px 0px;
+    transform: translate(-50%);
+    border-radius: 20px;
+    border: none;
+    font-size: 18px;
+    color: white;
+    background-color: #444444;
+}
+.register-btn:hover {
+    transition: 0.3s;
+    background-color: rgb(89, 0, 255);
+    background-color: #f44336;
+    
+}
+.reg-text {    
+    position: absolute;
+    bottom: 5px;
+    left: 24%;
+    text-align: center;
+    font-size: 13px;
+}
+.reg-text a {
+    color: rgb(89, 0, 255);
+    color: #f44336;
+    font-weight: 600;
+}
+.reg-text a:hover {
+    cursor: pointer;
+    /* font-size: 16px; */
+    font-weight: bold;
+}
+.avatarImg {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    width: 120px;
+    height: auto;
+    border-radius: 50%;
+}
