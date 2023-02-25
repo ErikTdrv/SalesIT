@@ -1,0 +1,110 @@
+.form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 380px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    background-color: white;
+    color: black;
+    height: 50%;
+    
+}
+.form h1 {
+    text-align: center;
+}
+
+.inputs {
+    margin-top: 60px;
+    margin-left: 40px;
+}
+.email {
+    position: relative;
+    margin-bottom: 30px;
+}
+.password {
+    position: relative;
+}
+.password-span, .email-span{
+    position: absolute;
+    left: 0px;
+    font-size: 14px;
+    color: rgb(138, 138, 138);
+    transform: translate(0%, +50%);
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+input:focus {
+    outline: none;
+}
+input:focus + .email-span {
+    transform: translateY(-80%);
+}
+input:focus + .password-span {
+    transform: translateY(-80%);
+}
+.value-there {
+    transform: translateY(-80%);
+} 
+.email input, .password input{
+    border: none;
+    border-bottom: 2px solid gray;
+    width: 85%;
+    height: 35px;
+}
+.email input:focus, .password input:focus {
+    border-bottom: 2px solid rgb(89, 0, 255);
+    border-bottom: 2px solid #f44336;
+}
+.copyright {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    /* background: linear-gradient(to right, #2C3E50, #000); */
+    color: black;
+
+}
+.copyright h1 {
+    margin: 5px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+}
+input[type="submit"] {
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 65%;
+    width: 200px;
+    padding: 10px 0px;
+    transform: translate(-50%);
+    border-radius: 20px;
+    border: none;
+    font-size: 18px;
+    color: white;
+    background-color: #444444;
+}
+input[type="submit"]:hover {
+    transition: 0.3s;
+    background-color: rgb(89, 0, 255);
+    background-color: #f44336;
+    
+}
+.text {    
+    position: absolute;
+    bottom: 20px;
+    left: 24%;
+    text-align: center;
+    font-size: 13px;
+}
+.text a {
+    color: rgb(89, 0, 255);
+    color: #f44336;
+    font-weight: 600;
+}
+.text a:hover {
+    cursor: pointer;
+    /* font-size: 16px; */
+    font-weight: bold;
+}
