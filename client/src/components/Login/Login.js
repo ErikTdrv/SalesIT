@@ -7,10 +7,18 @@ export default function Login() {
   const [username, setUsername] = useState(false);
   const [password, setPassword] = useState(false);
   function changeValue(e) {
-    if (e.target.type === "password" && e.target.value.length > 0) {
-      setPassword(true);
-    } else if (e.target.value.length > 0) {
-      setUsername(true);
+    if(e.target.value.length > 0){
+      if (e.target.type === "password") {
+        setPassword(true);
+      } else {
+        setUsername(true);
+      }
+    }else {
+      if (e.target.type === "password") {
+        setPassword(false);
+      } else {
+        setUsername(false);
+      }
     }
   }
   return (
