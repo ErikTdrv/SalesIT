@@ -3,12 +3,12 @@ import "./TopDiscounts.css";
 
 export default function TopDiscounts() {
   return (
-    <div class="top-discounts">
-      <div class="title">
+    <div className="top-discounts">
+      <div className="title">
         <h1>Top Discounts</h1>
         <h4>Reccomended</h4>
       </div>
-      <section class="discounts-section"></section>
+      <section className="discounts-section"></section>
     </div>
   );
 }
