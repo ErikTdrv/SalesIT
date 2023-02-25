@@ -1,0 +1,39 @@
+.navigation {
+    display: flex;
+    justify-content: space-around;
+    /* background-color: black; */
+    color: white;
+    height: 40px;
+}
+.mainlogo {
+    font-size: 25px;
+    font-weight: 900;
+    margin: 1px;
+}
+.navigation ul li {
+    text-decoration: none;
+    list-style: none;
+    display: inline-block;
+    cursor: pointer;
+    margin: 8px;
+    font-weight: 550;
+    font-size: 15px;
+}
+.navigation ul li::after {
+    content: '';
+    width: 0%;
+    height: 1.5px;
+    background: #f44336;
+    display: block;
+    margin-top: -3px;
+    transition: .4s;
+}
+.navigation ul li:hover::after {
+    width: 100%;
+}
+.itlogo {
+    color: red;
+}
+ul {
+    margin: 0px;
+}
