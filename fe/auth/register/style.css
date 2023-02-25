@@ -71,9 +71,9 @@ input[type="file"] {
 }
 .fa-solid {
     margin-right: 10px;
+    transition: 0.3s ease-in-out;
 }
 .fa-solid:hover {
-    transition: 0.5s;
     transform: rotate(45deg);
 }
 .form h1 {
