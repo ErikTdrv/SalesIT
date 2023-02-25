@@ -87,6 +87,9 @@ input:focus + .reg-email-span, input:focus + .reg-password-span, input:focus + .
     background-color: #f44336;
     
 }
+.value-there {
+    transform: translateY(-80%);
+} 
 .reg-text {    
     position: absolute;
     bottom: 5px;
