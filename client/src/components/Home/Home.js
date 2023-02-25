@@ -1,4 +1,5 @@
 import React from "react";
+import HomeFooter from "./Home-Footer/Footer";
 import "./Home.css";
 import TopDiscounts from "./TopDiscounts/TopDiscounts";
 
@@ -21,6 +22,7 @@ export default function Home() {
       </div>
     </div>
     <TopDiscounts/>
+    <HomeFooter/>
     </>
   );
 }
