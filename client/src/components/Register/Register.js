@@ -49,7 +49,7 @@ export default function Register() {
             </div>
             <div className="register-email">
               <input type="text" className="second" onChange={changeValue}/>
-              <span className={email == true ? "reg-email-span value-there" : "reg-email-span"}>Email</span>
+              <span className={email ? "reg-email-span value-there" : "reg-email-span"}>Email</span>
             </div>
             <div className="register-password">
               <input type="password" className="third" onChange={changeValue}/>
