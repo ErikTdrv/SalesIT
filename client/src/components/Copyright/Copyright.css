@@ -1,0 +1,14 @@
+.copyright {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    /* background: linear-gradient(to right, #2C3E50, #000); */
+    color: black;
+
+}
+.copyright h1 {
+    margin: 5px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+}
