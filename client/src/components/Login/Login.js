@@ -22,13 +22,19 @@ export default function Login() {
             <div className="inputs">
               <div className="email">
                 <input type="text" onChange={changeValue} />
-                <span className={username ? "email-span value-there" : "email-span"}>
+                <span
+                  className={username ? "email-span value-there" : "email-span"}
+                >
                   Email
                 </span>
               </div>
               <div className="password">
                 <input type="password" onChange={changeValue} />
-                <span className={password ? "password-span value-there" : "password-span"}>
+                <span
+                  className={
+                    password ? "password-span value-there" : "password-span"
+                  }
+                >
                   Password
                 </span>
               </div>
@@ -45,7 +51,7 @@ export default function Login() {
           </p>
         </div>
       </div>
-      <Copyright/>
+      <Copyright />
     </>
   );
 }
