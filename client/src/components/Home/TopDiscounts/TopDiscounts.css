@@ -1,0 +1,26 @@
+.top-discounts {
+    width: 100%;
+    height: 500px;
+    background-color: rgb(180, 179, 179);
+}
+.top-discounts .title {
+    padding-top: 20px;
+}
+.top-discounts .title h1, .top-discounts .title h4{
+    margin: 0px;
+    text-align: center;
+}
+.top-discounts .title h4{
+    margin: 0px;
+    text-align: center;
+    font-style: italic;
+    color: rgb(49, 48, 48);
+}
+.discounts-section {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 10px;
+    height: 320px;
+    background-color: gray;
+    border-radius: 20px;
+}
