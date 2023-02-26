@@ -1,6 +1,6 @@
 .top-discounts {
     width: 100%;
-    height: 500px;
+    height: 600px;
     background-color: rgb(180, 179, 179);
 }
 .top-discounts .title {
@@ -17,10 +17,20 @@
     color: rgb(49, 48, 48);
 }
 .discounts-section {
+    overflow: hidden;
     width: 95%;
     margin: 0 auto;
     margin-top: 10px;
-    height: 320px;
+    height: 400px;
     background-color: gray;
     border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.discounts-section div {
+    border-radius: 15px;
+}
+.discounts-section .computer__image {
+    border-radius: 15px 15px 0px 0px;
 }
