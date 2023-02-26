@@ -11,8 +11,8 @@ export default function Header(){
         </div>
         <ul className="mainul">
             <li><NavLink activeclassname='active' className='Link' to='/'>Home</NavLink></li>
-            <li><NavLink activeclassname='active' className='Link' to='/all-items'>All Items</NavLink></li>
-            <li><NavLink activeclassname='active' className='Link' to='/add-item'>Add Item</NavLink></li>
+            <li><NavLink activeclassname='active' className='Link' to='/all-items'>All Products</NavLink></li>
+            <li><NavLink activeclassname='active' className='Link' to='/add-item'>Add Product</NavLink></li>
             <li><NavLink activeclassname='active' className='Link' to='/about'>About</NavLink></li>
         </ul>
         <ul className="authul">
