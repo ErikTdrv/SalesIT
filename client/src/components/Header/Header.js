@@ -11,6 +11,7 @@ export default function Header(){
         </div>
         <ul className="mainul">
             <li><Link className='Link' to='/'>Home</Link></li>
+            <li><Link className='Link' to='/all-items'>All Items</Link></li>
             <li><Link className='Link' to='/add-item'>Add Item</Link></li>
             <li><Link className='Link' to='/about'>About</Link></li>
         </ul>
