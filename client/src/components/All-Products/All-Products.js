@@ -1,6 +1,6 @@
 import React from "react";
 import HomeFooter from "../Home/Home-Footer/Footer";
-import "./All-Items.css";
+import "./All-Products.css";
 
 export default function AllItems() {
   return (

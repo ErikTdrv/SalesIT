@@ -5,13 +5,13 @@ export default function Header(){
     return (
         <header className="navigation">
         <div className="mainlogo">
-            <NavLink className='Link' to='/'>
+            <Link className='Link' to='/'>
             Sales<span className="itlogo">IT</span>
-            </NavLink>
+            </Link>
         </div>
         <ul className="mainul">
             <li><NavLink activeclassname='active' className='Link' to='/'>Home</NavLink></li>
-            <li><NavLink activeclassname='active' className='Link' to='/all-items'>All Products</NavLink></li>
+            <li><NavLink activeclassname='active' className='Link' to='/all-products'>All Products</NavLink></li>
             <li><NavLink activeclassname='active' className='Link' to='/add-item'>Add Product</NavLink></li>
             <li><NavLink activeclassname='active' className='Link' to='/about'>About</NavLink></li>
         </ul>
