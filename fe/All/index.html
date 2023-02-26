@@ -1,45 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SalesIT</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
 
-<body>
-
+  <body>
     <header class="navigation">
-        <div class="mainlogo">
-            Sales<span class="itlogo">IT</span>
-        </div>
-        <ul class="mainul">
-            <li><a>Home</a></li>
-            <li><a>Add Item</a></li>
-            <li><a>About</a></li>
-        </ul>
-        <ul class="authul">
-            <li><a>Login</a></li>
-            <li><a>Register</a></li>
-            <li><i class="fa-solid fa-user"></i></li>
-        </ul>
+      <div class="mainlogo">Sales<span class="itlogo">IT</span></div>
+      <ul class="mainul">
+        <li><a>Home</a></li>
+        <li><a>Add Item</a></li>
+        <li><a>About</a></li>
+      </ul>
+      <ul class="authul">
+        <li><a>Login</a></li>
+        <li><a>Register</a></li>
+        <li><i class="fa-solid fa-user"></i></li>
+      </ul>
     </header>
     <div class="all-container">
-        <h1 class="main-title">All Items</h1>
-        <div class="choosable">
-            <button class="all-btn">All</button>
-            <button class="computers-btn">Computers</button>
-            <button class="monitors-btn">Monitors</button>
-        </div>
+      <h1 class="main-title">All Items</h1>
+      <div class="choosable">
+        <button class="all-btn">All</button>
+        <button class="computers-btn">Computers</button>
+        <button class="monitors-btn">Monitors</button>
+      </div>
+      <section class="items-to-show">
+        <article class="filter">
+          <h2>Filter</h2>
+          <h4>Manufacturer</h4>
+          <div class="all-inputs">
+            <label for="ASUS"><input type="checkbox" id="ASUS" value="ASUS" />ASUS</label>
+            <label for="Acer"><input type="checkbox" id="Acer" value="Acer" />Acer</label>
+            <label for="HP"><input type="checkbox" id="HP" value="ASUS" />HP</label>
+            <label for="Dell"><input type="checkbox" id="Dell" value="Dell" />Dell</label>
+            <label for="Apple"><input type="checkbox" id="Apple" value="Apple" />Apple</label>
+            <label for="Alienware"><input type="checkbox" id="Alienware" value="Alienware"/>Alienware</label>
+            <label for="MSI"><input type="checkbox" id="MSI" value="MSI" />MSI</label>
+            <label for="Samsung"><input type="checkbox" id="Samsung" value="Samsung" />Samsung</label>
+            <label for="Xiaomi"><input type="checkbox" id="Xiaomi" value="Xiaomi" />Xiaomi</label>
+            <label for="Huawei"><input type="checkbox" id="Huawei" value="Huawei" />Huawei</label>
+          </div>
+          <h4>Price</h4>
+          <div class="all-inputs">
+            <label for="0"><input type="checkbox" id="0" value="0" />0$ - 200$</label>
+            <label for="200-600"><input type="checkbox" id="200-600" value="200-600" />200$ - 600$</label>
+            <label for="600-900"><input type="checkbox" id="600-900" value="600-900" />600$ - 900$</label>
+            <label for="900-1400"><input type="checkbox" id="900-1400" value="0" />900$-1400$</label>
+            <label for="1400-2000"><input type="checkbox" id="1400-2000" value="1400-2000" />140$ - 2000$</label>
+            <label for="2000"><input type="checkbox" id="2000" value="2000" />+2000$</label>
+          </div>
+        </article>
+        <article class="items"></article>
+      </section>
     </div>
     <div class="copyright">
-        <h1>© 2023 SalesIT. All rights reserved.</h1>
+      <h1>© 2023 SalesIT. All rights reserved.</h1>
     </div>
-</body>
-
+  </body>
 </html>
