@@ -49,77 +49,7 @@ ul {
     margin: 0px;
 }
 
-/* Home page */
-.home {
-    top: 0px;
-    height: 700px;
-    z-index: -1;
-}
-img {
-    position: absolute;
-    top: 0px;
-    z-index: -1;
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 740px;
-}
-.home-buttons button {
-    margin: 10px 30px 0px 0px;
-    background-color: rgb(121, 0, 0);
-    color: white;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 16px;
-    padding: 8px 15px; 
-    border: none;
-    cursor: pointer;
-}
-.home-buttons button:hover {
-    transition: 0.5s ease-out;
-    background-color: rgb(255, 0, 0);
-}
-.titles {
-    width: 600px;
-    color: white;
-    position: absolute;
-    top: 20%;
-    left: 12%;
-}
-.titles .first {
-    font-size: 25px;
-}
-.titles .second {
-    font-size: 15px;
-}
 
-/* Top discounts */
-.top-discounts {
-    width: 100%;
-    height: 500px;
-    background-color: rgb(180, 179, 179);
-}
-.top-discounts .title {
-    padding-top: 20px;
-}
-.top-discounts .title h1, .top-discounts .title h4{
-    margin: 0px;
-    text-align: center;
-}
-.top-discounts .title h4{
-    margin: 0px;
-    text-align: center;
-    font-style: italic;
-    color: rgb(49, 48, 48);
-}
-.discounts-section {
-    width: 95%;
-    margin: 0 auto;
-    margin-top: 10px;
-    height: 320px;
-    background-color: gray;
-    border-radius: 20px;
-}
 
 /* Footer */
 .footer {
@@ -130,14 +60,20 @@ img {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    height: 80px;
 }
 .contact-us h1 {
     font-size: 16px;
 }
 .footer ul li {
-    display: flex;
+    /* display: flex; */
     margin: 20px;
     cursor: pointer;
+    text-decoration: none;
+    list-style: none;
+}
+.footer ul {
+    display: flex;
 }
 .footer ul li:hover {
     color: red;
@@ -178,7 +114,7 @@ img {
 .all-container {
     background-color: rgb(90, 90, 90);
     background-color: rgb(209, 208, 208);
-    height: calc(100vh - 40px - 27px);
+    height: calc(100vh - 40px - 40px);
 }
 .main-title {
 
@@ -225,6 +161,7 @@ img {
 }
 .items {
     flex: 0 0 85%;
+    width: 85%;
     background-color: rgb(219, 218, 218);
 }
 .filter h2 {
@@ -239,4 +176,53 @@ h4 {
 .all-inputs {
     display: flex;
     flex-direction: column;
+}
+.all-inputs label {
+    margin: 4px;
+}
+.items {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.computer__card {
+    position: relative;
+    margin-left: 5px;
+    margin-top: 10px;
+    width: 250px;
+    height: 350px;
+    background-color: rgb(167, 167, 167);
+}
+.computer__image{
+    width: 250px;
+    height: 150px;
+}
+.computer__title {
+    margin: 5px;
+    text-align: center;
+}
+.computer__info span {
+    font-size: 13px;
+    display: inline-block;
+    font-weight: 500;
+}
+.fa-check {
+    margin-left: 8px;
+    margin-right: 5px;
+    font-size: 12px;
+}
+.computer__button {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%);
+    width: 40%;
+    padding: 6px 30px;
+    border: none;
+    border-radius: 20px;
+    font-weight: 700;
+}
+.computer__button:hover {
+    transition: 0.3s;
+    background-color: #f44336;
 }
