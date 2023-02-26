@@ -80,9 +80,9 @@ input:focus + .reg-email-span, input:focus + .reg-password-span, input:focus + .
     font-size: 18px;
     color: white;
     background-color: #444444;
+    transition: 0.4s ease-in-out;
 }
 .register-btn:hover {
-    transition: 0.3s;
     background-color: rgb(89, 0, 255);
     background-color: #f44336;
     
