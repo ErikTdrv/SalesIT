@@ -3,7 +3,7 @@
     height: 700px;
     z-index: -1;
 }
-img {
+.home__image {
     position: absolute;
     top: 0px;
     z-index: -1;
