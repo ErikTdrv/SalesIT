@@ -1,0 +1,41 @@
+.computer__card {
+    position: relative;
+    margin-left: 5px;
+    margin-top: 10px;
+    width: 250px;
+    height: 350px;
+    background-color: rgb(167, 167, 167);
+}
+.computer__image{
+    width: 250px;
+    height: 150px;
+}
+.computer__title {
+    margin: 5px;
+    text-align: center;
+}
+.computer__info span {
+    font-size: 13px;
+    display: inline-block;
+    font-weight: 500;
+}
+.fa-check {
+    margin-left: 8px;
+    margin-right: 5px;
+    font-size: 12px;
+}
+.computer__button {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%);
+    width: 40%;
+    padding: 6px 30px;
+    border: none;
+    border-radius: 20px;
+    font-weight: 700;
+}
+.computer__button:hover {
+    transition: 0.3s;
+    background-color: #f44336;
+}
