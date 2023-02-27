@@ -11,9 +11,6 @@ export default function TopDiscounts() {
       </div>
       <section className="discounts-section">
       <Computer/>
-      <Computer/>
-      <Computer/>
-      <Computer/>
       </section>
     </div>
   );
