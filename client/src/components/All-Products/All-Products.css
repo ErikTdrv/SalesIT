@@ -27,7 +27,7 @@
     color: white;
 }
 .choosable button:hover {
-    background-color: rgb(179, 179, 179);
+    background-color: #f44336;
 }
 
 .choosable button:first-child{
