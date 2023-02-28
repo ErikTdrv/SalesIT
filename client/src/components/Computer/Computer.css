@@ -1,12 +1,13 @@
 .computer__card {
     position: relative;
-    margin-left: 5px;
-    margin-top: 10px;
+    margin: 10px 0px 10px 5px;
     width: 250px;
     height: 350px;
     background-color: rgb(167, 167, 167);
+    border-radius: 15px;
 }
 .computer__image{
+    border-radius: 10px 10px 0px 0px;
     width: 250px;
     height: 150px;
 }
