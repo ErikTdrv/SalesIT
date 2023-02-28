@@ -12,7 +12,7 @@ export default function Header(){
         <ul className="mainul">
             <li><NavLink activeclassname='active' className='Link' to='/'>Home</NavLink></li>
             <li><NavLink activeclassname='active' className='Link' to='/all-products'>All Products</NavLink></li>
-            <li><NavLink activeclassname='active' className='Link' to='/add-item'>Add Product</NavLink></li>
+            <li><NavLink activeclassname='active' className='Link' to='/add-product'>Add Product</NavLink></li>
             <li><NavLink activeclassname='active' className='Link' to='/about'>About</NavLink></li>
         </ul>
         <ul className="authul">
