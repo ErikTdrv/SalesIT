@@ -14,11 +14,11 @@
 input[type="file"] {
     display: none;
 }
-.fa-solid {
+.register .fa-solid {
     margin-right: 10px;
     transition: 0.3s ease-in-out;
 }
-.fa-solid:hover {
+.register .fa-solid:hover {
     transform: rotate(45deg);
 }
 .register h1 {
