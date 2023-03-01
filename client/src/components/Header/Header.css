@@ -45,3 +45,9 @@
 ul {
     margin: 0px;
 }
+.navigation .fa-solid {
+    color: white;
+}
+.active .fa-solid{
+    color: black;
+}
