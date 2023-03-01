@@ -1,25 +1,31 @@
 import React, { useState } from "react";
-import ComputerProduct from "../Computer-Product/ComputerProduct";
+import ComputerProduct from "../ProductsType/Computer-Product/ComputerProduct";
 import "./Add-Product.css";
 
 export default function AddProduct() {
   let [formPage, setFormPage] = useState(0);
   let [products, setProducts] = useState({});
-
-  function changeValue(e){
-      if(e.target.value.length > 0){
-       
-      }
+  let [type, setType] = useState("none");
+  function changeValue(e) {
+    if (e.target.value.length > 0) {
+    }
   }
+  function chooseType(e){
+    let type = e.target.textContent.toLowerCase()
+    setType(type)
+  }
+
   return (
     <div className="add-container">
       <h1>Add Product</h1>
       <div className="choosable">
-        <button className="all-btn">Phones</button>
-        <button className="computers-btn">Computers</button>
-        <button className="monitors-btn">Monitors</button>
+        <button className={ type === 'phone' ? 'clicked' : ''} onClick={chooseType}>Phone</button>
+        <button className={ type === 'computer' ? 'clicked' : ''} onClick={chooseType}>
+          Computer
+        </button>
+        <button className={ type === 'monitor' ? 'clicked' : ''} onClick={chooseType}>Monitor</button>
       </div>
-      <ComputerProduct/>
+      { type === 'computer' ? <ComputerProduct/> : null}
     </div>
   );
 }
