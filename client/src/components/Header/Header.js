@@ -19,7 +19,7 @@ export default function Header(){
             <li><NavLink activeclassname='active' className='Link' to='/login'>Login</NavLink></li>
             <li><NavLink activeclassname='active' className='Link' to='/register'>Register</NavLink></li>
             <li><i className="fa-solid fa-user"></i></li>
-            <li><i class="fa-solid fa-cart-shopping"></i></li>
+            <li><NavLink activeclassname='activeCard' className='Link' to='/card'><i className="fa-solid fa-cart-shopping"></i></NavLink></li>
         </ul>
     </header>   
     );
