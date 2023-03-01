@@ -2,7 +2,7 @@
     position: relative;
     margin: 10px 0px 10px 5px;
     width: 250px;
-    height: 350px;
+    height: 340px;
     background-color: rgb(167, 167, 167);
     border-radius: 15px;
 }
@@ -12,7 +12,8 @@
     height: 150px;
 }
 .computer__title {
-    margin: 5px;
+    margin: 3px;
+    font-size: 14px;
     text-align: center;
 }
 .computer__info span {
@@ -39,5 +40,18 @@
 .computer__button:hover {
     transition: 0.3s;
     background-color: #f44336;
+}
+.computer__card .price {
+    width: 60px;
+    text-align: center;
+    background-color: gray;
+    font-size: 14px;
+    color: black;
+    font-weight: 700;
+    border-radius: 20px;
+    position: absolute;
+    top: 40%;
+    /* text-decoration: line-through 1px red; */
+    left: 70%;
 }
 

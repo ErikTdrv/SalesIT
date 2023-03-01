@@ -24,6 +24,7 @@ export default function Computer() {
           <i className="fa-solid fa-check"></i>Good Sustainability
         </span>
       </div>
+      <span className="price">1200$</span>
       <button className="computer__button">Details</button>
     </div>
   );
