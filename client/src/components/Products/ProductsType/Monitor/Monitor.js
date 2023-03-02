@@ -1,63 +1,62 @@
 import React, { useState } from "react";
 
-export default function ComputerProduct(){
+export default function MonitorProduct() {
   let [products, setProducts] = useState({});
-  function changeValue(e){
-    if(e.target.value.length > 0){
-     
+  function changeValue(e) {
+    if (e.target.value.length > 0) {
     }
-}
-    return (
-        <form className="add-form">
-        <div className="inputs">
-          <div className="left-input">
-            <div className="manufacturer">
+  }
+  return (
+    <form className="add-form">
+      <div className="inputs">
+        <div className="left-input">
+          <div>
             <input type="text" onChange={changeValue} />
-            <span className={ products.manufacturer ? "manufacturer-span value-there" : "manufacturer-span"}>Manufacturer</span>
-            </div>
-          <div className="motherboard">
-            <input type="text" onChange={changeValue} />
-            <span className={ products.motherboard ? "motherboard-span value-there" : "motherboard-span"}>Motherboard</span>
-            </div>
-          <div className="processor">
-            <input type="text" onChange={changeValue} />
-            <span className={ products.processor ? "processor-span value-there" : "processor-span"}>Processor</span>
+            <span className={products.manufacturer ? "value-there" : ""}>
+              Manufacturer
+            </span>
           </div>
-          <div className="videocard">
+          <div>
             <input type="text" onChange={changeValue} />
-            <span className={ products.videocard ? "videocard-span value-there" : "videocard-span"}>Videocard</span>
+            <span className={products.screen_resolution ? "value-there" : ""}>
+              Screen Resolution
+            </span>
+          </div>
+          <div>
+            <input type="text" onChange={changeValue} />
+            <span className={products.resolution ? "value-there" : ""}>
+              Resolution
+            </span>
           </div>
           <div className="avatar">
-              <label htmlFor="avatar">
-                <i className="fa-solid fa-plus"></i>Add avatar
-              </label>
-              <input type="file" name="avatar" />
-            </div>
-            </div>
-            <div className="right-input">
-          <div className="os">
-            <input type="text" onChange={changeValue} />
-            <span className={ products.os ? "os-span value-there" : "os-span"}>Operation System</span>
+            <label htmlFor="avatar">
+              <i className="fa-solid fa-plus"></i>Add avatar
+            </label>
+            <input type="file" name="avatar" />
           </div>
-          <div className="ssd">
+        </div>
+        <div className="right-input">
+          <div>
             <input type="text" onChange={changeValue} />
-            <span className={ products.os ? "ssd-span value-there" : "ssd-span"}>SSD</span>
+            <span
+              className={products.refreshrate ? "value-there" : "videocard-span"}
+            >
+              Refresh Rate
+            </span>
           </div>
-          <div className="harddrive">
+          <div>
             <input type="text" onChange={changeValue} />
-            <span className={ products.os ? "harddrive-span value-there" : "harddrive-span"}>Hard Drive</span>
+            <span className={products.paneltype ? "value-there" : ""}>
+              Panel Type
+            </span>
           </div>
           <div className="price" id="price">
             <input type="text" onChange={changeValue} />
-            <span className={ products.os ? "price-span value-there" : "price-span"}>Price</span>
+            <span className={products.os ? "value-there" : ""}>Price</span>
           </div>
-            </div>
-          </div>
-          <input
-              type="submit"
-              value="Add Product"
-              className="add-btn"
-            />
-      </form>
-    )
+        </div>
+      </div>
+      <input type="submit" value="Add Product" className="add-btn" />
+    </form>
+  );
 }
