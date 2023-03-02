@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ComputerProduct from "../ProductsType/Computer-Product/ComputerProduct";
+import MonitorProduct from "../ProductsType/Monitor/Monitor";
 import "./Add-Product.css";
 
 export default function AddProduct() {
@@ -26,6 +27,7 @@ export default function AddProduct() {
         <button className={ type === 'monitor' ? 'clicked' : ''} onClick={chooseType}>Monitor</button>
       </div>
       { type === 'computer' ? <ComputerProduct/> : null}
+      { type === 'monitor' ? <MonitorProduct/> : null}
     </div>
   );
 }
