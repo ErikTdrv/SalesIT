@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import ComputerProduct from "../ProductsType/Computer-Product/ComputerProduct";
-import MonitorProduct from "../ProductsType/Monitor/Monitor";
+import ComputerProduct from "../ProductsType/ComputerProduct";
+import MonitorProduct from "../ProductsType/Monitor";
 import "./Add-Product.css";
 
 export default function AddProduct() {
