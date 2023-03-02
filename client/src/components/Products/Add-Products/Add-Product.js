@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ComputerProduct from "../ProductsType/ComputerProduct";
 import MonitorProduct from "../ProductsType/Monitor";
+import PhoneProduct from "../ProductsType/Phone";
 import "./Add-Product.css";
 
 export default function AddProduct() {
@@ -28,6 +29,7 @@ export default function AddProduct() {
       </div>
       { type === 'computer' ? <ComputerProduct/> : null}
       { type === 'monitor' ? <MonitorProduct/> : null}
+      { type === 'phone' ? <PhoneProduct/> : null}
     </div>
   );
 }
