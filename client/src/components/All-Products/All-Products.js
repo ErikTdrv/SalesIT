@@ -113,9 +113,6 @@ export default function AllItems() {
             <Computer/>
             <Computer/>
             <Computer/>
-            <Computer/>
-            <Computer/>
-            <Computer/>
           </article>
         </section>
       </div>
