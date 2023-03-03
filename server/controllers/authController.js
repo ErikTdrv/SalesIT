@@ -35,4 +35,14 @@ router.post('/login', async (req, res) => {
         res.status(400).json({ error: error.message })
     }
 })
+router.delete('/logout', async (req, res) => {
+    res.clearCookie('auth');
+    // res.cookie("auth", 'none', { httpOnly: true, sameSite: 'none' , secure: true});
+    res.send({ message: 'Cookie cleared successfully' }) 
+
+
+    // -- Clearing token from local storage
+    // let token = req.user.token;
+    // await logout(token)
+});
 module.exports = router;
