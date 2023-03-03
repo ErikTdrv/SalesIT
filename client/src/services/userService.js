@@ -1,14 +1,13 @@
 const API_URL = "http://localhost:8080";
 
-export const register = async (info, base64) => {
+export const register = async (info) => {
   try {
-    info.avatarImg = base64
-
-    await fetch(`${API_URL}/register`, {
+    let request = await fetch(`${API_URL}/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },    
+      credentials: 'include',
       body: JSON.stringify(info),
     });
     // const data = await response.json();
@@ -17,3 +16,17 @@ export const register = async (info, base64) => {
     console.error(error);
   }
 };
+export const login = async (info) => {
+  try {
+    await fetch(`${API_URL}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },    
+      credentials: 'include',
+      body: JSON.stringify(info),
+    })
+  } catch (error) {
+    console.error(error);
+  }
+}
