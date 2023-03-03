@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const computerSchema = new mongoose.Schema({
+const monitorSchema = new mongoose.Schema({
   manufacturer: {
     type: String,
     required: true,
@@ -36,5 +36,5 @@ const computerSchema = new mongoose.Schema({
   },
 });
 
-const Computer = new mongoose.model("Computer", computerSchema);
-module.exports = Computer;
+const Monitor = new mongoose.model("Monitor", monitorSchema);
+module.exports = Monitor;
