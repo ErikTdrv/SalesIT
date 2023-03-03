@@ -4,6 +4,7 @@ import Copyright from "../Copyright/Copyright";
 import "./Register.css";
 
 export default function Register() {
+  const [auth, setAuth ] = useState({})
   const [username, setUsername] = useState(false);
   const [email, setEmail] = useState(false);
   const [password, setPassword] = useState(false);
@@ -40,24 +41,24 @@ export default function Register() {
           />
           <div className="register-inputs">
             <div className="register-username">
-              <input type="text" className="first" onChange={changeValue}/>
-              <span className={username ? "value-there" : ""}>Username</span>
+              <input type="text" className="first" onChange={(e) => setAuth({...auth, username: e.target.value})}/>
+              <span className={auth.username ? "value-there" : ""}>Username</span>
             </div>
             <div className="register-email">
-              <input type="text" className="second" onChange={changeValue}/>
-              <span className={email ? "value-there" : ""}>Email</span>
+              <input type="text" className="second" onChange={(e) => setAuth({...auth, email: e.target.value})}/>
+              <span className={auth.email ? "value-there" : ""}>Email</span>
             </div>
             <div className="register-password">
-              <input type="password" className="third" onChange={changeValue}/>
-              <span className={password ? "value-there" : ""}>Password</span>
+              <input type="password" className="third" onChange={(e) => setAuth({...auth, password: e.target.value})}/>
+              <span className={auth.password ? "value-there" : ""}>Password</span>
             </div>
             <div className="re-password">
-              <input type="text" className="fourth" onChange={changeValue}/>
-              <span className={repass ? "value-there" : ""}>Repeat Password</span>
+              <input type="password" className="fourth" onChange={(e) => setAuth({...auth, repass: e.target.value})}/>
+              <span className={auth.repass ? "value-there" : ""}>Repeat Password</span>
             </div>
             <div className="phone">
-              <input type="text" className="fifth" onChange={changeValue}/>
-              <span className={phone ? "value-there" : ""}>Phone Number</span>
+              <input type="text" className="fifth" onChange={(e) => setAuth({...auth, phone: e.target.value})}/>
+              <span className={auth.phone ? "value-there" : ""}>Phone Number</span>
             </div>
             <div className="avatar">
               <label htmlFor="avatar">

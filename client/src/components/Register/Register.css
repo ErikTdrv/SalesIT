@@ -33,7 +33,9 @@ input[type="file"] {
     margin: 30px 0px;
     position: relative;
 }
-
+.register .value-there {
+    transform: translateY(-80%);
+} 
 
 .register-inputs span{
     position: absolute;
