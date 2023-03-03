@@ -38,13 +38,10 @@
 input:focus {
     outline: none;
 }
-input:focus + .email-span {
+.login-form input:focus + span{
     transform: translateY(-80%);
 }
-input:focus + .password-span {
-    transform: translateY(-80%);
-}
-.value-there {
+.login-form .value-there {
     transform: translateY(-80%);
 } 
 .email input, .password input{

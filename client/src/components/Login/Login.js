@@ -1,48 +1,41 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { login } from "../../services/userService";
 import Copyright from "../Copyright/Copyright";
 import "./Login.css";
 
 export default function Login() {
-  const [username, setUsername] = useState(false);
-  const [password, setPassword] = useState(false);
-  function changeValue(e) {
-    if(e.target.value.length > 0){
-      if (e.target.type === "password") {
-        setPassword(true);
-      } else {
-        setUsername(true);
-      }
-    }else {
-      if (e.target.type === "password") {
-        setPassword(false);
-      } else {
-        setUsername(false);
-      }
-    }
+  const [authInfo, setAuthInfo] = useState({});
+  async function loginHandler(e){
+    e.preventDefault()
+    login(authInfo)
   }
   return (
     <>
       <div className="login">
         <div className="form">
           <h1>Login</h1>
-          <form className="login-form">
+          <form className="login-form" onSubmit={loginHandler}>
             <div className="inputs">
               <div className="email">
-                <input type="text" onChange={changeValue} />
-                <span
-                  className={username ? "email-span value-there" : "email-span"}
-                >
+                <input
+                  type="text"
+                  onChange={(e) =>
+                    setAuthInfo({ ...authInfo, email: e.target.value })
+                  }
+                />
+                <span className={authInfo.email ? "value-there" : ""}>
                   Email
                 </span>
               </div>
               <div className="password">
-                <input type="password" onChange={changeValue} />
-                <span
-                  className={
-                    password ? "password-span value-there" : "password-span"
+                <input
+                  type="password"
+                  onChange={(e) =>
+                    setAuthInfo({ ...authInfo, password: e.target.value })
                   }
-                >
+                />
+                <span className={authInfo.password ? "value-there" : ""}>
                   Password
                 </span>
               </div>
