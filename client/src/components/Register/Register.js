@@ -8,7 +8,7 @@ export default function Register() {
   const [password, setPassword] = useState(false);
   const [email, setEmail] = useState(false);
   const [repass, setRepass] = useState(false);
-
+  const [phone, setPhone] = useState(false);
   function changeValue(e){
     if(e.target.value.length > 0){
         if(e.target.className === 'first'){
@@ -19,6 +19,8 @@ export default function Register() {
             setPassword(true)
         }else if(e.target.className === 'fourth'){
             setRepass(true)
+        }else if(e.target.className === 'fifth'){
+          setPhone(true)
         }
     }else {
         if(e.target.className === 'first'){
@@ -29,6 +31,8 @@ export default function Register() {
             setPassword(false)
         }else if(e.target.className === 'fourth'){
             setRepass(false)
+        }else if(e.target.className === 'fifth'){
+          setPhone(false)
         }
     }
   }
@@ -45,19 +49,23 @@ export default function Register() {
           <div className="register-inputs">
             <div className="register-username">
               <input type="text" className="first" onChange={changeValue}/>
-              <span className={username ? "reg-username-span value-there" : "reg-username-span"}>Username</span>
+              <span className={username ? "value-there" : ""}>Username</span>
             </div>
             <div className="register-email">
               <input type="text" className="second" onChange={changeValue}/>
-              <span className={email ? "reg-email-span value-there" : "reg-email-span"}>Email</span>
+              <span className={email ? "value-there" : ""}>Email</span>
             </div>
             <div className="register-password">
               <input type="password" className="third" onChange={changeValue}/>
-              <span className={password ? "reg-password-span value-there" : "reg-password-span"}>Password</span>
+              <span className={password ? "value-there" : ""}>Password</span>
             </div>
             <div className="re-password">
               <input type="text" className="fourth" onChange={changeValue}/>
-              <span className={repass ? "repass-span value-there" : "repass-span"}>Repeat Password</span>
+              <span className={repass ? "value-there" : ""}>Repeat Password</span>
+            </div>
+            <div className="phone">
+              <input type="text" className="fifth" onChange={changeValue}/>
+              <span className={phone ? "value-there" : ""}>Phone Number</span>
             </div>
             <div className="avatar">
               <label htmlFor="avatar">
