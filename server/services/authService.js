@@ -45,7 +45,7 @@ const login = async (email, password) => {
     }
     const isUser = await bcrypt.compare(password, user.password)
     if(isUser){
-        let userToReturn = await createAccessToken(user)
+        let userToReturn = createAccessToken(user)
         userToReturn.avatarImg = user.avatarImg;
         userToReturn.imageId = user.imageId;
         return userToReturn
