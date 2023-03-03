@@ -29,7 +29,7 @@ export default function ComputerProduct(){
           </div>
           <div className="avatar">
               <label htmlFor="avatar">
-                <i className="fa-solid fa-plus"></i>Add avatar
+                <i className="fa-solid fa-plus"></i>Add Image
               </label>
               <input type="file" name="avatar" />
             </div>
