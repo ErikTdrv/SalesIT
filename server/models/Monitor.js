@@ -6,27 +6,19 @@ const computerSchema = new mongoose.Schema({
     minlength: [4, "Manufacturer should have at least 2 characters!"],
     maxlength: [10, "Manufacturer cannot have more than 10 characters!"],
   },
-  motherboard: {
+  screenresolution: {
     required: true,
     type: String,
   },
-  processor: {
+  resolution: {
     required: true,
     type: String,
   },
-  videocard: {
+  refreshrate: {
     required: true,
     type: String,
   },
-  os: {
-    required: true,
-    type: String,
-  },
-  ssd: {
-    required: true,
-    type: String,
-  },
-  harddrive: {
+  paneltype: {
     required: true,
     type: String,
   },
@@ -38,7 +30,7 @@ const computerSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: "User",
   },
-  computerImages: {
+  monitorImages: {
     required: true,
     type: Array,
   },
