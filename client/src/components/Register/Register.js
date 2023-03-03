@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { register } from "../../services/userService";
 import Copyright from "../Copyright/Copyright";
 import "./Register.css";
 
@@ -7,12 +8,10 @@ export default function Register() {
   const [auth, setAuth] = useState({});
   async function onSubmitHandler(e) {
     e.preventDefault();
-    console.log(auth);
+    let base64 = await convertToBase64(auth.avatarImg)
+    register(auth, base64)
   }
-  function getImage(e){
-    console.log('here')
-    console.log(e.target.files[0])
-  }
+
   async function convertToBase64(file){
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
@@ -21,7 +20,6 @@ export default function Register() {
       fileReader.onload = () => {
         resolve(fileReader.result)
       }
-
       fileReader.onerror = (error) => {
         reject(error)
       }
