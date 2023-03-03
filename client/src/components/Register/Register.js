@@ -5,37 +5,29 @@ import "./Register.css";
 
 export default function Register() {
   const [username, setUsername] = useState(false);
-  const [password, setPassword] = useState(false);
   const [email, setEmail] = useState(false);
+  const [password, setPassword] = useState(false);
   const [repass, setRepass] = useState(false);
   const [phone, setPhone] = useState(false);
-  function changeValue(e){
-    if(e.target.value.length > 0){
-        if(e.target.className === 'first'){
-            setUsername(true)
-        }else if(e.target.className === 'second'){
-            setEmail(true)
-        }else if(e.target.className === 'third'){
-            setPassword(true)
-        }else if(e.target.className === 'fourth'){
-            setRepass(true)
-        }else if(e.target.className === 'fifth'){
-          setPhone(true)
-        }
-    }else {
-        if(e.target.className === 'first'){
-            setUsername(false)
-        }else if(e.target.className === 'second'){
-            setEmail(false)
-        }else if(e.target.className === 'third'){
-            setPassword(false)
-        }else if(e.target.className === 'fourth'){
-            setRepass(false)
-        }else if(e.target.className === 'fifth'){
-          setPhone(false)
-        }
+  
+  const fieldStateMap = {
+    'first': setUsername,
+    'second': setEmail,
+    'third': setPassword,
+    'fourth': setRepass,
+    'fifth': setPhone
+  };
+  
+  const changeValue = (e) => {
+    const { value, className } = e.target;
+    const setState = fieldStateMap[className];
+  
+    if (value.length > 0) {
+      setState(true);
+    } else {
+      setState(false);
     }
-  }
+  };
   return (
     <>
       <div className="register">
