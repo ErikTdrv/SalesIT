@@ -8,7 +8,8 @@ export default function Register() {
   const [auth, setAuth] = useState({});
   async function onSubmitHandler(e) {
     e.preventDefault();
-    if(auth.avatarImg?.length > 0){
+    if(auth.avatarImg){
+      console.log('here')
       let base64 = await convertToBase64(auth.avatarImg)
       auth.avatarImg = base64
     }

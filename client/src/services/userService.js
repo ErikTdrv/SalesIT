@@ -10,15 +10,19 @@ export const register = async (info) => {
       credentials: 'include',
       body: JSON.stringify(info),
     });
-    // const data = await response.json();
-    // return data;
+    const data = await request.json();
+    if(request.ok){
+      return data
+    }else {
+      throw new Error(data.error)
+    }
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 };
 export const login = async (info) => {
   try {
-    await fetch(`${API_URL}/login`, {
+    let request = await fetch(`${API_URL}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,6 +30,12 @@ export const login = async (info) => {
       credentials: 'include',
       body: JSON.stringify(info),
     })
+    const data = await request.json();
+    if(request.ok){
+      return data
+    }else {
+      throw new Error(data.error)
+    }
   } catch (error) {
     console.error(error);
   }
