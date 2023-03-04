@@ -95,7 +95,7 @@
     width: 95%;
     height: 35px;
 }
-.add-form input:focus {
+.add-form .inputs input:focus {
     border-bottom: 2px solid rgb(89, 0, 255);
     border-bottom: 2px solid #f44336;
 }
