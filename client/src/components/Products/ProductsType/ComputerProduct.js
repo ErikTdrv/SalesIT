@@ -1,63 +1,136 @@
 import React, { useState } from "react";
 
-export default function ComputerProduct(){
+export default function ComputerProduct() {
   let [products, setProducts] = useState({});
-  function changeValue(e){
-    if(e.target.value.length > 0){
-     
+  async function onAddHandler(e) {
+    e.preventDefault();
+    if (products.computerImages) {
+      let images = await Promise.all(
+        Array.from(products.computerImages).map(
+          async (e) => await convertToBase64(e)
+        )
+      );
+      setProducts({ ...products, computerImages: images });
     }
-}
-    return (
-        <form className="add-form">
-        <div className="inputs">
-          <div className="left-input">
-            <div className="manufacturer">
-            <input type="text" onChange={changeValue} />
-            <span className={ products.manufacturer ? "manufacturer-span value-there" : "manufacturer-span"}>Manufacturer</span>
-            </div>
+  }
+  async function convertToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  }
+  return (
+    <form className="add-form" onSubmit={onAddHandler}>
+      <div className="inputs">
+        <div className="left-input">
+          <div className="manufacturer">
+            <input
+              type="text"
+              onChange={(e) =>
+                setProducts({ ...products, manufacturer: e.target.value })
+              }
+            />
+            <span className={products.manufacturer ? "value-there" : ""}>
+              Manufacturer
+            </span>
+          </div>
           <div className="motherboard">
-            <input type="text" onChange={changeValue} />
-            <span className={ products.motherboard ? "motherboard-span value-there" : "motherboard-span"}>Motherboard</span>
-            </div>
+            <input
+              type="text"
+              onChange={(e) =>
+                setProducts({ ...products, motherboard: e.target.value })
+              }
+            />
+            <span className={products.motherboard ? "value-there" : ""}>
+              Motherboard
+            </span>
+          </div>
           <div className="processor">
-            <input type="text" onChange={changeValue} />
-            <span className={ products.processor ? "processor-span value-there" : "processor-span"}>Processor</span>
+            <input
+              type="text"
+              onChange={(e) =>
+                setProducts({ ...products, processor: e.target.value })
+              }
+            />
+            <span className={products.processor ? "value-there" : ""}>
+              Processor
+            </span>
           </div>
           <div className="videocard">
-            <input type="text" onChange={changeValue} />
-            <span className={ products.videocard ? "videocard-span value-there" : "videocard-span"}>Videocard</span>
+            <input
+              type="text"
+              onChange={(e) =>
+                setProducts({ ...products, videocard: e.target.value })
+              }
+            />
+            <span className={products.videocard ? "value-there" : ""}>
+              Videocard
+            </span>
           </div>
           <div className="avatar">
-              <label htmlFor="avatar">
-                <i className="fa-solid fa-plus"></i>Add Image
-              </label>
-              <input type="file" name="avatar" />
-            </div>
-            </div>
-            <div className="right-input">
+            <label htmlFor="avatar">
+              <i className="fa-solid fa-plus"></i>Add Image
+            </label>
+            <input
+              type="file"
+              multiple
+              name="avatar"
+              id="avatar"
+              onChange={(e) =>
+                setProducts({ ...products, computerImages: e.target.files })
+              }
+            />
+          </div>
+        </div>
+        <div className="right-input">
           <div className="os">
-            <input type="text" onChange={changeValue} />
-            <span className={ products.os ? "os-span value-there" : "os-span"}>Operation System</span>
+            <input
+              type="text"
+              onChange={(e) => setProducts({ ...products, os: e.target.value })}
+            />
+            <span className={products.os ? "value-there" : ""}>
+              Operation System
+            </span>
           </div>
           <div className="ssd">
-            <input type="text" onChange={changeValue} />
-            <span className={ products.os ? "ssd-span value-there" : "ssd-span"}>SSD</span>
+            <input
+              type="text"
+              onChange={(e) =>
+                setProducts({ ...products, ssd: e.target.value })
+              }
+            />
+            <span className={products.ssd ? "value-there" : ""}>SSD</span>
           </div>
           <div className="harddrive">
-            <input type="text" onChange={changeValue} />
-            <span className={ products.os ? "harddrive-span value-there" : "harddrive-span"}>Hard Drive</span>
+            <input
+              type="text"
+              onChange={(e) =>
+                setProducts({ ...products, harddrive: e.target.value })
+              }
+            />
+            <span className={products.harddrive ? "value-there" : ""}>
+              Hard Drive
+            </span>
           </div>
           <div className="price" id="price">
-            <input type="text" onChange={changeValue} />
-            <span className={ products.os ? "price-span value-there" : "price-span"}>Price</span>
-          </div>
-            </div>
-          </div>
-          <input
-              type="submit"
-              value="Add Product"
-              className="add-btn"
+            <input
+              type="text"
+              onChange={(e) =>
+                setProducts({ ...products, price: e.target.value })
+              }
             />
-      </form>
-    )
+            <span className={products.price ? "value-there" : ""}>Price</span>
+          </div>
+        </div>
+      </div>
+      <input type="submit" value="Add Product" className="add-btn" />
+    </form>
+  );
 }

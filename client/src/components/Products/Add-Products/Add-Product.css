@@ -86,7 +86,7 @@
 .add-form input:focus+span {
     transform: translateY(-80%);
 }
-.value-there {
+.add-container .value-there {
     transform: translateY(-80%);
 } 
 .add-form .inputs input{
