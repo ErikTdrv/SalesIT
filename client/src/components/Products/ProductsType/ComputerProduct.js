@@ -3,9 +3,11 @@ import { addProduct } from "../../../services/productService";
 
 export default function ComputerProduct() {
   let [products, setProducts] = useState({});
+  let [error, setError] = useState({});
+  let [disabled, setDisabled] = useState(true)
   async function onAddHandler(e) {
     e.preventDefault();
-    addProduct(products, 'Computers');
+    addProduct(products, "Computers");
   }
   async function convertToBase64(file) {
     return new Promise((resolve, reject) => {
@@ -20,6 +22,15 @@ export default function ComputerProduct() {
       };
     });
   }
+  function validateInput(e, type) {
+    if(e.target.value === ''){
+      setError({...error, [type]: `${type} is required`})
+      setDisabled(true)
+    }else {
+      setDisabled(false)
+      setError({...error, [type]: ''})
+    }
+  }
   return (
     <>
       <form className="add-form" onSubmit={onAddHandler}>
@@ -31,10 +42,14 @@ export default function ComputerProduct() {
                 onChange={(e) =>
                   setProducts({ ...products, manufacturer: e.target.value })
                 }
+                onBlur={(e) => validateInput(e, "Manufacturer")}
               />
               <span className={products.manufacturer ? "value-there" : ""}>
                 Manufacturer
               </span>
+              {error.Manufacturer && (
+                <p className="error">{error.Manufacturer}</p>
+              )}
             </div>
             <div className="motherboard">
               <input
@@ -42,10 +57,14 @@ export default function ComputerProduct() {
                 onChange={(e) =>
                   setProducts({ ...products, motherboard: e.target.value })
                 }
+                onBlur={(e) => validateInput(e, "Motherboard")}
               />
               <span className={products.motherboard ? "value-there" : ""}>
                 Motherboard
               </span>
+              {error.Motherboard && (
+                <p className="error">{error.Motherboard}</p>
+              )}
             </div>
             <div className="processor">
               <input
@@ -53,10 +72,14 @@ export default function ComputerProduct() {
                 onChange={(e) =>
                   setProducts({ ...products, processor: e.target.value })
                 }
+                onBlur={(e) => validateInput(e, "Processor")}
               />
               <span className={products.processor ? "value-there" : ""}>
                 Processor
               </span>
+              {error.Processor && (
+                <p className="error">{error.Processor}</p>
+              )}
             </div>
             <div className="videocard">
               <input
@@ -64,10 +87,14 @@ export default function ComputerProduct() {
                 onChange={(e) =>
                   setProducts({ ...products, videocard: e.target.value })
                 }
+                onBlur={(e) => validateInput(e, "Videocard")}
               />
               <span className={products.videocard ? "value-there" : ""}>
                 Videocard
               </span>
+              {error.Videocard && (
+                <p className="error">{error.Videocard}</p>
+              )}
             </div>
             <div className="avatar">
               <label htmlFor="avatar">
@@ -98,10 +125,14 @@ export default function ComputerProduct() {
                 onChange={(e) =>
                   setProducts({ ...products, os: e.target.value })
                 }
+                onBlur={(e) => validateInput(e, "Os")}
               />
               <span className={products.os ? "value-there" : ""}>
                 Operation System
               </span>
+              {error.Os && (
+                <p className="error">{error.Os}</p>
+              )}
             </div>
             <div className="ssd">
               <input
@@ -109,8 +140,12 @@ export default function ComputerProduct() {
                 onChange={(e) =>
                   setProducts({ ...products, ssd: e.target.value })
                 }
+                onBlur={(e) => validateInput(e, "Ssd")}
               />
               <span className={products.ssd ? "value-there" : ""}>SSD</span>
+              {error.Ssd && (
+                <p className="error">{error.Ssd}</p>
+              )}
             </div>
             <div className="harddrive">
               <input
@@ -118,10 +153,14 @@ export default function ComputerProduct() {
                 onChange={(e) =>
                   setProducts({ ...products, harddrive: e.target.value })
                 }
+                onBlur={(e) => validateInput(e, "Harddrive")}
               />
               <span className={products.harddrive ? "value-there" : ""}>
                 Hard Drive
               </span>
+              {error.Harddrive && (
+                <p className="error">{error.Harddrive}</p>
+              )}
             </div>
             <div className="price" id="price">
               <input
@@ -129,18 +168,24 @@ export default function ComputerProduct() {
                 onChange={(e) =>
                   setProducts({ ...products, price: e.target.value })
                 }
+                onBlur={(e) => validateInput(e, "Price")}
               />
               <span className={products.price ? "value-there" : ""}>Price</span>
+              {error.Price && (
+                <p className="error">{error.Price}</p>
+              )}
             </div>
           </div>
         </div>
         {products.images && (
           <div className="images">
-            {products.images.map(e => <img src={e} className="mini-img" alt="" />)}
+            {products.images.map((e) => (
+              <img src={e} className="mini-img" alt="" />
+            ))}
           </div>
         )}
 
-        <input type="submit" value="Add Product" className="add-btn" />
+        <input type="submit" disabled={disabled} value="Add Product" className="add-btn" />
       </form>
     </>
   );
