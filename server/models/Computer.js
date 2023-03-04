@@ -38,7 +38,7 @@ const computerSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: "User",
   },
-  computerImages: {
+  images: {
     required: true,
     type: Array,
   },
