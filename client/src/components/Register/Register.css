@@ -105,11 +105,11 @@ input:focus {
     /* font-size: 16px; */
     font-weight: bold;
 }
-.avatarImg {
+.register .avatarImg {
     position: relative;
     left: 50%;
     transform: translate(-50%);
     width: 120px;
-    height: auto;
+    height: 120px;
     border-radius: 50%;
 }

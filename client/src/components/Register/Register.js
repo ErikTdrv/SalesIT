@@ -8,12 +8,13 @@ export default function Register() {
   const [auth, setAuth] = useState({});
   async function onSubmitHandler(e) {
     e.preventDefault();
-    if(auth.avatarImg){
-      console.log('here')
-      let base64 = await convertToBase64(auth.avatarImg)
-      auth.avatarImg = base64
-    }
-    register(auth)
+    console.log(auth.avatarImg)
+    // if(auth.avatarImg){
+    //   console.log('here')
+    //   let base64 = await convertToBase64(auth.avatarImg)
+    //   auth.avatarImg = base64
+    // }
+    // register(auth)
   }
 
   async function convertToBase64(file){
@@ -36,7 +37,7 @@ export default function Register() {
         <form onSubmit={onSubmitHandler}>
           <img
             className="avatarImg"
-            src="/blank-profile-picture-973460_1280.webp"
+            src={auth.avatarImg}
             alt=""
           />
           <div className="register-inputs">
@@ -95,7 +96,7 @@ export default function Register() {
                 id="avatar"
                 type="file"
                 name="avatar"
-                onChange={(e) => setAuth({ ...auth, avatarImg: e.target.files[0] })}
+                onChange={async (e) => setAuth({ ...auth, avatarImg: await convertToBase64(e.target.files[0]) })}
               />
                 <i className="fa-solid fa-plus"></i>Add avatar
               </label>
