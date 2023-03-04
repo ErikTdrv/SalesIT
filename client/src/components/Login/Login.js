@@ -7,7 +7,7 @@ import "./Login.css";
 export default function Login() {
   const [authInfo, setAuthInfo] = useState({});
   const [error, setError] = useState({});
-  const [mainError, setMainError] = useState()
+  const [mainError, setMainError] = useState();
   async function loginHandler(e) {
     e.preventDefault();
     let data = await login(authInfo);
@@ -15,22 +15,28 @@ export default function Login() {
       setMainError(data.message);
     }
   }
-  function validateInput(e){
-    if(e.target.type == 'password'){
-      if(e.target.value.length < 4){
-        setError({...error, passwordErr: 'Password must contain minimum 6 characters!'})
-      }else if(e.target.value.length > 10){
-        setError({...error, passwordErr: 'Password must contain maximum 10 characters!'})
-      }else {
-        setError({...error, passwordErr: ''})
+  function validateInput(e) {
+    if (e.target.type == "password") {
+      if (e.target.value.length < 4) {
+        setError({
+          ...error,
+          passwordErr: "Password must contain minimum 6 characters!",
+        });
+      } else if (e.target.value.length > 10) {
+        setError({
+          ...error,
+          passwordErr: "Password cannot contain more than maximum 10 characters!",
+        });
+      } else {
+        setError({ ...error, passwordErr: "" });
       }
-    }else {
-      if(e.target.value.length < 4){
-        setError({...error, emailErr: 'Email must contain minimum 4 characters!'})
-      }else if(e.target.value.length > 12){
-        setError({...error, emailErr: 'Email must contain maximum 12 characters!'})
-      }else {
-        setError({...error, emailErr: ''})
+    } else {
+      const emailRegex = /^[a-zA-Z0-9\.-]{4,}@[a-z]+\.[a-z]+$/;
+      const isValidEmail = emailRegex.test(authInfo.email);
+      if (!isValidEmail) {
+        setError({ ...error, emailErr: "Email must be valid!" });
+      } else {
+        setError({ ...error, emailErr: "" });
       }
     }
   }
@@ -39,7 +45,7 @@ export default function Login() {
       <div className="login">
         <div className="form">
           <h1>Login</h1>
-    {mainError ?  <p className="main-error">{mainError}</p> : ''}
+          {mainError ? <p className="main-error">{mainError}</p> : ""}
           <form className="login-form" onSubmit={loginHandler}>
             <div className="inputs">
               <div className="email">
@@ -53,7 +59,11 @@ export default function Login() {
                 <span className={authInfo.email ? "value-there" : ""}>
                   Email
                 </span>
-                {error.emailErr ? <p className="error">{error.emailErr}</p> : ''}
+                {error.emailErr ? (
+                  <p className="error">{error.emailErr}</p>
+                ) : (
+                  ""
+                )}
               </div>
               <div className="password">
                 <input
@@ -66,7 +76,11 @@ export default function Login() {
                 <span className={authInfo.password ? "value-there" : ""}>
                   Password
                 </span>
-                {error.passwordErr ? <p className="error">{error.passwordErr}</p> : ''}
+                {error.passwordErr ? (
+                  <p className="error">{error.passwordErr}</p>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
             <input
