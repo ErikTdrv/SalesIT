@@ -5,7 +5,7 @@ export default function ComputerProduct() {
   let [products, setProducts] = useState({});
   async function onAddHandler(e) {
     e.preventDefault();
-    addProduct(products);
+    addProduct(products, 'Computers');
   }
   async function convertToBase64(file) {
     return new Promise((resolve, reject) => {
@@ -81,7 +81,7 @@ export default function ComputerProduct() {
                 onChange={async (e) =>
                   setProducts({
                     ...products,
-                    computerImages: await Promise.all(
+                    images: await Promise.all(
                       Array.from(e.target.files).map(
                         async (e) => await convertToBase64(e)
                       )
@@ -134,9 +134,9 @@ export default function ComputerProduct() {
             </div>
           </div>
         </div>
-        {products.computerImages && (
+        {products.images && (
           <div className="images">
-            {products.computerImages.map(e => <img src={e} className="mini-img" alt="" />)}
+            {products.images.map(e => <img src={e} className="mini-img" alt="" />)}
           </div>
         )}
 
