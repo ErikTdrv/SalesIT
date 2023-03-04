@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const cloudinary = require("cloudinary");
-const { register } = require("../services/authService");
+const { register, login } = require("../services/authService");
 
 router.post("/register", async (req, res) => {
   const data = req.body;
@@ -30,6 +30,7 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
+  console.log(password)
   try {
     const user = await login(email, password);
     res.cookie("auth", user.accessToken, {

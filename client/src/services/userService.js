@@ -37,6 +37,6 @@ export const login = async (info) => {
       throw new Error(data.error)
     }
   } catch (error) {
-    console.error(error);
+    return error
   }
 }
