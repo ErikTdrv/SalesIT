@@ -37,7 +37,7 @@ export default function Register() {
         <form onSubmit={onSubmitHandler}>
           <img
             className="avatarImg"
-            src={auth.avatarImg}
+            src={auth.avatarImg || "/blank-profile-picture-973460_1280.webp"}
             alt=""
           />
           <div className="register-inputs">
@@ -96,9 +96,21 @@ export default function Register() {
                 id="avatar"
                 type="file"
                 name="avatar"
-                onChange={async (e) => setAuth({ ...auth, avatarImg: await convertToBase64(e.target.files[0]) })}
+                className={auth.avatarImg ? 'fulfilled' : 'empty'}
+                onClick={(e) => {
+                  if(e.target.className == 'fulfilled'){
+                    setAuth({...auth, avatarImg: ''})
+                  }
+                }}
+                onChange={async (e) =>{
+                  if(e.target.files[0]){
+                    setAuth({ ...auth, avatarImg: await convertToBase64(e.target.files[0])})
+                  }
+
+                }}
               />
-                <i className="fa-solid fa-plus"></i>Add avatar
+                <i className="fa-solid fa-plus"></i>
+                {auth.avatarImg ? 'Remove Avatar' : 'Add Avatar'}
               </label>
             </div>
           </div>
