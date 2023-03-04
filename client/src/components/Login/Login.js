@@ -6,9 +6,13 @@ import "./Login.css";
 
 export default function Login() {
   const [authInfo, setAuthInfo] = useState({});
-  async function loginHandler(e){
-    e.preventDefault()
-    login(authInfo)
+  const [error, setError] = useState("");
+  async function loginHandler(e) {
+    e.preventDefault();
+    let data = await login(authInfo);
+    if (data.message) {
+      setError(data.message);
+    }
   }
   return (
     <>
@@ -47,6 +51,7 @@ export default function Login() {
               className="login-btn"
             />
           </form>
+          {error && <p className="main-error">{error}</p>}
           <p className="text">
             Don't have an account? <Link to="/register">Sign Up</Link>
           </p>
