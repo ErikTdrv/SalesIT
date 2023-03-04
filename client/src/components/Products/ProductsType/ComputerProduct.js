@@ -1,17 +1,13 @@
 import React, { useState } from "react";
+import { addProduct } from "../../../services/productService";
 
 export default function ComputerProduct() {
   let [products, setProducts] = useState({});
   async function onAddHandler(e) {
     e.preventDefault();
-    if (products.computerImages) {
-      let images = await Promise.all(
-        Array.from(products.computerImages).map(
-          async (e) => await convertToBase64(e)
-        )
-      );
-      setProducts({ ...products, computerImages: images });
-    }
+
+    console.log(products)
+    // addProduct(products);
   }
   async function convertToBase64(file) {
     return new Promise((resolve, reject) => {
@@ -83,8 +79,8 @@ export default function ComputerProduct() {
               multiple
               name="avatar"
               id="avatar"
-              onChange={(e) =>
-                setProducts({ ...products, computerImages: e.target.files })
+              onChange={async (e) =>
+                setProducts({ ...products, computerImages: await Promise.all(Array.from(e.target.files).map(async (e) => await convertToBase64(e)))})
               }
             />
           </div>
