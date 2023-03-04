@@ -8,13 +8,7 @@ export default function Register() {
   const [auth, setAuth] = useState({});
   async function onSubmitHandler(e) {
     e.preventDefault();
-    console.log(auth.avatarImg)
-    // if(auth.avatarImg){
-    //   console.log('here')
-    //   let base64 = await convertToBase64(auth.avatarImg)
-    //   auth.avatarImg = base64
-    // }
-    // register(auth)
+    register(auth)
   }
 
   async function convertToBase64(file){
@@ -98,7 +92,7 @@ export default function Register() {
                 name="avatar"
                 className={auth.avatarImg ? 'fulfilled' : 'empty'}
                 onClick={(e) => {
-                  if(e.target.className == 'fulfilled'){
+                  if(e.target.className === 'fulfilled'){
                     setAuth({...auth, avatarImg: ''})
                   }
                 }}
