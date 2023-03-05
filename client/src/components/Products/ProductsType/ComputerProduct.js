@@ -5,9 +5,13 @@ export default function ComputerProduct() {
   let [products, setProducts] = useState({});
   let [error, setError] = useState({});
   let [disabled, setDisabled] = useState(true)
+  let [mainError, setMainError] = useState('')
   async function onAddHandler(e) {
     e.preventDefault();
-    addProduct(products, "Computers");
+    let request = await addProduct(products, "Computers");
+    if(request.message){
+      setMainError(request.message.split(':')[2])
+    }
   }
   async function convertToBase64(file) {
     return new Promise((resolve, reject) => {
@@ -34,6 +38,9 @@ export default function ComputerProduct() {
   return (
     <>
       <form className="add-form" onSubmit={onAddHandler}>
+      {mainError &&
+      <p className="main-error">{mainError}</p>
+      }
         <div className="inputs">
           <div className="left-input">
             <div className="manufacturer">

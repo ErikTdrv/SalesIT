@@ -38,7 +38,7 @@ const phoneSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: "User",
   },
-  phoneImages: {
+  images: {
     required: true,
     type: Array,
   },

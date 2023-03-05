@@ -1,59 +1,31 @@
 import React, { useState } from "react";
 import { addProduct } from "../../../services/productService";
+import { convertToBase64 } from "../../../services/userService";
 
 export default function MonitorProduct() {
   let [products, setProducts] = useState({});
   let [error, setError] = useState({});
   let [disabled, setDisabled] = useState(true);
+  let [mainError, setMainError] = useState('')
 
-  async function convertToBase64(file) {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  }
   async function addMonitorHandler(e) {
     e.preventDefault();
-    addProduct(products, "Monitors");
+    let request = await addProduct(products, "Monitors");
+    if(request.message){
+      setMainError(request.message.split(':')[2])
+    }
   }
   function validateInput(e, type) {
     if (e.target.value === "") {
-      if (type === "Screen Resolution") {
-        setError({
-          ...error,
-          screenresolution: `Screen Resolution is required!`,
-        });
-      } else if (type === "Refresh Rate") {
-        setError({ ...error, refreshrate: `Refresh Rate is required!` });
-      } else if (type === "Panel Type") {
-        setError({ ...error, paneltype: `Panel Type is required!` });
-      } else {
-        setError({ ...error, [type]: `${type} is required` });
-      }
-      setDisabled(true);
-    } else {
-      setDisabled(false);
-      if (type === "Screen Resolution") {
-        setError({ ...error, screenresolution: `` });
-      } else if (type === "Refresh Rate") {
-        setError({ ...error, refreshrate: `` });
-      } else if (type === "Panel Type") {
-        setError({ ...error, paneltype: `` });
-      } else {
-        setError({ ...error, [type]: "" });
-      }
+
     }
   }
   return (
     <>
       <form className="add-form" onSubmit={addMonitorHandler}>
+      {mainError &&
+      <p className="main-error">{mainError}</p>
+      }
         <div className="inputs">
           <div className="left-input">
             <div>
