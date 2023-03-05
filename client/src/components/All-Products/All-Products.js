@@ -123,8 +123,7 @@ export default function AllItems() {
             </div>
           </article>
           <article className="items">
-            { computers ? 
-            computers.map((computer) => <Computer key={computer._id} computer={computer} />) : ''}
+            { computers.map((computer) => <Computer key={computer._id} computer={computer} />)}
 
           </article>
         </section>

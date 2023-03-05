@@ -12,8 +12,8 @@
     height: 150px;
 }
 .computer__title {
-    margin: 3px;
-    font-size: 14px;
+    margin: 0px;
+    font-size: 18px;
     text-align: center;
 }
 .computer__info span {
@@ -42,16 +42,17 @@
     background-color: #f44336;
 }
 .computer__card .price {
+    padding: 5px 15px;
     width: 60px;
     text-align: center;
     background-color: gray;
     font-size: 14px;
-    color: black;
+    color: rgb(255, 255, 255);
     font-weight: 700;
     border-radius: 20px;
     position: absolute;
-    top: 40%;
+    top: 39.5%;
     /* text-decoration: line-through 1px red; */
-    left: 70%;
+    left: 60%;
 }
 
