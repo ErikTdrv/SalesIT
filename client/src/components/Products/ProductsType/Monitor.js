@@ -16,8 +16,12 @@ export default function MonitorProduct() {
     }
   }
   function validateInput(e, type) {
-    if (e.target.value === "") {
-
+    if(e.target.value === ''){
+      setError({...error, [type]: `${type} is required`})
+      setDisabled(true)
+    }else {
+      setDisabled(false)
+      setError({...error, [type]: ''})
     }
   }
   return (
@@ -144,6 +148,7 @@ export default function MonitorProduct() {
           value="Add Product"
           disabled={disabled}
           className="add-btn"
+          onClick={() => setMainError('')}
         />
       </form>
       {products.images && (

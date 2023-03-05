@@ -19,7 +19,7 @@ export default function PhoneProduct(){
   async function addPhoneProduct(e){
     e.preventDefault()
     let request = await addProduct(products, "Phones");
-    if(request.message.includes(':')){
+    if(request.message?.includes(':')){
       setMainError(request.message.split(':')[2])
     }else {
       setMainError(request.message)
@@ -162,7 +162,7 @@ export default function PhoneProduct(){
             ))}
           </div>
         )}
-      <input type="submit" value="Add Product" disabled={disabled} className="add-btn" />
+      <input type="submit" value="Add Product" onClick={() => setMainError('')} disabled={disabled} className="add-btn" />
     </form>
   );
 }

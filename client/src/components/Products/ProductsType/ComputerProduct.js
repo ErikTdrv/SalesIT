@@ -192,7 +192,7 @@ export default function ComputerProduct() {
           </div>
         )}
 
-        <input type="submit" disabled={disabled} value="Add Product" className="add-btn" />
+        <input type="submit" disabled={disabled} onClick={() => setMainError('')} value="Add Product" className="add-btn" />
       </form>
     </>
   );

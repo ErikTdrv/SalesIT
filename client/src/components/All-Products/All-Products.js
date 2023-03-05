@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getAllProducts } from "../../services/productService";
 import Computer from "../Computer/Computer";
 import HomeFooter from "../Home/Home-Footer/Footer";
 import "./All-Products.css";
 
 export default function AllItems() {
+  let [products, setProducts] = useState([]);
+  useEffect(() => {
+    async function getData(){
+      let data = await getAllProducts()
+      console.log(data)
+      setProducts(data)
+    }
+    getData()
+  }, [])
   return (
     <>
       <div className="all-container">
