@@ -12,6 +12,18 @@ const addProduct = async (product) => {
         return await Phone.create(product)
     }
 }
+const getAllProducts = async () => {
+    try {
+        const computers = await Computer.find({});
+        const phones = await Phone.find({});
+        const monitors = await Monitor.find({});
+        return ({ computers, phones, monitors });
+      } catch (err) {
+        console.log(err);
+        return err
+      }
+}
 module.exports = {
-    addProduct
+    addProduct,
+    getAllProducts,
 }
