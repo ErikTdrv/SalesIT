@@ -1,13 +1,12 @@
 import React from "react";
 import "./Computer.css";
 
-export default function Computer(product) {
-  let {
+export default function Computer({
+  product: {
     manufacturer,
     motherboard,
     processor,
     videocard,
-    images,
     ssd,
     harddrive,
     price,
@@ -22,7 +21,9 @@ export default function Computer(product) {
     camera,
     battery,
     os,
-  } = product.product;
+  },
+}) {
+  
   return (
     <div className="computer__card">
       <img className="computer__image" src="computer.jpg" alt="" />
