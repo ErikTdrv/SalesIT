@@ -7,8 +7,10 @@ router.post('/add-product',  uploader.array('productPhotos'), async (req, res) =
     let body = req.body;
     let { productName, images } = req.body;
     try {
-        console.log(body)
         let imagesArr = [];
+        if(!images){
+            throw new Error('Images are required!')
+        }
         for(let el of images){
             const uploaded = await cloudinary.v2.uploader.upload(el, { fetch_format: "auto", folder: productName });
             let objectToPush =  {

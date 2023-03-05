@@ -39,7 +39,7 @@ const phoneSchema = new mongoose.Schema({
     ref: "User",
   },
   images: {
-    required: true,
+    required: [true, 'Images are required!'],
     type: Array,
   },
 });
