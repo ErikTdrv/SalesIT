@@ -14,6 +14,11 @@ export const addProduct = async (product, productName) => {
         });
         let data = await request.json();
         console.log(data)
+        if(request.ok){
+          return data
+        }else {
+          throw new Error(data.error)
+        }
     } catch (error) {
         return error
     }
