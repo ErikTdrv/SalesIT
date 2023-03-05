@@ -21,12 +21,13 @@ export default function Computer({
     camera,
     battery,
     os,
+    images
   },
 }) {
-  
+
   return (
     <div className="computer__card">
-      <img className="computer__image" src="computer.jpg" alt="" />
+      <img className="computer__image" src={images[0].imageUrl} alt="" />
       <div className="computer__info">
         {/* { product.computer} */}
         {manufacturer && <h1 className="computer__title">{manufacturer}</h1>}

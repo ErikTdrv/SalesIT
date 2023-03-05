@@ -18,6 +18,7 @@ export default function AllItems() {
       setComputers(computers)
       setMonitors(monitors)
       setPhones(phones)
+      console.log(monitors)
     }
     getData()
   }, [])
@@ -29,6 +30,8 @@ export default function AllItems() {
           <button className={productFilter === 'all' ? 'clicked all-btn' : 'all-btn'} onClick={() => setProductFilter('all')}>All</button>
           <button className={productFilter === 'computers' ? 'clicked computers-btn' : 'computers-btn'} onClick={() => setProductFilter('computers')}>Computers</button>
           <button className={productFilter === 'monitors' ? 'clicked monitors-btn' : 'monitors-btn'} onClick={() => setProductFilter('monitors')}>Monitors</button>
+          <button className={productFilter === 'phones' ? 'clicked phones-btn' : 'phones-btn'} onClick={() => setProductFilter('phones')}>Phones</button>
+
         </div>
         <section className="items-to-show">
           <article className="filter">
@@ -126,7 +129,7 @@ export default function AllItems() {
           </article>
           <article className="items">
             { computers && (productFilter === 'all' || productFilter === 'computers') && computers.map((computer) => <Computer key={computer._id} product={computer} />)}
-            {/* { monitors && (productFilter === 'all' || productFilter === 'monitors') && computers.map((monitor) => <Computer key={monitor._id} monitor={monitor} />)} */}
+            { monitors && ( productFilter === 'all' || productFilter === 'monitors') && monitors.map((monitor) => <Computer key={monitor._id} product={monitor} />)}
 
           </article>
         </section>
