@@ -1,5 +1,4 @@
 import React from "react";
-import Computer from "../../Computer/Computer";
 import "./TopDiscounts.css";
 
 export default function TopDiscounts() {
@@ -10,7 +9,6 @@ export default function TopDiscounts() {
         <h4>Reccomended</h4>
       </div>
       <section className="discounts-section">
-      <Computer/>
       </section>
     </div>
   );

@@ -32,8 +32,7 @@ router.post('/add-product',  uploader.array('productPhotos'), async (req, res) =
 router.get('/products', async (req, res) => {
     try {
         let products = await getAllProducts();
-        console.log(products);
-        res.end()
+        res.status(200).json(products)
     } catch (error) {
         console.log(error)
         res.status(500).send('Error retrieving data');

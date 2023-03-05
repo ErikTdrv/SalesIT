@@ -1,7 +1,8 @@
 import React from "react";
 import "./Computer.css";
 
-export default function Computer() {
+export default function Computer(computer) {
+  console.log(computer)
   return (
     <div className="computer__card">
       <img className="computer__image" src="computer.jpg" alt="" />

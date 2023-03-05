@@ -5,12 +5,17 @@ import HomeFooter from "../Home/Home-Footer/Footer";
 import "./All-Products.css";
 
 export default function AllItems() {
-  let [products, setProducts] = useState([]);
+  const [computers, setComputers] = useState([]);
+  const [monitors, setMonitors] = useState([]);
+  const [phones, setPhones] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
   useEffect(() => {
     async function getData(){
       let data = await getAllProducts()
-      console.log(data)
-      setProducts(data)
+      const {computers, phones, monitors} = data;
+      setComputers(computers)
+      setMonitors(monitors)
+      setPhones(phones)
     }
     getData()
   }, [])
@@ -118,11 +123,9 @@ export default function AllItems() {
             </div>
           </article>
           <article className="items">
-            <Computer/>
-            <Computer/>
-            <Computer/>
-            <Computer/>
-            <Computer/>
+            { computers ? 
+            computers.map((computer) => <Computer key={computer._id} computer={computer} />) : ''}
+
           </article>
         </section>
       </div>
