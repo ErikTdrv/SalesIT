@@ -30,7 +30,7 @@ const monitorSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: "User",
   },
-  monitorImages: {
+  images: {
     required: true,
     type: Array,
   },
