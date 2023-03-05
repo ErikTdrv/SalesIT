@@ -119,6 +119,9 @@
     background-color: #f44336;
     
 }
+.add-btn:disabled {
+    background-color: gray;
+}
 .add-container .images {
     position: absolute;
     top: 80%;
