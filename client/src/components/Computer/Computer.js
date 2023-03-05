@@ -1,32 +1,109 @@
 import React from "react";
 import "./Computer.css";
 
-export default function Computer(computer) {
-  let {manufacturer, motherboard, processor, videocard, images, os, ssd, harddrive, price} = computer.computer;
+export default function Computer(product) {
+  let {
+    manufacturer,
+    motherboard,
+    processor,
+    videocard,
+    images,
+    ssd,
+    harddrive,
+    price,
+    screenresolution,
+    resolution,
+    refreshrate,
+    paneltype,
+    phonename,
+    capacity,
+    displaysize,
+    color,
+    camera,
+    battery,
+    os,
+  } = product.product;
   return (
     <div className="computer__card">
       <img className="computer__image" src="computer.jpg" alt="" />
       <div className="computer__info">
-        <h1 className="computer__title">{manufacturer}</h1>
+        {/* { product.computer} */}
+        {manufacturer && <h1 className="computer__title">{manufacturer}</h1>}
+        {phonename && <h1 className="computer__title">{phonename}</h1>}
         <hr />
-        <span>
-          <i className="fa-solid fa-check"></i>{motherboard}
-        </span>
-        <span>
-          <i className="fa-solid fa-check"></i>{processor}
-        </span>
-        <span>
-          <i className="fa-solid fa-check"></i>{videocard}
-        </span>
-        <span>
-          <i className="fa-solid fa-check"></i>{ssd}
-        </span>
-        <span>
-          <i className="fa-solid fa-check"></i>{os}
-        </span>
-        <span>
-          <i className="fa-solid fa-check"></i>{harddrive}
-        </span>
+        {videocard && (
+          <>
+            <span>
+              <i className="fa-solid fa-check"></i>
+              {motherboard}
+            </span>
+            <span>
+              <i className="fa-solid fa-check"></i>
+              {processor}
+            </span>
+            <span>
+              <i className="fa-solid fa-check"></i>
+              {videocard}
+            </span>
+            <span>
+              <i className="fa-solid fa-check"></i>
+              {ssd}
+            </span>
+            <span>
+              <i className="fa-solid fa-check"></i>
+              {os}
+            </span>
+            <span>
+              <i className="fa-solid fa-check"></i>
+              {harddrive}
+            </span>
+          </>
+        )}
+        {camera && (
+          <>
+            <span>
+              <i className="fa-solid fa-check"></i>
+              {camera}
+            </span>
+            <span>
+              <i className="fa-solid fa-check"></i>
+              {color}
+            </span>
+            <span>
+              <i className="fa-solid fa-check"></i>
+              {capacity}
+            </span>
+            <span>
+              <i className="fa-solid fa-check"></i>
+              {displaysize}
+            </span>
+            <span>
+              <i className="fa-solid fa-check"></i>
+              {battery}
+            </span>
+          </>
+        )}
+
+        {paneltype && (
+          <>
+            <span>
+              <i className="fa-solid fa-check"></i>
+              {screenresolution}
+            </span>
+            <span>
+              <i className="fa-solid fa-check"></i>
+              {paneltype}
+            </span>
+            <span>
+              <i className="fa-solid fa-check"></i>
+              {resolution}
+            </span>
+            <span>
+              <i className="fa-solid fa-check"></i>
+              {refreshrate}
+            </span>
+          </>
+        )}
       </div>
       <span className="price">{price}$</span>
       <button className="computer__button">Details</button>

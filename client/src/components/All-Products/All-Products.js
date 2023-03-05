@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getAllProducts } from "../../services/productService";
 import Computer from "../Computer/Computer";
 import HomeFooter from "../Home/Home-Footer/Footer";
+import Monitor from "../Products/ProductsType/Monitor";
 import "./All-Products.css";
 
 export default function AllItems() {
@@ -124,7 +125,8 @@ export default function AllItems() {
             </div>
           </article>
           <article className="items">
-            { computers && (productFilter === 'all' || productFilter === 'computers') && computers.map((computer) => <Computer key={computer._id} computer={computer} />)}
+            { computers && (productFilter === 'all' || productFilter === 'computers') && computers.map((computer) => <Computer key={computer._id} product={computer} />)}
+            {/* { monitors && (productFilter === 'all' || productFilter === 'monitors') && computers.map((monitor) => <Computer key={monitor._id} monitor={monitor} />)} */}
 
           </article>
         </section>

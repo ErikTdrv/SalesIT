@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { addProduct } from "../../../services/productService";
 import { convertToBase64 } from "../../../services/userService";
 
-export default function MonitorProduct() {
+export default function Monitor() {
   let [products, setProducts] = useState({});
   let [error, setError] = useState({});
   let [disabled, setDisabled] = useState(true);
