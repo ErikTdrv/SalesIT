@@ -1,12 +1,13 @@
 const router = require("express").Router();
 const uploader = require("../services/multer");
 const cloudinary = require('cloudinary');
-const { addProduct } = require("../services/productService");
+const { addProduct, getAllProducts } = require("../services/productService");
 
 router.post('/add-product',  uploader.array('productPhotos'), async (req, res) => {
     let body = req.body;
     let { productName, images } = req.body;
     try {
+        console.log(body)
         let imagesArr = [];
         if(!images){
             throw new Error('Images are required!')
@@ -28,5 +29,14 @@ router.post('/add-product',  uploader.array('productPhotos'), async (req, res) =
     }
     res.end()
 })
-
+router.get('/products', async (req, res) => {
+    try {
+        let products = await getAllProducts();
+        console.log(products);
+        res.end()
+    } catch (error) {
+        console.log(error)
+        res.status(500).send('Error retrieving data');
+    }
+})
 module.exports = router;
