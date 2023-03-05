@@ -5,6 +5,7 @@ import HomeFooter from "../Home/Home-Footer/Footer";
 import "./All-Products.css";
 
 export default function AllItems() {
+  const [productFilter, setProductFilter] = useState('all');
   const [computers, setComputers] = useState([]);
   const [monitors, setMonitors] = useState([]);
   const [phones, setPhones] = useState([]);
@@ -24,9 +25,9 @@ export default function AllItems() {
       <div className="all-container">
         <h1 className="main-title">All Items</h1>
         <div className="choosable">
-          <button className="all-btn">All</button>
-          <button className="computers-btn">Computers</button>
-          <button className="monitors-btn">Monitors</button>
+          <button className={productFilter === 'all' ? 'clicked all-btn' : 'all-btn'} onClick={() => setProductFilter('all')}>All</button>
+          <button className={productFilter === 'computers' ? 'clicked computers-btn' : 'computers-btn'} onClick={() => setProductFilter('computers')}>Computers</button>
+          <button className={productFilter === 'monitors' ? 'clicked monitors-btn' : 'monitors-btn'} onClick={() => setProductFilter('monitors')}>Monitors</button>
         </div>
         <section className="items-to-show">
           <article className="filter">
@@ -123,7 +124,7 @@ export default function AllItems() {
             </div>
           </article>
           <article className="items">
-            { computers.map((computer) => <Computer key={computer._id} computer={computer} />)}
+            { computers && (productFilter === 'all' || productFilter === 'computers') && computers.map((computer) => <Computer key={computer._id} computer={computer} />)}
 
           </article>
         </section>
