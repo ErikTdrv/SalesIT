@@ -5,7 +5,6 @@
     min-height: calc(100vh - 40px - 40px);
 }
 .main-title {
-
     background-image: linear-gradient(to right, #434343 0%, black 100%); 
     text-align: center;
     color: white;
