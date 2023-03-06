@@ -82,7 +82,7 @@ export default function PhoneProduct(){
           </div>
           <div className="avatar">
               <label htmlFor="avatar">
-                <i className="fa-solid fa-plus"></i>Add avatar
+                <i className="fa-solid fa-plus"></i>Add Images
               </label>
               <input
                 type="file"
