@@ -4,6 +4,7 @@ import Computer from "../Computer/Computer";
 import HomeFooter from "../Home/Home-Footer/Footer";
 import Monitor from "../Products/ProductsType/Monitor";
 import "./All-Products.css";
+import Filter from "./Filter";
 
 export default function AllItems() {
   const [productFilter, setProductFilter] = useState("all");
@@ -62,7 +63,7 @@ export default function AllItems() {
           </button>
         </div>
         <section className="items-to-show">
-          
+          <Filter/>
           <article className="items">
             {computers &&
               (productFilter === "all" || productFilter === "computers") &&
