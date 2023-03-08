@@ -1,6 +1,6 @@
 import React from "react";
 import './ProductDetails.css'
 
-export default function ProfuctDetails(){
+export default function ProductDetails(){
 
 }
