@@ -23,7 +23,7 @@ export const addProduct = async (product, productName) => {
         return error
     }
 };
-export const getAllProducts = async (product) => {
+export const getAllProducts = async () => {
   try {
     let request = await fetch(`${API_URL}/products`, {
       method: "GET",
