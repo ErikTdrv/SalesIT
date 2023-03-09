@@ -30,6 +30,7 @@ export default function ProductDetails() {
           <button>Delete</button>
           <button>Edit</button>
           <button>Add Discount</button>
+          <button>Add to Card</button>
         </div>
       </div>
       <div className="info-div"></div>
