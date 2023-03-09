@@ -1,5 +1,6 @@
 import React from "react";
 import "./Computer.css";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Computer({
   product: {
@@ -21,10 +22,9 @@ export default function Computer({
     camera,
     battery,
     os,
-    images
+    images,
   },
 }) {
-
   return (
     <div className="computer__card">
       <img className="computer__image" src={images[0].imageUrl} alt="" />
@@ -108,7 +108,9 @@ export default function Computer({
         )}
       </div>
       <span className="price">{price}$</span>
-      <button className="computer__button">Details</button>
+      <Link to="/all-products/computer">
+        <button className="computer__button">Details</button>
+      </Link>
     </div>
   );
 }
