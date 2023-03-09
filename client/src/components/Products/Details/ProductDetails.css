@@ -9,20 +9,26 @@
     display: flex;
     border-radius: 20px;
 }
+
 .edit-image-div {
     flex-basis: 40%;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
+
 .info-div {
     flex-basis: 60%;
 }
+
 .details__image {
-    width: 80%;
-    position: absolute;
-    top: 29%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 90%;
+    margin-top: 5%;
+
 }
+
 .image__switcher {
     width: 95%;
     height: 100px;
@@ -35,12 +41,16 @@
     align-items: center;
     overflow: hidden;
 }
+
 .image__switcher button {
     height: 100%;
     background-color: rgb(82, 82, 82);
     font-size: 20px;
     font-weight: 700;
     border: none;
+}
+.image__section img{
+    width: 80%;
 }
 .image__switcher button:hover {
     background-color: rgb(122, 122, 122)
@@ -54,4 +64,31 @@
     height: 100%;
     overflow: hidden;
     margin: 0 auto;
+}
+.image__section div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.edit-image-div .buttons {
+    width: 400px;
+    height: 150px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.edit-image-div .buttons button {
+    /* height: 50px; */
+    border-radius: 10px;
+    font-size: 18px;
+    border: none;
+    font-weight: 700;
+    padding: 10px 20px;
+}
+
+.edit-image-div .buttons button:hover {
+    background-color: rgb(233, 51, 51);
 }
