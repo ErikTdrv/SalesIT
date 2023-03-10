@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 
 export default function Computer({
   product: {
+    _id,
     manufacturer,
     motherboard,
     processor,
@@ -109,7 +110,7 @@ export default function Computer({
         )}
       </div>
       <span className="price">{price}$</span>
-      <Link to="/all-products/computer">
+      <Link to={`/all-products/${_id}`}>
         <button className="computer__button">Details</button>
       </Link>
     </div>
