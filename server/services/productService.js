@@ -25,21 +25,22 @@ const getAllProducts = async () => {
 }
 const getOneProduct = async (_id) => {
     try {
-        const computers = await Computer.find({_id});
-        const phones = await Phone.find({_id});
-        const monitors = await Monitor.find({_id});
-        if(computers){
+        const computers = await Computer.findOne({_id});
+        const phones = await Phone.findOne({_id});
+        const monitors = await Monitor.findOne({_id});
+
+        if(computers?.manufacturer.length > 0){
             return computers
-        }else if(phones){
+        }else if(phones?.phonename.length > 0){
             return phones
-        }else if(monitors){
+        }else if(monitors?.paneltype.length > 0){
             return monitors
         }else {
             throw new Error('No item found!')
         }
     } catch (error) {
-        console.log(err);
-        return err
+        console.log(error);
+        return error
     }
 }
 module.exports = {
