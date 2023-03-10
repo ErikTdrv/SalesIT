@@ -23,6 +23,25 @@ const getAllProducts = async () => {
         return err
       }
 }
+const getOneProduct = async (_id) => {
+    try {
+        const computers = await Computer.find({_id});
+        const phones = await Phone.find({_id});
+        const monitors = await Monitor.find({_id});
+        if(computers){
+            return computers
+        }else if(phones){
+            return phones
+        }else if(monitors){
+            return monitors
+        }else {
+            throw new Error('No item found!')
+        }
+    } catch (error) {
+        console.log(err);
+        return err
+    }
+}
 module.exports = {
     addProduct,
     getAllProducts,
