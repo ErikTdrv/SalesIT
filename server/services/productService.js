@@ -45,4 +45,5 @@ const getOneProduct = async (_id) => {
 module.exports = {
     addProduct,
     getAllProducts,
+    getOneProduct,
 }
