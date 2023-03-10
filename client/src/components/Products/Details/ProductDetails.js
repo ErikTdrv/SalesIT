@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ProductDetails.css";
 
-export default function ProductDetails(product) {
-  let imagesArray = [
-    "/computer.jpg",
-    "/computer.jpg",
-    "/computer.jpg",
-    "/computer.jpg",
-    "/computer.jpg",
-  ];
+export default function ProductDetails() {
   let [index, setIndex] = useState(0);
+  useEffect(() => {
+    async function getData() {
+      let data = await getAllProducts();
+
+    }
+    getData();
+  }, []);
   return (
     <div className="details-container">
       <div className="edit-image-div">
