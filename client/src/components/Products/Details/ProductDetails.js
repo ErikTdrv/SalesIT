@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./ProductDetails.css";
 
-export default function ProductDetails() {
-  let images = [
+export default function ProductDetails(product) {
+  let imagesArray = [
     "/computer.jpg",
     "/computer.jpg",
     "/computer.jpg",
@@ -18,10 +18,10 @@ export default function ProductDetails() {
           <button onClick={() => setIndex(index - 1)}>&#60;</button>
           <section className="image__section">
             <div className="div">
-              <img src={images[index]} alt="" />
+              <img src={imagesArray[index]} alt="" />
             </div>
-            <div className="div"> <img src={images[index + 1]} alt="" /></div>
-            <div className="div"> <img src={images[index + 2]} alt="" /></div>
+            <div className="div"> <img src={imagesArray[index + 1]} alt="" /></div>
+            <div className="div"> <img src={imagesArray[index + 2]} alt="" /></div>
           </section>
           <button onClick={() => setIndex(index + 1)}>&#62;</button>
         </div>
@@ -33,7 +33,40 @@ export default function ProductDetails() {
           <button>Add to Card</button>
         </div>
       </div>
-      <div className="info-div"></div>
+      <div className="info-div">
+        {product?.manufacturer && <h1>{product.manufacturer}</h1>}
+        {product?.phonename && <h1>{product.phonename}</h1>}
+        <div className="characteristics">
+            
+            <div className="left">
+            {product?.motherboard && <span>Motherboard: {product.motherboard}</span>}
+            {product?.processor && <span>Processor: {product.processor}</span>}
+            {product?.videocard && <span>Videocard: {product.videocard}</span>}
+            {product?.ssd && <span>SSD: {product.ssd}</span>}
+            {product?.os && <span>Operation System: {product.os}</span>}
+            {product?.harddrive && <span>Harddrive: {product.harddrive}</span>}
+            {product?.camera && <span>Camera: {product.camera}</span>}
+            {product?.color && <span>Color: {product.color}</span>}
+            {product?.capacity && <span>Capacity: {product.capacity}</span>}
+            {product?.displaysize && <span>Display Size: {product.displaysize}</span>}
+            {product?.Battery && <span>Videocard: {product.Battery}</span>}
+            {product?.screenresolution && <span>Screen Resolution: {product.screenresolution}</span>}
+            {product?.paneltype && <span>Panel Type: {product.paneltype}</span>}
+            {product?.resolution && <span>Resolution: {product.resolution}</span>}
+            {product?.refreshrate && <span>Refresh Rate: {product.refreshrate}</span>}
+
+
+
+            </div>
+            <div className="right">
+                <span>Ram</span>
+                <span>Ram</span>
+                <span>Ram</span>
+                <span>Ram</span>
+                <span>Ram</span>
+            </div>
+        </div>
+      </div>
     </div>
   );
 }

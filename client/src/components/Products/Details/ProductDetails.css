@@ -93,3 +93,20 @@
 .edit-image-div .buttons button:hover {
     background-color: rgb(233, 51, 51);
 }
+.info-div h1 {
+    text-align: center;
+}
+.info-div span {
+    display: inline;
+}
+.info-div .characteristics {
+    display: flex;
+    justify-content: space-around;
+}
+.info-div .characteristics div {
+    display: flex;
+    flex-direction: column;
+}
+.info-div .characteristics div span{
+    margin: 10px;
+}
