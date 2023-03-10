@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from "react";
+import { getOneProduct } from "../../../services/productService";
 import "./ProductDetails.css";
 
 export default function ProductDetails() {
+    let imagesArray = []
   let [index, setIndex] = useState(0);
+  let [product, setProduct] = useState({})
+  let [isLoading, setIsLoading] = useState(true)
   useEffect(() => {
     async function getData() {
-      let data = await getAllProducts();
-
+        let data = await getOneProduct('6404c288b245e27ec121700b');
+        setProduct(data)
+        setIsLoading(false)
     }
     getData();
   }, []);
   return (
+    <>
+    { isLoading == false ?  
     <div className="details-container">
       <div className="edit-image-div">
-        <img src="/computer.jpg" alt="" className="details__image" />
+        <img src={product.images[0].imageUrl || ''} alt="" className="details__image" />
         <div className="image__switcher">
           <button onClick={() => setIndex(index - 1)}>&#60;</button>
           <section className="image__section">
@@ -54,19 +61,12 @@ export default function ProductDetails() {
             {product?.paneltype && <span>Panel Type: {product.paneltype}</span>}
             {product?.resolution && <span>Resolution: {product.resolution}</span>}
             {product?.refreshrate && <span>Refresh Rate: {product.refreshrate}</span>}
-
-
-
             </div>
-            <div className="right">
-                <span>Ram</span>
-                <span>Ram</span>
-                <span>Ram</span>
-                <span>Ram</span>
-                <span>Ram</span>
-            </div>
+
         </div>
       </div>
-    </div>
+    </div> : <h1>IS LOADING</h1>}
+    </>
+    
   );
 }

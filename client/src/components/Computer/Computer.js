@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Computer.css";
 import { Link, NavLink } from "react-router-dom";
 
@@ -25,6 +25,7 @@ export default function Computer({
     images,
   },
 }) {
+
   return (
     <div className="computer__card">
       <img className="computer__image" src={images[0].imageUrl} alt="" />
