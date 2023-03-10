@@ -6,7 +6,7 @@ import "./ProductDetails.css";
 export default function ProductDetails() {
   let imagesArray = [];
   let { productId } = useParams()
-  let [index, setIndex] = useState(0);
+  let [index, setIndex] = useState(1);
   let [product, setProduct] = useState({});
   let [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
@@ -31,15 +31,13 @@ export default function ProductDetails() {
               <button onClick={() => setIndex(index - 1)}>&#60;</button>
               <section className="image__section">
                 <div className="div">
-                  <img src={imagesArray[index]} alt="" />
+                  <img src={product.images[index]?.imageUrl} className="images" alt="" />
                 </div>
                 <div className="div">
-                  {" "}
-                  <img src={imagesArray[index + 1]} alt="" />
+                  <img src={product.images[index + 1]?.imageUrl} className="images" alt="" />
                 </div>
                 <div className="div">
-                  {" "}
-                  <img src={imagesArray[index + 2]} alt="" />
+                  <img src={product.images[index + 2]?.imageUrl} className="images" alt="" />
                 </div>
               </section>
               <button onClick={() => setIndex(index + 1)}>&#62;</button>

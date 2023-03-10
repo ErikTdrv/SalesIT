@@ -42,7 +42,6 @@ router.get('/products/:id', async (req, res) => {
     try {
         let id = req.params.id;
         let product = await getOneProduct(id)
-        console.log(product)
         res.status(200).json(product)
     } catch (error) {
         console.log(error)
