@@ -1,5 +1,5 @@
 .details-container {
-    width: 70%;
+    min-width: 65%;
     height: 80%;
     background-color: rgb(145, 145, 145);
     position: absolute;
@@ -106,12 +106,25 @@
 }
 .info-div .characteristics div {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
 }
 .info-div .characteristics div span{
     margin: 10px;
+    font-size: 20px;
 }
 .image__section .images {
     width: 120px;
     height: 90%;
+}
+span p {
+    font-weight: 700;
+    display: inline;
+}
+.characteristics .left{
+    display: flex;
+    flex-direction: column;
+
+}
+.characteristics .left span p{
+    font-weight: 20px;
 }

@@ -17,6 +17,13 @@ export default function ProductDetails() {
     }
     getData();
   }, []);
+  function changeIndex(type){
+    if(index === 0 && type === '+' && index + 1 < product.images.length){
+      setIndex(index + 1)
+    }else if(index > 0 && type === '-' && index + 1 < product.images.length){
+      setIndex(index - 1)
+    }
+  }
   return (
     <>
       {isLoading == false ? (
@@ -28,7 +35,7 @@ export default function ProductDetails() {
               className="details__image"
             />
             <div className="image__switcher">
-              <button onClick={() => setIndex(index - 1)}>&#60;</button>
+              <button onClick={() => changeIndex('+')}>&#60;</button>
               <section className="image__section">
                 <div className="div">
                   <img src={product.images[index]?.imageUrl} className="images" alt="" />
@@ -40,7 +47,7 @@ export default function ProductDetails() {
                   <img src={product.images[index + 2]?.imageUrl} className="images" alt="" />
                 </div>
               </section>
-              <button onClick={() => setIndex(index + 1)}>&#62;</button>
+              <button onClick={() => changeIndex('-')}>&#62;</button>
             </div>
             <div className="buttons">
               <button>Back</button>
@@ -56,37 +63,37 @@ export default function ProductDetails() {
             <div className="characteristics">
               <div className="left">
                 {product?.motherboard && (
-                  <span>Motherboard: {product.motherboard}</span>
+                  <span><p>Motherboard:</p> {product.motherboard}</span>
                 )}
                 {product?.processor && (
-                  <span>Processor: {product.processor}</span>
+                  <span><p>Processor:</p> {product.processor}</span>
                 )}
                 {product?.videocard && (
-                  <span>Videocard: {product.videocard}</span>
+                  <span><p>Videocard:</p> {product.videocard}</span>
                 )}
-                {product?.ssd && <span>SSD: {product.ssd}</span>}
-                {product?.os && <span>Operation System: {product.os}</span>}
+                {product?.ssd && <span><p>SSD:</p> {product.ssd}</span>}
+                {product?.os && <span><p>Operation System:</p> {product.os}</span>}
                 {product?.harddrive && (
-                  <span>Harddrive: {product.harddrive}</span>
+                  <span><p>Harddrive:</p> {product.harddrive}</span>
                 )}
-                {product?.camera && <span>Camera: {product.camera}</span>}
-                {product?.color && <span>Color: {product.color}</span>}
-                {product?.capacity && <span>Capacity: {product.capacity}</span>}
+                {product?.camera && <span><p>Camera:</p> {product.camera}</span>}
+                {product?.color && <span><p>Color:</p> {product.color}</span>}
+                {product?.capacity && <span><p>Capacity:</p> {product.capacity}</span>}
                 {product?.displaysize && (
-                  <span>Display Size: {product.displaysize}</span>
+                  <span><p>Display Size:</p> {product.displaysize}</span>
                 )}
-                {product?.Battery && <span>Videocard: {product.Battery}</span>}
+                {product?.Battery && <span><p>Videocard:</p> {product.Battery}</span>}
                 {product?.screenresolution && (
-                  <span>Screen Resolution: {product.screenresolution}</span>
+                  <span><p>Screen Resolution:</p> {product.screenresolution}</span>
                 )}
                 {product?.paneltype && (
-                  <span>Panel Type: {product.paneltype}</span>
+                  <span><p>Panel Type:</p> {product.paneltype}</span>
                 )}
                 {product?.resolution && (
-                  <span>Resolution: {product.resolution}</span>
+                  <span><p>Resolution:</p> {product.resolution}</span>
                 )}
                 {product?.refreshrate && (
-                  <span>Refresh Rate: {product.refreshrate}</span>
+                  <span><p>Refresh Rate:</p> {product.refreshrate}</span>
                 )}
               </div>
             </div>
