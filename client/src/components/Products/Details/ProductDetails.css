@@ -113,8 +113,8 @@
     font-size: 20px;
 }
 .image__section .images {
-    width: 120px;
-    height: 90%;
+    width: 100px;
+    height: 90px;
 }
 span p {
     font-weight: 700;
@@ -127,4 +127,20 @@ span p {
 }
 .characteristics .left span p{
     font-weight: 20px;
+}
+.info-div .price {
+    position: absolute;
+    right: 18%;
+    top: 80%;
+    background-color: red;
+    color: rgb(24, 24, 24);
+    padding: 10px 120px;
+    border-radius: 20px;
+    font-size: 20px;
+}
+.info-div .price span p{
+    font-weight: 900;
+}
+.info-div .price span {
+    font-weight: 700;
 }

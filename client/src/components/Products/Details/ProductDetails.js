@@ -34,8 +34,9 @@ export default function ProductDetails() {
               alt=""
               className="details__image"
             />
+            { product?.images[1] && 
             <div className="image__switcher">
-              <button onClick={() => changeIndex('+')}>&#60;</button>
+              <button onClick={() => changeIndex('-')}>&#60;</button>
               <section className="image__section">
                 <div className="div">
                   <img src={product.images[index]?.imageUrl} className="images" alt="" />
@@ -47,8 +48,9 @@ export default function ProductDetails() {
                   <img src={product.images[index + 2]?.imageUrl} className="images" alt="" />
                 </div>
               </section>
-              <button onClick={() => changeIndex('-')}>&#62;</button>
-            </div>
+              <button onClick={() => changeIndex('+')}>&#62;</button>
+            </div>}
+            
             <div className="buttons">
               <button>Back</button>
               <button>Delete</button>
@@ -96,6 +98,9 @@ export default function ProductDetails() {
                   <span><p>Refresh Rate:</p> {product.refreshrate}</span>
                 )}
               </div>
+            </div>
+            <div className="price">
+              <span><p>Price: </p>{product.price}$</span>
             </div>
           </div>
         </div>
