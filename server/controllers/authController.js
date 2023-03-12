@@ -42,7 +42,14 @@ router.post("/login", async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 });
-router.delete("/logout", async (req, res) => {
+router.get('/get-user', async (req, res) => {
+  const cookie = req.cookies?.auth;
+  if(cookie){
+    let user = req.user;
+    res.send(user)
+  }
+})
+router.get("/logout", async (req, res) => {
   res.clearCookie("auth");
   // res.cookie("auth", 'none', { httpOnly: true, sameSite: 'none' , secure: true});
   res.send({ message: "Cookie cleared successfully" });
@@ -51,11 +58,4 @@ router.delete("/logout", async (req, res) => {
   // let token = req.user.token;
   // await logout(token)
 });
-router.get('/get-user', async (req, res) => {
-  const cookie = req.cookies?.auth;
-  if(cookie){
-    let user = req.user;
-    res.send(user)
-  }
-})
 module.exports = router;

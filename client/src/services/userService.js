@@ -54,7 +54,7 @@ export const convertToBase64 = async (file) => {
     };
   });
 }
-export const getCurrentUser = async (cookie) => {
+export const getCurrentUser = async () => {
   try {
     let request = await fetch(`${API_URL}/get-user`, {
       method: "GET",
@@ -74,4 +74,12 @@ export const getCurrentUser = async (cookie) => {
     
   }
 }
-
+export const logoutUser = async() => {
+  await fetch(`${API_URL}/logout`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },    
+    credentials: 'include',
+  })
+}

@@ -11,8 +11,7 @@ import ProductDetails from "./components/Products/Details/ProductDetails";
 
 import { AuthContext } from "./contexts/AuthContext";
 import { useEffect, useState } from "react";
-import Cookies from 'js-cookie';
-import { getCurrentUser } from "./services/userService";
+import { getCurrentUser, logoutUser } from "./services/userService";
 
 function App() {
   useEffect(() => {
@@ -23,14 +22,15 @@ function App() {
     getUser()
   }, [])
   let navigate = useNavigate()
-  let [user, setUser] = useState({});
 
+  let [user, setUser] = useState({});
   const isAuth = user?._id ? true : false;
   const userAuth = (authData) => {
     setUser(authData);
   }
   
-  const userLogout = () => {
+  const userLogout = async () => {
+    await logoutUser()
     setUser({});
     navigate('/')
   }
