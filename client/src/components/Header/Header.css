@@ -51,3 +51,6 @@ ul {
 .active .fa-solid{
     color: black;
 }
+.logout {
+    color: white;
+}
