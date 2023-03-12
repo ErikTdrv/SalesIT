@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const initDatabase = require('./config/database');
 const router = require('./routes');
 const cookieParser = require('cookie-parser');
+const { authMiddleware } = require('./middlewares/authMiddleware');
 
 startServer()
 async function startServer() {
@@ -21,7 +22,7 @@ async function startServer() {
         app.use(bodyParser.json({ limit: '50mb' }));
         app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
         app.use(express.json())
-        // app.use(authMiddleware)
+        app.use(authMiddleware)
         app.use(router)
 
         //Initializing database
