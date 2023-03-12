@@ -13,8 +13,8 @@ import { AuthContext } from "./contexts/AuthContext";
 import { useState } from "react";
 function App() {
   let [user, setUser] = useState({});
-  const isAuth = user?._id ? true : false;
-  const userLogin = (authData) => {
+  const isAuth = user?.username ? true : false;
+  const userAuth = (authData) => {
     setUser(authData);
   }
 
@@ -22,7 +22,7 @@ function App() {
     setUser({});
   }
   return (
-    <AuthContext.Provider value={{ user, userLogin, userLogout, isAuth }}>
+    <AuthContext.Provider value={{ user, userAuth, userLogout, isAuth }}>
       <Header />
       <Routes>
         <Route exact path="/" element={<Home />} />
