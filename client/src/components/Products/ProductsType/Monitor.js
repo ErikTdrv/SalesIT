@@ -58,8 +58,8 @@ export default function Monitor() {
               <span className={products.screenresolution ? "value-there" : ""}>
                 Screen Resolution
               </span>
-              {error.screenresolution && (
-                <p className="error">{error.screenresolution}</p>
+              {error['Screen Resolution'] && (
+                <p className="error">{error['Screen Resolution']}</p>
               )}
             </div>
             <div>
@@ -108,13 +108,13 @@ export default function Monitor() {
               />
               <span
                 className={
-                  products.refreshrate ? "value-there" : "videocard-span"
+                  products.refreshrate ? "value-there" : ""
                 }
               >
                 Refresh Rate
               </span>
-              {error.refreshrate && (
-                <p className="error">{error.refreshrate}</p>
+              {error['Refresh Rate'] && (
+                <p className="error">{error['Refresh Rate']}</p>
               )}
             </div>
             <div>
@@ -128,7 +128,7 @@ export default function Monitor() {
               <span className={products.paneltype ? "value-there" : ""}>
                 Panel Type
               </span>
-              {error.paneltype && <p className="error">{error.paneltype}</p>}
+              {error['Panel Type'] && <p className="error">{error['Panel Type']}</p>}
             </div>
             <div className="price" id="price">
               <input

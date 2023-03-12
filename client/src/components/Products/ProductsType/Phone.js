@@ -24,6 +24,7 @@ export default function PhoneProduct(){
     }else {
       setMainError(request.message)
     }
+    console.log(mainError)
   }
   return (
     <form className="add-form" onSubmit={addPhoneProduct}>

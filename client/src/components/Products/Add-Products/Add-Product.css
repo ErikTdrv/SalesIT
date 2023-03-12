@@ -133,6 +133,7 @@
     height: 50px;
 }
 .add-form .main-error {
+    position: relative;
     text-align: center;
     color: red;
     margin: 0px;

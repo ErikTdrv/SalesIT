@@ -8,6 +8,7 @@ export default function ComputerProduct() {
   let [mainError, setMainError] = useState('')
   async function onAddHandler(e) {
     e.preventDefault();
+    console.log('je')
     let request = await addProduct(products, "Computers");
     if(request.message){
       setMainError(request.message.split(':')[2])

@@ -8,10 +8,7 @@ export default function AddProduct() {
   let [formPage, setFormPage] = useState(0);
   let [products, setProducts] = useState({});
   let [type, setType] = useState("none");
-  function changeValue(e) {
-    if (e.target.value.length > 0) {
-    }
-  }
+
   function chooseType(e){
     let type = e.target.textContent.toLowerCase()
     setType(type)
