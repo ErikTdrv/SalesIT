@@ -10,14 +10,22 @@ import ShoppingCard from "./components/Shopping/Shopping";
 import ProductDetails from "./components/Products/Details/ProductDetails";
 
 import { AuthContext } from "./contexts/AuthContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Cookies from 'js-cookie';
+import { getCurrentUser } from "./services/userService";
 
 function App() {
-  console.log(Cookies.get('auth'))
+  useEffect(() => {
+    async function getUser(){
+      let user = await getCurrentUser()
+      setUser(user)
+    }
+    getUser()
+  }, [])
   let navigate = useNavigate()
   let [user, setUser] = useState({});
-  const isAuth = user?.username ? true : false;
+
+  const isAuth = user?._id ? true : false;
   const userAuth = (authData) => {
     setUser(authData);
   }
