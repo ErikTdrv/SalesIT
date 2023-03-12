@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
 import { register } from "../../services/userService";
 import Copyright from "../Copyright/Copyright";
 import "./Register.css";
 
 export default function Register() {
   const [auth, setAuth] = useState({});
+  let { userAuth, isAuth } = useContext(AuthContext);
   async function onSubmitHandler(e) {
     e.preventDefault();
-    register(auth)
+    let response = await register(auth);
+    userAuth(response)
   }
 
   async function convertToBase64(file){
