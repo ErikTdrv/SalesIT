@@ -100,6 +100,10 @@
     justify-content: space-around;
 }
 .info-div h1 {
+    background-color: aliceblue;
+    padding: 10px 100px;
+    border-radius: 20px;
+    margin-top: 0px;
     text-align: center;
 }
 .info-div span {
