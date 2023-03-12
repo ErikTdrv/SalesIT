@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from '../../contexts/AuthContext';
 export default function Header(){
-    let { isAuth } = useContext(AuthContext);
+    let { isAuth, userLogout } = useContext(AuthContext);
     return (
         <header className="navigation">
         <div className="mainlogo">
@@ -24,6 +24,7 @@ export default function Header(){
             <>
             <li><i className="fa-solid fa-user"></i></li>
             <li><NavLink activeclassname='activeCard' className='Link' to='/card'><i className="fa-solid fa-cart-shopping"></i></NavLink></li> 
+            <li onClick={() => userLogout()}>Logout</li>
             </>
             :
             <>

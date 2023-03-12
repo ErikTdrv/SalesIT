@@ -1,6 +1,6 @@
 import "./App.css";
 import Header from "./components/Header/Header";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
@@ -12,6 +12,7 @@ import ProductDetails from "./components/Products/Details/ProductDetails";
 import { AuthContext } from "./contexts/AuthContext";
 import { useState } from "react";
 function App() {
+  let navigate = useNavigate()
   let [user, setUser] = useState({});
   const isAuth = user?.username ? true : false;
   const userAuth = (authData) => {
@@ -20,6 +21,7 @@ function App() {
 
   const userLogout = () => {
     setUser({});
+    navigate('/')
   }
   return (
     <AuthContext.Provider value={{ user, userAuth, userLogout, isAuth }}>
