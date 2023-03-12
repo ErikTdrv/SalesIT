@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
 import { login } from "../../services/userService";
 import Copyright from "../Copyright/Copyright";
 import "./Login.css";
@@ -8,11 +9,16 @@ export default function Login() {
   const [authInfo, setAuthInfo] = useState({});
   const [error, setError] = useState({});
   const [mainError, setMainError] = useState();
+  let { userAuth } = useContext(AuthContext);
+  let navigate = useNavigate();
   async function loginHandler(e) {
     e.preventDefault();
     let data = await login(authInfo);
     if (data.message) {
       setMainError(data.message);
+    }else if(data.username){
+      userAuth(data)
+      navigate('/')
     }
   }
   function validateInput(e) {
