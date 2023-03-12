@@ -7,23 +7,23 @@ const monitorSchema = new mongoose.Schema({
     maxlength: [10, "Manufacturer cannot have more than 10 characters!"],
   },
   screenresolution: {
-    required: true,
+    required: [true, 'Screen Resolution is required'],
     type: String,
   },
   resolution: {
-    required: true,
+    required: [true, 'Resolution is required'],
     type: String,
   },
   refreshrate: {
-    required: true,
+    required: [true, 'Refresh Rate is required'],
     type: String,
   },
   paneltype: {
-    required: true,
+    required: [true, 'Panel Type is required'],
     type: String,
   },
   price: {
-    required: true,
+    required: [true, 'Price is required'],
     type: String,
   },
   owner: {
@@ -31,7 +31,7 @@ const monitorSchema = new mongoose.Schema({
     ref: "User",
   },
   images: {
-    required: true,
+    required: [true, 'Images are required'],
     type: Array,
   },
 });

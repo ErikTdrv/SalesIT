@@ -7,31 +7,31 @@ const phoneSchema = new mongoose.Schema({
     maxlength: [20, "Manufacturer cannot have more than 20 characters!"],
   },
   capacity: {
-    required: true,
+    required: [true, 'Capacity is required!'],
     type: String,
   },
   displaysize: {
-    required: true,
+    required: [true, 'Display Size is required!'],
     type: String,
   },
   color: {
-    required: true,
+    required: [true, 'Color is required!'],
     type: String,
   },
   camera: {
-    required: true,
+    required: [true, 'Camera is required!'],
     type: String,
   },
   price: {
-    required: true,
+    required: [true, 'Price is required!'],
     type: String,
   },
   battery: {
-    required: true,
+    required: [true, 'Battery is required!'],
     type: String,
   },
   os: {
-    required: true,
+    required: [true, 'Operation System is required!'],
     type: String,
   },
   owner: {

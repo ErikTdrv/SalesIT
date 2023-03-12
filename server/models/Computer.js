@@ -7,31 +7,31 @@ const computerSchema = new mongoose.Schema({
     maxlength: [10, "Manufacturer cannot have more than 10 characters!"],
   },
   motherboard: {
-    required: true,
+    required: [true, 'Motherboard is required!'],
     type: String,
   },
   processor: {
-    required: true,
+    required: [true, 'Processor is required!'],
     type: String,
   },
   videocard: {
-    required: true,
+    required: [true, 'Videocard is required!'],
     type: String,
   },
   os: {
-    required: true,
+    required: [true, 'Operation System is required!'],
     type: String,
   },
   ssd: {
-    required: true,
+    required: [true, 'SSD is required!'],
     type: String,
   },
   harddrive: {
-    required: true,
+    required: [true, 'HardDrive is required!'],
     type: String,
   },
   price: {
-    required: true,
+    required: [true, 'Price is required!'],
     type: String,
   },
   owner: {
@@ -39,7 +39,7 @@ const computerSchema = new mongoose.Schema({
     ref: "User",
   },
   images: {
-    required: true,
+    required: [true, 'Images are required!'],
     type: Array,
   },
 });
