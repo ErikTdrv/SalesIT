@@ -17,7 +17,6 @@ router.post("/register", async (req, res) => {
     }
     const user = await register(data);
     res.cookie("auth", user.accessToken, {
-      httpOnly: true,
       secure: true,
       sameSite: 'none',
     });
@@ -30,11 +29,9 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  console.log(password)
   try {
     const user = await login(email, password);
     res.cookie("auth", user.accessToken, {
-      httpOnly: true,
       sameSite: "none",
       secure: true,
     });

@@ -11,14 +11,17 @@ import ProductDetails from "./components/Products/Details/ProductDetails";
 
 import { AuthContext } from "./contexts/AuthContext";
 import { useState } from "react";
+import Cookies from 'js-cookie';
+
 function App() {
+  console.log(Cookies.get('auth'))
   let navigate = useNavigate()
   let [user, setUser] = useState({});
   const isAuth = user?.username ? true : false;
   const userAuth = (authData) => {
     setUser(authData);
   }
-
+  
   const userLogout = () => {
     setUser({});
     navigate('/')
