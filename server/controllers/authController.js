@@ -17,6 +17,7 @@ router.post("/register", async (req, res) => {
     }
     const user = await register(data);
     res.cookie("auth", user.accessToken, {
+      httpOnly: true,
       secure: true,
       sameSite: 'none',
     });
@@ -32,6 +33,7 @@ router.post("/login", async (req, res) => {
   try {
     const user = await login(email, password);
     res.cookie("auth", user.accessToken, {
+      httpOnly: true,
       sameSite: "none",
       secure: true,
     });
@@ -49,4 +51,11 @@ router.delete("/logout", async (req, res) => {
   // let token = req.user.token;
   // await logout(token)
 });
+router.get('/get-user', async (req, res) => {
+  const cookie = req.cookies?.auth;
+  if(cookie){
+    let user = req.user;
+    res.send(user)
+  }
+})
 module.exports = router;

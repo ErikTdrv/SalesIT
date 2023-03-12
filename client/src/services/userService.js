@@ -54,4 +54,24 @@ export const convertToBase64 = async (file) => {
     };
   });
 }
+export const getCurrentUser = async (cookie) => {
+  try {
+    let request = await fetch(`${API_URL}/get-user`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },    
+      credentials: 'include',
+    })
+    const data = await request.json();
+    if(request.ok){
+      return data
+    }else {
+      throw new Error(data.error)
+    }
+  } catch (error) {
+    return error
+    
+  }
+}
 
