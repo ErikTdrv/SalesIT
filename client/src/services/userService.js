@@ -17,7 +17,7 @@ export const register = async (info) => {
       throw new Error(data.error)
     }
   } catch (error) {
-    console.log(error);
+    return error
   }
 };
 export const login = async (info) => {

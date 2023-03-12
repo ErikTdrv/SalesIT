@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
 import HomeFooter from "./Home-Footer/Footer";
 import "./Home.css";
 import TopDiscounts from "./TopDiscounts/TopDiscounts";
 
 export default function Home() {
+  let { isAuth } = useContext(AuthContext)
   return (
     <>
     <div className="home">

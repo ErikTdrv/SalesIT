@@ -1,17 +1,25 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { register } from "../../services/userService";
 import Copyright from "../Copyright/Copyright";
 import "./Register.css";
 
 export default function Register() {
+  const navigate = useNavigate()
   const [auth, setAuth] = useState({});
+  const [mainError, setMainError] = useState()
   let { userAuth, isAuth } = useContext(AuthContext);
   async function onSubmitHandler(e) {
     e.preventDefault();
     let response = await register(auth);
-    userAuth(response)
+    console.log(response)
+    if(response?.username){
+      userAuth(response)
+      navigate('/')
+    }else if(response?.message){
+      setMainError(response.message)
+    }
   }
 
   async function convertToBase64(file){
@@ -31,6 +39,7 @@ export default function Register() {
     <>
       <div className="register">
         <h1>Register</h1>
+        {mainError ? <p className="main-error">{mainError}</p> : ""}
         <form onSubmit={onSubmitHandler}>
           <img
             className="avatarImg"
