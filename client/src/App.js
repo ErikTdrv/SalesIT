@@ -9,9 +9,20 @@ import AddProduct from "./components/Products/Add-Products/Add-Product";
 import ShoppingCard from "./components/Shopping/Shopping";
 import ProductDetails from "./components/Products/Details/ProductDetails";
 
+import { AuthContext } from "./contexts/AuthContext";
+import { useState } from "react";
 function App() {
+  let [user, setUser] = useState({});
+  const isAuth = user?._id ? true : false;
+  const userLogin = (authData) => {
+    setUser(authData);
+  }
+
+  const userLogout = () => {
+    setUser({});
+  }
   return (
-    <>
+    <AuthContext.Provider value={{ user, userLogin, userLogout, isAuth }}>
       <Header />
       <Routes>
         <Route exact path="/" element={<Home />} />
@@ -22,7 +33,7 @@ function App() {
         <Route path="/add-product" element={<AddProduct />} />
         <Route path="/card" element={<ShoppingCard />} />
       </Routes>
-    </>
+    </AuthContext.Provider>
   );
 }
 
