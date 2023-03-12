@@ -92,14 +92,14 @@ input:focus {
     /* font-size: 16px; */
     font-weight: bold;
 }
-.login .main-error {
+.main-error {
     text-align: center;
     color: red;
     margin-top: 30px;
     margin: 0px;
     font-weight: 700;
 }
-.login .error {
+.error {
     position: absolute;
     font-size: 12px;
     margin-top: 0px;
