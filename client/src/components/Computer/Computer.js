@@ -39,27 +39,11 @@ export default function Computer({
           <>
             <span>
               <i className="fa-solid fa-check"></i>
-              {motherboard}
-            </span>
-            <span>
-              <i className="fa-solid fa-check"></i>
               {processor}
             </span>
             <span>
               <i className="fa-solid fa-check"></i>
               {videocard}
-            </span>
-            <span>
-              <i className="fa-solid fa-check"></i>
-              {ssd}
-            </span>
-            <span>
-              <i className="fa-solid fa-check"></i>
-              {os}
-            </span>
-            <span>
-              <i className="fa-solid fa-check"></i>
-              {harddrive}
             </span>
           </>
         )}
@@ -67,37 +51,13 @@ export default function Computer({
           <>
             <span>
               <i className="fa-solid fa-check"></i>
-              {camera}
-            </span>
-            <span>
-              <i className="fa-solid fa-check"></i>
-              {color}
-            </span>
-            <span>
-              <i className="fa-solid fa-check"></i>
               {capacity}
-            </span>
-            <span>
-              <i className="fa-solid fa-check"></i>
-              {displaysize}
-            </span>
-            <span>
-              <i className="fa-solid fa-check"></i>
-              {battery}
             </span>
           </>
         )}
 
         {paneltype && (
           <>
-            <span>
-              <i className="fa-solid fa-check"></i>
-              {screenresolution}
-            </span>
-            <span>
-              <i className="fa-solid fa-check"></i>
-              {paneltype}
-            </span>
             <span>
               <i className="fa-solid fa-check"></i>
               {resolution}

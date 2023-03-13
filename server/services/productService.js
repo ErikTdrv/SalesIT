@@ -25,10 +25,10 @@ const getAllProducts = async () => {
 }
 const getOneProduct = async (_id) => {
     try {
-        const computers = await Computer.findOne({_id});
-        const phones = await Phone.findOne({_id});
-        const monitors = await Monitor.findOne({_id});
-
+        const computers = await Computer.findOne({_id}).populate('owner');
+        const phones = await Phone.findOne({_id}).populate('owner');
+        const monitors = await Monitor.findOne({_id}).populate('owner');
+        console.log(computers)
         if(computers?.manufacturer.length > 0){
             return computers
         }else if(phones?.phonename.length > 0){
