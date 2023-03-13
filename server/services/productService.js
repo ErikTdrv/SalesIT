@@ -47,11 +47,12 @@ const deleteOneProduct = async (_id, type) => {
     try {
         let deletedProduct;
         
-        if(type === 'phones'){
+        console.log(type)
+        if(type === 'Phones'){
             deletedProduct = await Phone.findByIdAndDelete(_id);
-        }else if(type === 'monitors'){
+        }else if(type === 'Monitors'){
             deletedProduct = await Monitor.findByIdAndDelete(_id);
-        }else if(type === 'computers'){
+        }else if(type === 'Computers'){
             deletedProduct = await Computer.findByIdAndDelete(_id);
         }
         return deletedProduct

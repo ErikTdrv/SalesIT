@@ -17,7 +17,7 @@ export default function ProductDetails() {
       setProduct(data);
       setIsLoading(false);
       if(data.phonename){
-        setProductType('phones')
+        setProductType('Phones')
       }else if(data.paneltype){
         setProductType('Monitors')
       }else if(data.motherboard){
