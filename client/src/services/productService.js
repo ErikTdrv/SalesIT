@@ -60,22 +60,25 @@ export const getOneProduct = async (_id) => {
     return error
 }
 }
-export const deleteOneProduct = async (_id) => {
+export const deleteOneProduct = async (_id, type) => {
   try {
     let request = await fetch(`${API_URL}/products/${_id}`, {
-      method: 'DELETE',
+      method: 'POST',
       headers: {
         "Content-Type": "application/json",
       },
       credentials: "include",
+      body: JSON.stringify({type})
+
     })
     let data = await request.json();
+    console.log(data)
     if(request.ok){
       return data
     }else {
       throw new Error(data.error)
     }
   } catch (err) {
-    return error
+    return err
   }
 }
