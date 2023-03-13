@@ -100,7 +100,6 @@
     justify-content: space-around;
 }
 .info-div h1 {
-    background-color: aliceblue;
     padding: 10px 100px;
     border-radius: 20px;
     margin-top: 0px;
@@ -138,8 +137,8 @@ span p {
     font-weight: 20px;
 }
 .info-div .price {
-    background-color: red;
-    color: white;
+    /* background-color: red; */
+    /* color: white; */
     padding: 10px 120px;
     border-radius: 20px;
     font-size: 20px;

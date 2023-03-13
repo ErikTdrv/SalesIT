@@ -111,7 +111,7 @@ export default function ProductDetails() {
                   <span><p>Refresh Rate:</p> {product.refreshrate}</span>
                 )}
                 {product?.owner && (
-                  <span><p>Owner:</p> {product.owner}</span>
+                  <span><p>Owner:</p> {product.owner.username}</span>
                 )}
               </div>
             </div>
