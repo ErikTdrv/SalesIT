@@ -5,7 +5,6 @@ const { register, login } = require("../services/authService");
 router.post("/register", async (req, res) => {
   const data = req.body;
   const { avatarImg } = req.body;
-  console.log(avatarImg)
   try {
     if (avatarImg) {
       const upload = await cloudinary.v2.uploader.upload(avatarImg, {
