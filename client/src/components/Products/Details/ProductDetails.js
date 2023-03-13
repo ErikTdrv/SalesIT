@@ -1,6 +1,6 @@
 import React, { useEffect, useState,  } from "react";
-import { useParams } from "react-router-dom";
-import { getOneProduct } from "../../../services/productService";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { deleteOneProduct, getOneProduct } from "../../../services/productService";
 import "./ProductDetails.css";
 
 export default function ProductDetails() {
@@ -9,11 +9,20 @@ export default function ProductDetails() {
   let [index, setIndex] = useState(1);
   let [product, setProduct] = useState({});
   let [isLoading, setIsLoading] = useState(true);
+  let [productType, setProductType] = useState('');
+  let navigate = useNavigate();
   useEffect(() => {
     async function getData() {
       let data = await getOneProduct(productId);
       setProduct(data);
       setIsLoading(false);
+      if(data.phonename){
+        setProductType('phones')
+      }else if(data.paneltype){
+        setProductType('Monitors')
+      }else if(data.motherboard){
+        setProductType('Computers')
+      }
     }
     getData();
   }, []);
@@ -23,6 +32,10 @@ export default function ProductDetails() {
     }else if(index > 0 && type === '-' && index + 1 < product.images.length){
       setIndex(index - 1)
     }
+  }
+  async function deleteProduct(){
+    let request = await deleteOneProduct(product._id , productType)
+    navigate('/all-products')
   }
   return (
     <>
@@ -53,7 +66,7 @@ export default function ProductDetails() {
             
             <div className="buttons">
               <button>Back</button>
-              <button>Delete</button>
+              <button onClick={deleteProduct}>Delete</button>
               <button>Edit</button>
               <button>Add Discount</button>
               <button>Add to Card</button>

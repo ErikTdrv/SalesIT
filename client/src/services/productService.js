@@ -72,7 +72,6 @@ export const deleteOneProduct = async (_id, type) => {
 
     })
     let data = await request.json();
-    console.log(data)
     if(request.ok){
       return data
     }else {
