@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import { addProduct } from "../../../services/productService";
 import { convertToBase64 } from "../../../services/userService";
 
@@ -7,12 +8,15 @@ export default function Monitor() {
   let [error, setError] = useState({});
   let [disabled, setDisabled] = useState(true);
   let [mainError, setMainError] = useState('')
-
+  let navigate = useNavigate();
   async function addMonitorHandler(e) {
     e.preventDefault();
     let request = await addProduct(products, "Monitors");
     if(request.message){
       setMainError(request.message.split(':')[2])
+    }
+    if(request._id){
+      navigate('/')
     }
   }
   function validateInput(e, type) {

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import { addProduct } from "../../../services/productService";
 import { convertToBase64 } from "../../../services/userService";
 
@@ -7,6 +8,7 @@ export default function PhoneProduct(){
     let [error, setError] = useState({});
     let [disabled, setDisabled] = useState(true);
     let [mainError, setMainError] = useState('')
+    let navigate = useNavigate();
   function validateInput(e, type){
     if(e.target.value === ''){
       setError({...error, [type]: `${type} is required`})
@@ -24,7 +26,9 @@ export default function PhoneProduct(){
     }else {
       setMainError(request.message)
     }
-    console.log(mainError)
+    if(request._id){
+      navigate('/')
+    }
   }
   return (
     <form className="add-form" onSubmit={addPhoneProduct}>

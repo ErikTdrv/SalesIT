@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import { addProduct } from "../../../services/productService";
 
 export default function ComputerProduct() {
@@ -6,12 +7,15 @@ export default function ComputerProduct() {
   let [error, setError] = useState({});
   let [disabled, setDisabled] = useState(true)
   let [mainError, setMainError] = useState('')
+  let navigate = useNavigate();
   async function onAddHandler(e) {
     e.preventDefault();
-    console.log('je')
     let request = await addProduct(products, "Computers");
     if(request.message){
       setMainError(request.message.split(':')[2])
+    }
+    if(request._id){
+      navigate('/')
     }
   }
   async function convertToBase64(file) {
