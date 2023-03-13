@@ -8,7 +8,6 @@ router.post('/add-product',  uploader.array('productPhotos'), async (req, res) =
     let body = req.body;
     let { productName, images } = req.body;
     try {
-        console.log(body)
         let imagesArr = [];
         if(images){
             for(let el of images){
@@ -21,6 +20,7 @@ router.post('/add-product',  uploader.array('productPhotos'), async (req, res) =
             }
         }
         body.images = imagesArr
+        body.owner = req.username;
         let product = await addProduct(body)
         res.status(201).json(product)
     } catch (error) {
