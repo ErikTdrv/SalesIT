@@ -110,6 +110,9 @@ export default function ProductDetails() {
                 {product?.refreshrate && (
                   <span><p>Refresh Rate:</p> {product.refreshrate}</span>
                 )}
+                {product?.owner && (
+                  <span><p>Owner:</p> {product.owner}</span>
+                )}
               </div>
             </div>
             <div className="price">

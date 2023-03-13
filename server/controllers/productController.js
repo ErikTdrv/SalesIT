@@ -20,7 +20,7 @@ router.post('/add-product',  uploader.array('productPhotos'), async (req, res) =
             }
         }
         body.images = imagesArr
-        body.owner = req.username;
+        body.owner = req.user._id;
         let product = await addProduct(body)
         res.status(201).json(product)
     } catch (error) {
