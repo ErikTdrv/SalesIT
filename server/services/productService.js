@@ -43,8 +43,25 @@ const getOneProduct = async (_id) => {
         return error
     }
 }
+const deleteOneProduct = async (_id, type) => {
+    try {
+        let deletedProduct;
+        
+        if(type === 'phones'){
+            deletedProduct = await Phone.findByIdAndDelete(_id);
+        }else if(type === 'monitors'){
+            deletedProduct = await Monitor.findByIdAndDelete(_id);
+        }else if(type === 'computers'){
+            deletedProduct = await Computer.findByIdAndDelete(_id);
+        }
+        return deletedProduct
+    } catch (error) {
+        return error
+    }
+}
 module.exports = {
     addProduct,
     getAllProducts,
     getOneProduct,
+    deleteOneProduct
 }
