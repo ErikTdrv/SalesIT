@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const uploader = require("../services/multer");
 const cloudinary = require('cloudinary');
-const { addProduct, getAllProducts, getOneProduct, deleteOneProduct } = require("../services/productService");
+const { addProduct, getAllProducts, getOneProduct, deleteOneProduct, addToCard } = require("../services/productService");
 
 
 router.post('/add-product',  uploader.array('productPhotos'), async (req, res) => {
@@ -59,6 +59,15 @@ router.post('/products/:id', async (req, res) => {
         res.status(200).json(deletedProduct)
     } catch (error) {
         res.status(500).send('Error retrieving data');
+    }
+})
+router.post('/products/:id/add-to-card', async (req, res) => {
+    try {
+        let { product } = req.body;
+        let addedProduct = await addToCard(req.user._id, product)
+        res.status(200).json(addedProduct)
+    } catch (error) {
+        res.status(500).send({ error: error.message });
     }
 })
 module.exports = router;
