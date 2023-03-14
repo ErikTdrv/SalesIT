@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const cloudinary = require("cloudinary");
-const { register, login } = require("../services/authService");
+const { register, login, getUser } = require("../services/authService");
 
 router.post("/register", async (req, res) => {
   const data = req.body;
@@ -44,7 +44,8 @@ router.post("/login", async (req, res) => {
 router.get('/get-user', async (req, res) => {
   const cookie = req.cookies?.auth;
   if(cookie){
-    let user = req.user;
+    let user = await getUser(req.user._id);
+    console.log(user)
     res.send(user)
   }
 })

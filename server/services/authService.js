@@ -53,9 +53,13 @@ const login = async (email, password) => {
         throw new Error('Invalid email or password!')
     }
 }
+const getUser = async (id) => {
+    return await User.findById(id)
+}
 module.exports = {
     login,
     register,
     createAccessToken,
-    validateToken
+    validateToken,
+    getUser,
 }

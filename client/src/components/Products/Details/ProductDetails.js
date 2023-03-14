@@ -17,13 +17,18 @@ export default function ProductDetails() {
   let [isLoading, setIsLoading] = useState(true);
   let [productType, setProductType] = useState("");
   let [isOwner, setIsOwner] = useState();
+  let [isAdded, setAlreadyAdded] = useState();
   let navigate = useNavigate();
   useEffect(() => {
     async function getData() {
       let data = await getOneProduct(productId);
       setProduct(data);
-      setIsLoading(false);
       data.owner._id === user._id ? setIsOwner(true) : setIsOwner(false);
+      let alreadyAdded = user.addedProducts?.some((e) => e._id === data._id);
+      if (alreadyAdded) {
+        setAlreadyAdded(true);
+      }
+      console.log(alreadyAdded);
       if (data.phonename) {
         setProductType("Phones");
       } else if (data.paneltype) {
@@ -31,6 +36,7 @@ export default function ProductDetails() {
       } else if (data.motherboard) {
         setProductType("Computers");
       }
+      setIsLoading(false);
     }
     getData();
   }, []);
@@ -87,16 +93,24 @@ export default function ProductDetails() {
 
             <div className="buttons">
               <button>Back</button>
-              {isOwner ? (
+              {isOwner && (
                 <>
                   <button onClick={deleteProduct}>Delete</button>
                   <button>Edit</button>
-                  { isAuth && <button>Add Discount</button>}
-                  
+                  <button>Add Discount</button>
                 </>
-              ) : (
-                <button onClick={() => addProductToCard(productId, product)}>Add to Card</button>
               )}
+              {isAdded === false && isAuth === true ? (
+                <button onClick={() => addProductToCard(productId, product)}>
+                  Add to Card
+                </button>
+              ) : (
+                ""
+              )}
+              {isAdded === true && isAuth === true ? (
+                <button className="remove-btn">Remove From Card</button>
+              ) : ''}
+
             </div>
           </div>
           <div className="info-div">
