@@ -1,6 +1,7 @@
 let Computer = require("../models/Computer")
 let Monitor = require("../models/Monitor")
 let Phone = require("../models/Phone")
+let User = require("../models/User")
 
 const addProduct = async (product) => {
     console.log(product)
@@ -60,9 +61,24 @@ const deleteOneProduct = async (_id, type) => {
         return error
     }
 }
+const addToCard = async (id, product, productType) => {
+    try {
+        let user = await User.findById(id);
+        let array = user.addedProducts;
+        let alreadyAdded = array.some(product)
+        if(alreadyAdded){
+            throw new Error('Product is already added!');
+        }
+        array.push(product);
+        await User.findByIdAndUpdate(id, {addedProducts: array})
+    } catch (error) {
+        return error
+    }
+}
 module.exports = {
     addProduct,
     getAllProducts,
     getOneProduct,
-    deleteOneProduct
+    deleteOneProduct,
+    addToCard,
 }
