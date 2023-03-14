@@ -89,7 +89,7 @@ export const addProductToCard = async (_id, product) => {
         "Content-Type": "application/json",
       },
       credentials: "include",
-      body: JSON.stringify(product)
+      body: JSON.stringify({product})
 
     })
     let data = await request.json();
