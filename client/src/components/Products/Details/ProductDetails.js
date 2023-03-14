@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
 import {
+  addProductToCard,
   deleteOneProduct,
   getOneProduct,
 } from "../../../services/productService";
@@ -15,14 +16,14 @@ export default function ProductDetails() {
   let [product, setProduct] = useState({});
   let [isLoading, setIsLoading] = useState(true);
   let [productType, setProductType] = useState("");
-  let isOwner = useState();
+  let [isOwner, setIsOwner] = useState();
   let navigate = useNavigate();
   useEffect(() => {
     async function getData() {
       let data = await getOneProduct(productId);
       setProduct(data);
       setIsLoading(false);
-      data.owner._id === user._id ? isOwner(true) : isOwner(false);
+      data.owner._id === user._id ? setIsOwner(true) : setIsOwner(false);
       if (data.phonename) {
         setProductType("Phones");
       } else if (data.paneltype) {
@@ -90,10 +91,11 @@ export default function ProductDetails() {
                 <>
                   <button onClick={deleteProduct}>Delete</button>
                   <button>Edit</button>
-                  <button>Add Discount</button>
+                  { isAuth && <button>Add Discount</button>}
+                  
                 </>
               ) : (
-                <button>Add to Card</button>
+                <button onClick={() => addProductToCard(productId, product)}>Add to Card</button>
               )}
             </div>
           </div>
