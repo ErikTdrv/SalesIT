@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const bcrypt = require('bcrypt')
+const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -30,33 +30,15 @@ const userSchema = new mongoose.Schema({
     required: true,
     type: String,
   },
-  addedComputers: [
-    {
-      type: mongoose.Types.ObjectId,
-      ref: "Computer",
-    },
-  ],
-  addedMonitors: [
-    {
-      type: mongoose.Types.ObjectId,
-      ref: "Monitor",
-    },
-  ],
-  addedPhones: [
-    {
-      type: mongoose.Types.ObjectId,
-      ref: "Phone",
-    },
-  ],
+  addedProducts: [{}],
 });
 
-userSchema.pre('save', function (next) {
-    bcrypt.hash(this.password, 10)
-        .then((hash) => {
-            this.password = hash
-            return next()
-        })
-})
+userSchema.pre("save", function (next) {
+  bcrypt.hash(this.password, 10).then((hash) => {
+    this.password = hash;
+    return next();
+  });
+});
 
-const User = new mongoose.model('User', userSchema)
+const User = new mongoose.model("User", userSchema);
 module.exports = User;
