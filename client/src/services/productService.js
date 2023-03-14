@@ -81,3 +81,24 @@ export const deleteOneProduct = async (_id, type) => {
     return err
   }
 }
+export const addProductToCard = async (_id, product) => {
+  try {
+    let request = await fetch(`${API_URL}/products/${_id}/add-to-card`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(product)
+
+    })
+    let data = await request.json();
+    if(request.ok){
+      return data
+    }else {
+      throw new Error(data.error)
+    }
+  } catch (err) {
+    return err
+  }
+}
