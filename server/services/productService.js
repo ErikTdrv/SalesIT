@@ -61,12 +61,16 @@ const deleteOneProduct = async (_id, type) => {
         return error
     }
 }
-const addToCard = async (id, product, productType) => {
+const addToCard = async (id, product) => {
     try {
         let user = await User.findById(id);
         let array = user.addedProducts;
-        let alreadyAdded = array.some(product)
-        if(alreadyAdded){
+        let alreadyAdded = array.map((el) => {
+            if(el._id === product._id){
+                return true
+            }
+        })
+        if(alreadyAdded?.includes(true)){
             throw new Error('Product is already added!');
         }
         array.push(product);
