@@ -101,7 +101,7 @@ export default function ProductDetails() {
                   <button>Add Discount</button>
                 </>
               )}
-              {isAdded === false && isAuth === true ? (
+              {isAdded === false && isAuth === true && isOwner === false ? (
                 <button onClick={() => {
                   addProductToCard(productId, product)
                   setAlreadyAdded(true)
@@ -111,7 +111,7 @@ export default function ProductDetails() {
               ) : (
                 ""
               )}
-              {isAdded === true && isAuth === true ? (
+              {isAdded === true && isAuth === true && isOwner === false ? (
                 <button
                   onClick={() => {
                     removeProductFromCard(productId);

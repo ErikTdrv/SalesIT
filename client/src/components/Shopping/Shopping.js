@@ -29,7 +29,8 @@ export default function ShoppingCard() {
   }
   return (
     <>
-      {!isLoading ? (
+    
+      {!isLoading && products.length > 0 ? (
         <div className="shopping-container">
           <h1>Shopping Card</h1>
           <div className="card__products">
@@ -73,7 +74,12 @@ export default function ShoppingCard() {
           <button className="buy-btn">Buy</button>
         </div>
       ) : (
-        ""
+        <div className="shopping-container">
+          <h1>Shopping Card</h1>
+          <div className="card__products">
+            <h3>No Added Products</h3>
+          </div>
+        </div>
       )}
     </>
   );
