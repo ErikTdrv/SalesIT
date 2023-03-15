@@ -7,11 +7,12 @@ import {
   getOneProduct,
   removeProductFromCard,
 } from "../../../services/productService";
+import { getCurrentUser } from "../../../services/userService";
 import { DetailsInfo } from "./DetailsInfo";
 import "./ProductDetails.css";
 
 export default function ProductDetails() {
-  const { user, isAuth } = useContext(AuthContext);
+  const { isAuth, setUser } = useContext(AuthContext);
   const { productId } = useParams();
   const [index, setIndex] = useState(1);
   const [product, setProduct] = useState({});
@@ -24,6 +25,7 @@ export default function ProductDetails() {
   useEffect(() => {
     async function getData() {
       const data = await getOneProduct(productId);
+      let user = await getCurrentUser();
       setProduct(data);
       const { owner } = data;
       setIsOwner(owner._id === user._id);
@@ -93,7 +95,7 @@ export default function ProductDetails() {
             )}
 
             <div className="buttons">
-              <button onClick={() => navigate('/all-products')}>Back</button>
+              <button onClick={() => navigate("/all-products")}>Back</button>
               {isOwner && (
                 <>
                   <button onClick={deleteProduct}>Delete</button>
@@ -102,10 +104,12 @@ export default function ProductDetails() {
                 </>
               )}
               {isAdded === false && isAuth === true && isOwner === false ? (
-                <button onClick={() => {
-                  addProductToCard(productId, product)
-                  setAlreadyAdded(true)
-                }}>
+                <button
+                  onClick={() => {
+                    addProductToCard(productId, product);
+                    setAlreadyAdded(true);
+                  }}
+                >
                   Add to Card
                 </button>
               ) : (
@@ -125,7 +129,7 @@ export default function ProductDetails() {
               )}
             </div>
           </div>
-          <DetailsInfo product={product}/>
+          <DetailsInfo product={product} />
         </div>
       ) : (
         <h1>IS LOADING</h1>

@@ -22,7 +22,6 @@ function App() {
     getUser()
   }, [])
   let navigate = useNavigate()
-
   let [user, setUser] = useState({});
   const isAuth = user?._id ? true : false;
   const userAuth = (authData) => {
@@ -35,7 +34,7 @@ function App() {
     navigate('/')
   }
   return (
-    <AuthContext.Provider value={{ user, userAuth, userLogout, isAuth }}>
+    <AuthContext.Provider value={{ user,setUser, userAuth, userLogout, isAuth }}>
       <Header />
       <Routes>
         <Route exact path="/" element={<Home />} />
