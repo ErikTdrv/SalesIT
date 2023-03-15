@@ -121,3 +121,22 @@ export const removeProductFromCard = async (_id) => {
     return error
   }
 }
+export const getProductCard = async () => {
+  try {
+    let request = await fetch(`${API_URL}/product-card`, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
+    let data = await request.json();
+    if(request.ok){
+      return data
+    }else {
+      throw new Error(data.error)
+    }
+  } catch (error) {
+    return error
+  }
+}
