@@ -88,3 +88,10 @@
     font-weight: 700;
     font-size: 18px;
 }
+.shopping-container .switch__buttons {
+    text-align: center;
+}
+.shopping-container .switch__buttons button {
+    padding: 3px 10px;
+    margin: 10px;
+}
