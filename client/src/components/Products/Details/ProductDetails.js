@@ -21,6 +21,7 @@ export default function ProductDetails() {
   let [isOwner, setIsOwner] = useState();
   let [isAdded, setAlreadyAdded] = useState();
   let navigate = useNavigate();
+
   useEffect(() => {
     async function getData() {
       let data = await getOneProduct(productId);
@@ -29,6 +30,8 @@ export default function ProductDetails() {
       let alreadyAdded = user.addedProducts?.some((e) => e._id === data._id);
       if (alreadyAdded) {
         setAlreadyAdded(true);
+      }else {
+        setAlreadyAdded(false)
       }
       if (data.phonename) {
         setProductType("Phones");
@@ -102,7 +105,10 @@ export default function ProductDetails() {
                 </>
               )}
               {isAdded === false && isAuth === true ? (
-                <button onClick={() => addProductToCard(productId, product)}>
+                <button onClick={() => {
+                  addProductToCard(productId, product)
+                  setAlreadyAdded(true)
+                }}>
                   Add to Card
                 </button>
               ) : (
@@ -110,7 +116,6 @@ export default function ProductDetails() {
               )}
               {isAdded === true && isAuth === true ? (
                 <button
-                  className="remove-btn"
                   onClick={() => {
                     removeProductFromCard(productId);
                     setAlreadyAdded(false);
