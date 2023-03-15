@@ -45,7 +45,6 @@ router.get('/get-user', async (req, res) => {
   const cookie = req.cookies?.auth;
   if(cookie){
     let user = await getUser(req.user._id);
-    console.log(user)
     res.send(user)
   }
 })
