@@ -39,7 +39,21 @@ export default function Register() {
   }
   function validateInput(type, e){
     if(e.target.value === ''){
-      setError({...error, [type]: true})
+      setError({...error, [type]: `${type} is required!`})
+    }else {
+      setError({...error, [type]: ''})
+    }
+    if(type === 'Email'){
+      const emailRegex = /^[a-zA-Z0-9\.-]{4,}@[a-z]+\.[a-z]+$/;
+      const isValidEmail = emailRegex.test(e.target.value);
+      if (!isValidEmail) {
+        console.log('here')
+        setError({ ...error, Email: "Email must be valid!" });
+      } else {
+        console.log('h2ere')
+
+        setError({ ...error, Email: "" });
+      }
     }
   }
   return (
@@ -71,10 +85,10 @@ export default function Register() {
                 type="text"
                 className="second"
                 onChange={(e) => setAuth({ ...auth, email: e.target.value })}
-                onBlur={(e) => validateInput('email', e)}
+                onBlur={(e) => validateInput('Email', e)}
               />
               <span className={auth.email ? "value-there" : ""}>Email</span>
-              {error.email && <p className="error">Email is required!</p>}
+              {error.Email && <p className="error">{error.Email}</p>}
 
             </div>
             <div className="register-password">
