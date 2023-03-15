@@ -79,10 +79,22 @@ const addToCard = async (id, product) => {
         return error
     }
 }
+const removeFromCard = async (userId, productId) => {
+    try {
+        let user = await User.findById(userId);
+        let productsArray = user.addedProducts;
+        let indexOfProduct = productsArray.findIndex((product) => product._id === productId)
+        productsArray.splice(indexOfProduct, 1)
+        await User.findByIdAndUpdate(userId, {addedProducts: productsArray})
+    } catch (error) {
+        return error
+    }
+}
 module.exports = {
     addProduct,
     getAllProducts,
     getOneProduct,
     deleteOneProduct,
     addToCard,
+    removeFromCard,
 }
