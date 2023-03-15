@@ -90,6 +90,14 @@ const removeFromCard = async (userId, productId) => {
         return error
     }
 }
+const getCardProducts = async (userId) => {
+    try {
+        let user = await User.findById(userId).productsArray;
+        return user
+    } catch (error) {
+        return error
+    }
+}
 module.exports = {
     addProduct,
     getAllProducts,
@@ -97,4 +105,5 @@ module.exports = {
     deleteOneProduct,
     addToCard,
     removeFromCard,
+    getCardProducts,
 }
