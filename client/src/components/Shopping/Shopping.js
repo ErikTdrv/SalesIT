@@ -12,7 +12,6 @@ export default function ShoppingCard() {
       let products = await getProductCard();
       setProducts(products)
       setIsLoading(false);
-      console.log(products)
     }
     getProducts();
   }, []);
@@ -22,7 +21,6 @@ export default function ShoppingCard() {
     setProducts(updatedProducts)
   }
   function validateIndex(type) {
-    console.log(products)
     if (type === "+" && index + 4 < products.length) {
       setIndex(index + 1);
     } else if (index > 0 && type === "-") {

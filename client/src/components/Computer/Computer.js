@@ -26,9 +26,11 @@ export default function Computer({
     images,
   },
 }) {
-
   return (
     <div className="computer__card">
+      <div className="price-div">
+        <span className="price">{price}$</span>
+      </div>
       <img className="computer__image" src={images[0].imageUrl} alt="" />
       <div className="computer__info">
         {/* { product.computer} */}
@@ -69,7 +71,6 @@ export default function Computer({
           </>
         )}
       </div>
-      <span className="price">{price}$</span>
       <Link to={`/all-products/${_id}`}>
         <button className="computer__button">Details</button>
       </Link>
