@@ -11,28 +11,24 @@ import { DetailsInfo } from "./DetailsInfo";
 import "./ProductDetails.css";
 
 export default function ProductDetails() {
-  let imagesArray = [];
-  let { user, isAuth } = useContext(AuthContext);
-  let { productId } = useParams();
-  let [index, setIndex] = useState(1);
-  let [product, setProduct] = useState({});
-  let [isLoading, setIsLoading] = useState(true);
-  let [productType, setProductType] = useState("");
-  let [isOwner, setIsOwner] = useState();
-  let [isAdded, setAlreadyAdded] = useState();
-  let navigate = useNavigate();
+  const { user, isAuth } = useContext(AuthContext);
+  const { productId } = useParams();
+  const [index, setIndex] = useState(1);
+  const [product, setProduct] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [productType, setProductType] = useState("");
+  const [isOwner, setIsOwner] = useState();
+  const [isAdded, setAlreadyAdded] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getData() {
-      let data = await getOneProduct(productId);
+      const data = await getOneProduct(productId);
       setProduct(data);
-      data.owner._id === user._id ? setIsOwner(true) : setIsOwner(false);
-      let alreadyAdded = user.addedProducts?.some((e) => e._id === data._id);
-      if (alreadyAdded) {
-        setAlreadyAdded(true);
-      }else {
-        setAlreadyAdded(false)
-      }
+      const { owner } = data;
+      setIsOwner(owner._id === user._id);
+      const alreadyAdded = user.addedProducts?.some((e) => e._id === data._id);
+      setAlreadyAdded(alreadyAdded ? true : false);
       if (data.phonename) {
         setProductType("Phones");
       } else if (data.paneltype) {
@@ -44,6 +40,7 @@ export default function ProductDetails() {
     }
     getData();
   }, []);
+
   function changeIndex(type) {
     if (index === 0 && type === "+" && index + 1 < product.images.length) {
       setIndex(index + 1);
@@ -96,7 +93,7 @@ export default function ProductDetails() {
             )}
 
             <div className="buttons">
-              <button>Back</button>
+              <button onClick={() => navigate('/all-products')}>Back</button>
               {isOwner && (
                 <>
                   <button onClick={deleteProduct}>Delete</button>
