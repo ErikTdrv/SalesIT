@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { getProductCard, removeProductFromCard } from "../../services/productService";
-import ProductCard from "./ProductCard";
 import "./Shopping.css";
 
 export default function ShoppingCard() {

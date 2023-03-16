@@ -22,7 +22,7 @@ export default function Login() {
     }
   }
   function validateInput(e) {
-    if (e.target.type == "password") {
+    if (e.target.type === "password") {
       if (e.target.value.length < 4) {
         setError({
           ...error,
@@ -37,7 +37,7 @@ export default function Login() {
         setError({ ...error, passwordErr: "" });
       }
     } else {
-      const emailRegex = /^[a-zA-Z0-9\.-]{4,}@[a-z]+\.[a-z]+$/;
+      const emailRegex = /^[a-zA-Z0-9.-]{4,}@[a-z]+.[a-z]+$/;
       const isValidEmail = emailRegex.test(authInfo.email);
       if (!isValidEmail) {
         setError({ ...error, emailErr: "Email must be valid!" });

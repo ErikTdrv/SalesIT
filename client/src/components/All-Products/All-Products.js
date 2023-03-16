@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { getAllProducts } from "../../services/productService";
 import Computer from "../Computer/Computer";
 import HomeFooter from "../Home/Home-Footer/Footer";
-import Monitor from "../Products/ProductsType/Monitor";
 import "./All-Products.css";
 import Filter from "./Filter";
 
@@ -11,7 +10,6 @@ export default function AllItems() {
   const [computers, setComputers] = useState([]);
   const [monitors, setMonitors] = useState([]);
   const [phones, setPhones] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     async function getData() {
       let data = await getAllProducts();

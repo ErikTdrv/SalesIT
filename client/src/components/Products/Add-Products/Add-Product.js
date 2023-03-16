@@ -5,8 +5,6 @@ import PhoneProduct from "../ProductsType/Phone";
 import "./Add-Product.css";
 
 export default function AddProduct() {
-  let [formPage, setFormPage] = useState(0);
-  let [products, setProducts] = useState({});
   let [type, setType] = useState("none");
 
   function chooseType(e){

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
 import {
   addProductToCard,
@@ -12,7 +12,7 @@ import { DetailsInfo } from "./DetailsInfo";
 import "./ProductDetails.css";
 
 export default function ProductDetails() {
-  const { isAuth, setUser } = useContext(AuthContext);
+  const { isAuth } = useContext(AuthContext);
   const { productId } = useParams();
   const [index, setIndex] = useState(1);
   const [product, setProduct] = useState({});
@@ -25,11 +25,14 @@ export default function ProductDetails() {
   useEffect(() => {
     async function getData() {
       const data = await getOneProduct(productId);
-      let user = await getCurrentUser();
+      let user;
       setProduct(data);
       const { owner } = data;
-      setIsOwner(owner._id === user._id);
-      const alreadyAdded = user.addedProducts?.some((e) => e._id === data._id);
+      if(isAuth){
+        user = await getCurrentUser();
+        setIsOwner(owner._id === user?._id);
+      }
+      const alreadyAdded = user?.addedProducts?.some((e) => e._id === data._id);
       setAlreadyAdded(alreadyAdded ? true : false);
       if (data.phonename) {
         setProductType("Phones");
@@ -51,12 +54,12 @@ export default function ProductDetails() {
     }
   }
   async function deleteProduct() {
-    let request = await deleteOneProduct(product._id, productType);
+    await deleteOneProduct(product._id, productType);
     navigate("/all-products");
   }
   return (
     <>
-      {isLoading == false ? (
+      {isLoading === false ? (
         <div className="details-container">
           <div className="edit-image-div">
             <img

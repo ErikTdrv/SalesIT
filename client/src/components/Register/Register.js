@@ -10,10 +10,10 @@ export default function Register() {
   const [auth, setAuth] = useState({});
   const [mainError, setMainError] = useState()
   const [error, setError] = useState({})
-  let { userAuth, isAuth } = useContext(AuthContext);
+  let { userAuth } = useContext(AuthContext);
   async function onSubmitHandler(e) {
     e.preventDefault();
-    if(auth.repass != auth.password){
+    if(auth.repass !== auth.password){
       return setMainError('Passwords must match!')
     }
     let response = await register(auth);
@@ -44,7 +44,7 @@ export default function Register() {
       setError({...error, [type]: ''})
     }
     if(type === 'Email'){
-      const emailRegex = /^[a-zA-Z0-9\.-]{4,}@[a-z]+\.[a-z]+$/;
+      const emailRegex = /^[a-zA-Z0-9.-]{4,}@[a-z]+.[a-z]+$/;
       const isValidEmail = emailRegex.test(e.target.value);
       if (!isValidEmail) {
         console.log('here')
