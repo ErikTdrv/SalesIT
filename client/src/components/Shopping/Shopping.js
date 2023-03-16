@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { getProductCard, removeProductFromCard } from "../../services/productService";
 import "./Shopping.css";
+import { Link } from "react-router-dom";
 
 export default function ShoppingCard() {
   let [products, setProducts] = useState();
   let [isLoading, setIsLoading] = useState(true);
   let [index, setIndex] = useState(0)
+  let [totalPrice, setTotalPrice] = useState(0);
   useEffect(() => {
     async function getProducts() {
       let products = await getProductCard();
       setProducts(products)
       setIsLoading(false);
+      setTotalPrice(products.reduce((acc, { price }) => Number(acc) + Number(price), 0))
     }
     getProducts();
   }, []);
@@ -41,7 +44,9 @@ export default function ShoppingCard() {
                   <h1>{products[index]?.manufacturer}{products[index]?.phonename}</h1>
                   <span className="product__price">{products[index]?.price}$</span>
                   <button onClick={() => removeProduct(products[index]._id)}>Remove</button>
-                  <button>Details</button>
+                    <Link to={`/all-products/${products[index]?._id}`}>
+                      <button>Details</button>
+                    </Link>
                 </article>
               )}
               { products[index + 1] && (
@@ -50,7 +55,9 @@ export default function ShoppingCard() {
                   <h1>{products[index + 1]?.manufacturer}{products[index + 1]?.phonename}</h1>
                   <span className="product__price">{products[index + 1]?.price}$</span>
                   <button onClick={() => removeProduct(products[index + 1]._id)}>Remove</button>
-                  <button>Details</button>
+                    <Link to={`/all-products/${products[index + 1]?._id}`}>
+                      <button>Details</button>
+                    </Link>
                 </article>
               )}
               { products[index + 2] && (
@@ -59,7 +66,9 @@ export default function ShoppingCard() {
                   <h1>{products[index + 2]?.manufacturer}{products[index + 2]?.phonename}</h1>
                   <span className="product__price">{products[index + 2]?.price}$</span>
                   <button onClick={() => removeProduct(products[index + 2]._id)}>Remove</button>
-                  <button>Details</button>
+                  <Link to={`/all-products/${products[index + 2]?._id}`}>
+                    <button>Details</button>
+                  </Link>
                 </article>
               )}
               { products[index + 3] && (
@@ -68,7 +77,9 @@ export default function ShoppingCard() {
                   <h1>{products[index + 3]?.manufacturer}{products[index + 3]?.phonename}</h1>
                   <span className="product__price">{products[index + 3]?.price}$</span>
                   <button onClick={() => removeProduct(products[index + 3]._id)}>Remove</button>
-                  <button>Details</button>
+                  <Link to={`/all-products/${products[index + 3]?._id}`}>
+                    <button>Details</button>
+                  </Link>
                 </article>
               )}
             </section>
@@ -76,7 +87,7 @@ export default function ShoppingCard() {
               <button className="switchers" onClick={() => validateIndex('-')}>&#60;</button>
               <button className="switchers" onClick={() => validateIndex('+')}>&#62;</button>
             </div>
-            <span className="total-price">Total Price: 12000$</span>
+            <span className="total-price">Total Price: {totalPrice}$</span>
           </div>
           <button className="buy-btn">Buy</button>
         </div>
