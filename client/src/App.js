@@ -12,6 +12,7 @@ import ProductDetails from "./components/Products/Details/ProductDetails";
 import { AuthContext } from "./contexts/AuthContext";
 import { useEffect, useState } from "react";
 import { getCurrentUser, logoutUser } from "./services/userService";
+import EditProduct from "./components/Products/Edit-Product/EditProduct";
 
 function App() {
   useEffect(() => {
@@ -42,6 +43,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/all-products" exact element={<AllItems />} />
         <Route path="/all-products/:productId" element={<ProductDetails />} />
+        <Route path="/all-products/:productId/edit" element={<EditProduct />} />
         <Route path="/add-product" element={<AddProduct />} />
         <Route path="/card" element={<ShoppingCard />} />
       </Routes>
