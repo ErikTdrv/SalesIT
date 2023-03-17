@@ -4,7 +4,7 @@ import { addProduct } from "../../../services/productService";
 import { convertToBase64 } from "../../../services/userService";
 
 export default function ComputerProduct({mode, data}) {
-  let [products, setProducts] = useState({});
+  let [products, setProducts] = useState({manufacturer: '', motherboard: '', processor: '', videocard: '', os: '', ssd: '', harddrive: '', images: []});
   let [error, setError] = useState({});
   let [disabled, setDisabled] = useState(true)
   let [mainError, setMainError] = useState('')
