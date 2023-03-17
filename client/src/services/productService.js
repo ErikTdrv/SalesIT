@@ -142,7 +142,7 @@ export const getProductCard = async () => {
 }
 export const editOneProduct = async (product, productId) => {
   try {
-    let request = await fetch(`${API_URL}/all-products/${productId}`, {
+    let request = await fetch(`${API_URL}/products/${productId}`, {
       method: 'PUT',
       headers: {
         "Content-Type": "application/json",

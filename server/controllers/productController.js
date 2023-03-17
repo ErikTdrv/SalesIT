@@ -61,6 +61,16 @@ router.post('/products/:id', async (req, res) => {
         res.status(500).send('Error retrieving data');
     }
 })
+router.put('/products/:id', async (req, res) => {
+    try {
+        let _id = req.params.id;
+        let product = req.body;
+        
+        res.status(200).json(deletedProduct)
+    } catch (error) {
+        res.status(500).send('Error retrieving data');
+    }
+})
 router.post('/products/:id/add-to-card', async (req, res) => {
     try {
         let { product } = req.body;
