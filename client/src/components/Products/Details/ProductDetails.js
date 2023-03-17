@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
 import {
   addProductToCard,
@@ -57,6 +57,7 @@ export default function ProductDetails() {
     await deleteOneProduct(product._id, productType);
     navigate("/all-products");
   }
+  
   return (
     <>
       {isLoading === false ? (
@@ -102,7 +103,9 @@ export default function ProductDetails() {
               {isOwner && (
                 <>
                   <button onClick={deleteProduct}>Delete</button>
-                  <button>Edit</button>
+                  <Link to={`/all-products/${productId}/edit`}>
+                    <button>Edit</button>
+                  </Link>
                   <button>Add Discount</button>
                 </>
               )}
