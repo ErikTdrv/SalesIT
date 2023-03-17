@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { addProduct } from "../../../services/productService";
+import errorHandler from "../../../services/errorHandler";
+import { addProduct, editOneProduct } from "../../../services/productService";
 import { convertToBase64 } from "../../../services/userService";
 
 export default function ComputerProduct({mode, data}) {
@@ -21,13 +22,15 @@ export default function ComputerProduct({mode, data}) {
     if(mode === undefined){
       request = await addProduct(products, "Computers");
     }else if(mode === 'edit'){
-      
+      request = await editOneProduct(products, products._id)
     }
     if(request.message){
-      setMainError(request.message.split(':')[2])
+      return setMainError(request.message.split(': ')[2].split(', ')[0])
     }
-    if(request._id){
+    if(request._id && mode === undefined){
       navigate('/')
+    }else if(mode === 'edit'){
+      navigate(`/all-products/${products._id}`)
     }
   }
 

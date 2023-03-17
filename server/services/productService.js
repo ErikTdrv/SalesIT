@@ -104,18 +104,19 @@ const editOneProduct = async (data, productId) => {
     let updatedProduct;
     if (data?.phonename) {
       updatedProduct = await Phone.findByIdAndUpdate(productId, data, {
-        runValidators: false,
+        runValidators: true,
       });
     } else if (data?.paneltype) {
         updatedProduct = await Monitor.findByIdAndUpdate(productId, data, {
-            runValidators: false,
+            runValidators: true,
           });
     } else if (data?.motherboard) {
-        updatedProduct = await Computer.findByIdAndUpdate(productId, data, {
-            runValidators: false,
-          });
+        updatedProduct = await Computer.findByIdAndUpdate({_id: productId}, data, {runValidators: true});
     }
-  } catch (error) {}
+    return updatedProduct;
+  } catch (error) {
+    return error
+  }
 };
 module.exports = {
   addProduct,
