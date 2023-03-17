@@ -1,16 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { addProduct } from "../../../services/productService";
+import { convertToBase64 } from "../../../services/userService";
 
-export default function ComputerProduct() {
+export default function ComputerProduct({mode, data}) {
   let [products, setProducts] = useState({});
   let [error, setError] = useState({});
   let [disabled, setDisabled] = useState(true)
   let [mainError, setMainError] = useState('')
   let navigate = useNavigate();
+  useEffect(() => {
+    if(data !== undefined){
+      setProducts(data)
+    }
+
+  }, [])
   async function onAddHandler(e) {
     e.preventDefault();
-    let request = await addProduct(products, "Computers");
+    let request;
+    if(mode === undefined){
+      request = await addProduct(products, "Computers");
+    }else if(mode === 'edit'){
+      
+    }
     if(request.message){
       setMainError(request.message.split(':')[2])
     }
@@ -18,19 +30,7 @@ export default function ComputerProduct() {
       navigate('/')
     }
   }
-  async function convertToBase64(file) {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
 
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  }
   function validateInput(e, type) {
     if(e.target.value === ''){
       setError({...error, [type]: `${type} is required`})
@@ -55,6 +55,7 @@ export default function ComputerProduct() {
                   setProducts({ ...products, manufacturer: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Manufacturer")}
+                value={products?.manufacturer}
               />
               <span className={products.manufacturer ? "value-there" : ""}>
                 Manufacturer
@@ -70,6 +71,7 @@ export default function ComputerProduct() {
                   setProducts({ ...products, motherboard: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Motherboard")}
+                value={products?.motherboard}
               />
               <span className={products.motherboard ? "value-there" : ""}>
                 Motherboard
@@ -85,6 +87,7 @@ export default function ComputerProduct() {
                   setProducts({ ...products, processor: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Processor")}
+                value={products?.processor}
               />
               <span className={products.processor ? "value-there" : ""}>
                 Processor
@@ -100,6 +103,7 @@ export default function ComputerProduct() {
                   setProducts({ ...products, videocard: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Videocard")}
+                value={products?.videocard}
               />
               <span className={products.videocard ? "value-there" : ""}>
                 Videocard
@@ -138,6 +142,7 @@ export default function ComputerProduct() {
                   setProducts({ ...products, os: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Os")}
+                value={products?.os}
               />
               <span className={products.os ? "value-there" : ""}>
                 Operation System
@@ -153,6 +158,8 @@ export default function ComputerProduct() {
                   setProducts({ ...products, ssd: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Ssd")}
+                value={products?.ssd}
+
               />
               <span className={products.ssd ? "value-there" : ""}>SSD</span>
               {error.Ssd && (
@@ -166,6 +173,8 @@ export default function ComputerProduct() {
                   setProducts({ ...products, harddrive: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Harddrive")}
+                value={products?.harddrive}
+
               />
               <span className={products.harddrive ? "value-there" : ""}>
                 Hard Drive
@@ -181,6 +190,8 @@ export default function ComputerProduct() {
                   setProducts({ ...products, price: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Price")}
+                value={products?.price}
+
               />
               <span className={products.price ? "value-there" : ""}>Price</span>
               {error.Price && (
@@ -189,10 +200,17 @@ export default function ComputerProduct() {
             </div>
           </div>
         </div>
-        {products.images && (
+        {products.images && mode === undefined && (
           <div className="images">
             {products.images.map((e) => (
               <img src={e} className="mini-img" alt="" />
+            ))}
+          </div>
+        )}
+        {products.images && mode === 'edit' && (
+          <div className="images">
+            {products.images.map((e) => (
+              <img src={e.imageUrl} className="mini-img" alt="" />
             ))}
           </div>
         )}
