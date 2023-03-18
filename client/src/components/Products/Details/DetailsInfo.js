@@ -1,10 +1,13 @@
 import React from "react";
 export function DetailsInfo({product}){
+  console.log(product.price*Number(product.discount)*0.01)
     return (
         <div className="info-div">
+          { product.discount > 0 && (
           <div className="discount-div">
-          <span>-15%</span>
+          <span>{product.discount}%</span>
           </div>
+          )}
             {product?.manufacturer && <h1>{product.manufacturer}</h1>}
             {product?.phonename && <h1>{product.phonename}</h1>}
             <div className="characteristics">
@@ -95,8 +98,8 @@ export function DetailsInfo({product}){
             { product.discount > 0 ? (
               <span>
                 <p>Price: </p>
-                <span className="old">5000$</span>
-                <span className="new">{product.price}$</span> 
+                <span className="old">{product.price}$</span>
+                <span className="new">{product.price - (Number(product.discount)*0.01) * product.price}$</span> 
               </span>
             ) : (
               <span>
