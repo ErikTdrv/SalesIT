@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const uploader = require("../services/multer");
 const cloudinary = require('cloudinary');
-const { addProduct, getAllProducts, getOneProduct, deleteOneProduct, addToCard, removeFromCard, getCardProducts, editOneProduct } = require("../services/productService");
+const { addProduct, getAllProducts, getOneProduct, deleteOneProduct, addToCard, removeFromCard, getCardProducts, editOneProduct, addDiscount } = require("../services/productService");
 
 
 router.post('/add-product',  uploader.array('productPhotos'), async (req, res) => {
@@ -87,6 +87,16 @@ router.delete('/products/:id/add-to-card', async (req, res) => {
         res.status(200).json({message: 'Successfully removed from card!'})
     } catch (error) {
         res.status(500).send({ error: error.message });
+    }
+})
+router.post('/products/:id/add-discount', async (req, res) => {
+    try {
+        let { discountPercentage, productType } = req.body;
+        let productId = req.params.id;
+        await addDiscount(discountPercentage, productId, productType)
+        res.status(200).json({message: 'Successfully added discount!'})
+    } catch (error) {
+        
     }
 })
 router.get('/product-card', async (req, res) => {

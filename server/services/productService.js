@@ -118,6 +118,19 @@ const editOneProduct = async (data, productId) => {
     return error
   }
 };
+const addDiscount = async (discountPercentage, productId, productType) => {
+  try {
+    if(productType === 'Computers'){
+      await Computer.findByIdAndUpdate(productId, {discount: discountPercentage})
+    }else if(productType === 'Monitors'){
+      await Monitor.findByIdAndUpdate(productId, {discount: discountPercentage})
+    }else if(productType === 'Phones'){
+      await Phone.findByIdAndUpdate(productId, {discount: discountPercentage})
+    }
+  } catch (error) {
+    return error
+  }
+}
 module.exports = {
   addProduct,
   getAllProducts,
@@ -126,5 +139,6 @@ module.exports = {
   addToCard,
   removeFromCard,
   getCardProducts,
-  editOneProduct
+  editOneProduct, 
+  addDiscount
 };
