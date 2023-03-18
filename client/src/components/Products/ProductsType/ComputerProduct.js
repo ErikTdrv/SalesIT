@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import errorHandler from "../../../services/errorHandler";
 import { addProduct, editOneProduct } from "../../../services/productService";
 import { convertToBase64 } from "../../../services/userService";
 
