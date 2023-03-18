@@ -1,0 +1,46 @@
+.discount__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 500px;
+    /* min-height: 200px; */
+    background-color: white;
+    text-align: center;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.discount__container input, span {
+    /* width: 20%; */
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+    margin-left: 10px;
+}
+.discount__container input{
+    border-radius: 50px;
+}
+.discount__container button {
+    /* width: 20%; */
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;    
+    background-color: rgb(255, 68, 68);
+    color: white;
+    border: none;
+    padding: 5px 20px;
+    border-radius: 20px;
+    margin: 10px;
+    margin-right: 25px;
+}
+.discount__container button:hover {
+    background-color: red;
+}
+.discount__error {
+    color: red;
+    font-weight: 700;
+    margin: 10px;
+}
