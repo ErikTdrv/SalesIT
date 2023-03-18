@@ -42,6 +42,10 @@ const phoneSchema = new mongoose.Schema({
     required: [true, 'Images are required!'],
     type: Array,
   },
+  discount: {
+    required: true,
+    type: String,
+  }
 });
 
 const Phone = new mongoose.model("Phone", phoneSchema);

@@ -34,6 +34,10 @@ const monitorSchema = new mongoose.Schema({
     required: [true, 'Images are required'],
     type: Array,
   },
+  discount: {
+    required: true,
+    type: String,
+  }
 });
 
 const Monitor = new mongoose.model("Monitor", monitorSchema);

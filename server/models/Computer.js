@@ -48,6 +48,10 @@ const computerSchema = new mongoose.Schema({
     required: [true, 'Images are required!'],
     type: Array,
   },
+  discount: {
+    required: true,
+    type: String,
+  }
 });
 
 const Computer = new mongoose.model("Computer", computerSchema);
