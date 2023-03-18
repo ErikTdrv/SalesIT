@@ -20,7 +20,7 @@ export default function ProductDetails() {
   const [productType, setProductType] = useState("");
   const [isOwner, setIsOwner] = useState();
   const [isAdded, setAlreadyAdded] = useState();
-  const [mainImage, setMainImage] = useState('');
+  const [mainImage, setMainImage] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function ProductDetails() {
       } else if (data.motherboard) {
         setProductType("Computers");
       }
-      setMainImage(data.images[0].imageUrl)
+      setMainImage(data.images[0].imageUrl);
       setIsLoading(false);
     }
     getData();
@@ -65,11 +65,7 @@ export default function ProductDetails() {
       {isLoading === false ? (
         <div className="details-container">
           <div className="edit-image-div">
-            <img
-              src={mainImage}
-              alt=""
-              className="details__image"
-            />
+            <img src={mainImage} alt="" className="details__image" />
             {product?.images[1] && (
               <div className="image__switcher">
                 <button onClick={() => changeIndex("-")}>&#60;</button>
@@ -79,7 +75,9 @@ export default function ProductDetails() {
                       src={product.images[index]?.imageUrl}
                       className="images"
                       alt=""
-                      onClick={() => setMainImage(product.images[index]?.imageUrl)}
+                      onClick={() =>
+                        setMainImage(product.images[index]?.imageUrl)
+                      }
                     />
                   </div>
                   <div className="div">
@@ -87,7 +85,9 @@ export default function ProductDetails() {
                       src={product.images[index + 1]?.imageUrl}
                       className="images"
                       alt=""
-                      onClick={() => setMainImage(product.images[index + 1]?.imageUrl)}
+                      onClick={() =>
+                        setMainImage(product.images[index + 1]?.imageUrl)
+                      }
                     />
                   </div>
                   <div className="div">
@@ -95,7 +95,9 @@ export default function ProductDetails() {
                       src={product.images[index + 2]?.imageUrl}
                       className="images"
                       alt=""
-                      onClick={() => setMainImage(product.images[index + 2]?.imageUrl)}
+                      onClick={() =>
+                        setMainImage(product.images[index + 2]?.imageUrl)
+                      }
                     />
                   </div>
                 </section>
@@ -111,7 +113,9 @@ export default function ProductDetails() {
                   <Link to={`/all-products/${productId}/edit`}>
                     <button>Edit</button>
                   </Link>
-                  <button>Add Discount</button>
+                  <Link to={`/all-products/${productId}/add-discount`}>
+                    <button>Add Discount</button>
+                  </Link>
                 </>
               )}
               {isAdded === false && isAuth === true && isOwner === false ? (
