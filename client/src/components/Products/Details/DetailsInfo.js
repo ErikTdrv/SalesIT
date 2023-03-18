@@ -2,6 +2,9 @@ import React from "react";
 export function DetailsInfo({product}){
     return (
         <div className="info-div">
+          <div className="discount-div">
+          <span>-15%</span>
+          </div>
             {product?.manufacturer && <h1>{product.manufacturer}</h1>}
             {product?.phonename && <h1>{product.phonename}</h1>}
             <div className="characteristics">

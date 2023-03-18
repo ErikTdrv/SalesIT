@@ -42,7 +42,6 @@ export default function ProductDetails() {
       } else if (data.motherboard) {
         setProductType("Computers");
       }
-      console.log(data)
       setMainImage(data.images[0].imageUrl);
       setIsLoading(false);
     }
