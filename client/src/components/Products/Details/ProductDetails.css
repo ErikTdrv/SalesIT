@@ -105,6 +105,8 @@
     border-radius: 20px;
     margin-top: 0px;
     text-align: center;
+    width: 200px;
+    background-color: white;
 }
 .info-div span {
     display: inline;
