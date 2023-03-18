@@ -9,7 +9,7 @@ export default function AddDiscount() {
 
   async function addDiscount() {
     if (discountPercentage <= 0 || discountPercentage > 99) {
-      setError("Percentage have to be between 1% - 99% !");
+      setError("Discount have to be between 1% - 99% !");
     } else {
     }
   }
