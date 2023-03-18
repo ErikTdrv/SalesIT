@@ -13,7 +13,7 @@
     align-items: center;
     justify-content: center;
 }
-.discount__container input, span {
+.discount__container input, .discount__container span {
     /* width: 20%; */
     text-align: center;
     font-weight: 700;

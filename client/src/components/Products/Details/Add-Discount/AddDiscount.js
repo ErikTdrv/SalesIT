@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./AddDiscount.css";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { addDiscount, getOneProduct } from "../../../../services/productService";
 
 export default function AddDiscount() {
@@ -8,6 +8,7 @@ export default function AddDiscount() {
   const [discountPercentage, setDiscount] = useState(50);
   const [productType, setProductType] = useState()
   const [error, setError] = useState("");
+  const navigate = useNavigate();
   useEffect(() => {
     async function getProduct(){
       let data = await getOneProduct(productId);
@@ -23,10 +24,11 @@ export default function AddDiscount() {
   }, [])
   async function onAddDiscount() {
     if (discountPercentage <= 0 || discountPercentage > 99) {
-      setError("Discount have to be between 1% - 99% !");
+      return setError("Discount have to be between 1% - 99% !");
     } else {
       await addDiscount(discountPercentage, productId, productType)
     }
+    navigate(`/all-products/${productId}`)
   }
   return (
     <div className="discount__container">
