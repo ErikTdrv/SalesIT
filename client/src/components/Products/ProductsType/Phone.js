@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { addProduct } from "../../../services/productService";
+import { addProduct, editOneProduct } from "../../../services/productService";
 import { convertToBase64 } from "../../../services/userService";
 
-export default function PhoneProduct(){
+export default function PhoneProduct({ mode, data }){
     let [products, setProducts] = useState({});
     let [error, setError] = useState({});
     let [disabled, setDisabled] = useState(true);
@@ -18,16 +18,26 @@ export default function PhoneProduct(){
       setError({...error, [type]: ''})
     }
   }
+  useEffect(() => {
+    if (data !== undefined) {
+      setProducts(data);
+    }
+  }, []);
   async function addPhoneProduct(e){
     e.preventDefault()
-    let request = await addProduct(products, "Phones");
-    if(request.message?.includes(':')){
-      setMainError(request.message.split(':')[2])
-    }else {
-      setMainError(request.message)
+    let request;
+    if (mode === undefined) {
+      request = await addProduct(products, "Phones");
+    } else if (mode === "edit") {
+      request = await editOneProduct(products, products._id);
     }
-    if(request._id){
-      navigate('/')
+    if (request.message) {
+      return setMainError(request.message.split(": ")[2].split(", ")[0]);
+    }
+    if (request._id && mode === undefined) {
+      navigate("/");
+    } else if (mode === "edit") {
+      navigate(`/all-products/${products._id}`);
     }
   }
   return (
@@ -41,7 +51,9 @@ export default function PhoneProduct(){
             <input type="text" onChange={(e) =>
                   setProducts({ ...products, phonename: e.target.value })
                 }
-                onBlur={(e) => validateInput(e, "phonename")} />
+                onBlur={(e) => validateInput(e, "phonename")}
+                value={products.phonename}
+                 />
             <span className={products.phonename ? "value-there" : ""}>
               Phone Name
             </span>
@@ -53,7 +65,9 @@ export default function PhoneProduct(){
             <input type="text" onChange={(e) =>
                   setProducts({ ...products, capacity: e.target.value })
                 }
-                onBlur={(e) => validateInput(e, "capacity")} />
+                onBlur={(e) => validateInput(e, "capacity")}
+                value={products.capacity}
+                 />
             <span className={products.capacity ? "value-there" : ""}>
               Capacity
             </span>
@@ -65,7 +79,9 @@ export default function PhoneProduct(){
             <input type="text" onChange={(e) =>
                   setProducts({ ...products, displaysize: e.target.value })
                 }
-                onBlur={(e) => validateInput(e, "displaysize")} />
+                onBlur={(e) => validateInput(e, "displaysize")}
+                value={products.displaysize}
+                 />
             <span className={products.displaysize ? "value-there" : ""}>
               Display Size
             </span>
@@ -77,7 +93,9 @@ export default function PhoneProduct(){
             <input type="text" onChange={(e) =>
                   setProducts({ ...products, color: e.target.value })
                 }
-                onBlur={(e) => validateInput(e, "color")} />
+                onBlur={(e) => validateInput(e, "color")}
+                value={products.color}
+                 />
             <span className={products.color ? "value-there" : ""}>
               Color
             </span>
@@ -113,7 +131,10 @@ export default function PhoneProduct(){
             <input type="text" onChange={(e) =>
                   setProducts({ ...products, camera: e.target.value })
                 }
-                onBlur={(e) => validateInput(e, "camera")} />
+                onBlur={(e) => validateInput(e, "camera")} 
+                value={products.camera}
+                
+                />
             <span
               className={products.camera ? "value-there" : ""}
             >
@@ -127,7 +148,9 @@ export default function PhoneProduct(){
             <input type="text" onChange={(e) =>
                   setProducts({ ...products, battery: e.target.value })
                 }
-                onBlur={(e) => validateInput(e, "battery")} />
+                onBlur={(e) => validateInput(e, "battery")}
+                value={products.battery}
+                 />
             <span className={products.battery ? "value-there" : ""}>
               Battery
             </span>
@@ -139,7 +162,10 @@ export default function PhoneProduct(){
             <input type="text" onChange={(e) =>
                   setProducts({ ...products, os: e.target.value })
                 }
-                onBlur={(e) => validateInput(e, "os")} />
+                onBlur={(e) => validateInput(e, "os")} 
+                value={products.os}
+                
+                />
             <span className={products.os ? "value-there" : ""}>
               Operating System
             </span>
@@ -151,7 +177,10 @@ export default function PhoneProduct(){
             <input type="text" onChange={(e) =>
                   setProducts({ ...products, price: e.target.value })
                 }
-                onBlur={(e) => validateInput(e, "price")} />
+                onBlur={(e) => validateInput(e, "price")}
+                value={products.price}
+                
+                />
             <span className={products.price ? "value-there" : ""}>Price</span>
             {error.price && (
                 <p className="error">Price is required!</p>
@@ -160,13 +189,20 @@ export default function PhoneProduct(){
         </div>
       </div>
 
-      {products.images && (
-          <div className="images">
-            {products.images.map((e) => (
-              <img src={e} className="mini-img" alt="" />
-            ))}
-          </div>
-        )}
+      {products.images && mode === undefined && (
+        <div className="images">
+          {products.images.map((e) => (
+            <img src={e} key={e.imageId} className="mini-img" alt="" />
+          ))}
+        </div>
+      )}
+      {products.images && mode === "edit" && (
+        <div className="images">
+          {products.images.map((e) => (
+            <img src={e.imageUrl} key={e.imageId} className="mini-img" alt="" />
+          ))}
+        </div>
+      )}
       <input type="submit" value="Add Product" onClick={() => setMainError('')} disabled={disabled} className="add-btn" />
     </form>
   );
