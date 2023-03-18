@@ -92,10 +92,18 @@ export function DetailsInfo({product}){
               </div>
             </div>
             <div className="price">
+            { product.discount > 0 ? (
+              <span>
+                <p>Price: </p>
+                <span className="old">5000$</span>
+                <span className="new">{product.price}$</span> 
+              </span>
+            ) : (
               <span>
                 <p>Price: </p>
                 {product.price}$
               </span>
+            )}
             </div>
           </div>
     )

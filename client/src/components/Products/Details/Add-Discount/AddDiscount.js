@@ -23,7 +23,7 @@ export default function AddDiscount() {
     getProduct()
   }, [])
   async function onAddDiscount() {
-    if (discountPercentage <= 0 || discountPercentage > 99) {
+    if (discountPercentage < 0 || discountPercentage > 99) {
       return setError("Discount have to be between 1% - 99% !");
     } else {
       await addDiscount(discountPercentage, productId, productType)

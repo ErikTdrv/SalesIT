@@ -140,17 +140,29 @@ span p {
     font-weight: 20px;
 }
 .info-div .price {
-    /* background-color: red; */
-    /* color: white; */
+    position: relative;
     padding: 10px 120px;
     border-radius: 20px;
     font-size: 20px;
+    background-color: white;
+    margin-bottom: 15px;
 }
 .info-div .price span p{
-    font-weight: 900;
+    font-weight: 700;
+    font-style: italic;
 }
 .info-div .price span {
     font-weight: 700;
+    width: 30%;
+}
+.info-div .old {
+    text-decoration: line-through 2px black;
+    font-size: 15px;
+}
+.info-div .new {
+    color: red;
+    font-size: 25px;
+    margin-left: 5px;
 }
 .edit-image-div .remove-btn {
     background-color: rgb(0, 190, 0);

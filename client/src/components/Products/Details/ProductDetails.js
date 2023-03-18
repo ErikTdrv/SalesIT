@@ -29,10 +29,8 @@ export default function ProductDetails() {
       let user;
       setProduct(data);
       const { owner } = data;
-      if (isAuth) {
-        user = await getCurrentUser();
-        setIsOwner(owner._id === user?._id);
-      }
+      user = await getCurrentUser();
+      setIsOwner(owner._id === user?._id);
       const alreadyAdded = user?.addedProducts?.some((e) => e._id === data._id);
       setAlreadyAdded(alreadyAdded ? true : false);
       if (data.phonename) {
