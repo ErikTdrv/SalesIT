@@ -1,6 +1,5 @@
 import React from "react";
 export function DetailsInfo({product}){
-    console.log(product)
     return (
         <div className="info-div">
             {product?.manufacturer && <h1>{product.manufacturer}</h1>}

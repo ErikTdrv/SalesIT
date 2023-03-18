@@ -20,6 +20,7 @@ export default function ProductDetails() {
   const [productType, setProductType] = useState("");
   const [isOwner, setIsOwner] = useState();
   const [isAdded, setAlreadyAdded] = useState();
+  const [mainImage, setMainImage] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,7 +29,7 @@ export default function ProductDetails() {
       let user;
       setProduct(data);
       const { owner } = data;
-      if(isAuth){
+      if (isAuth) {
         user = await getCurrentUser();
         setIsOwner(owner._id === user?._id);
       }
@@ -41,6 +42,7 @@ export default function ProductDetails() {
       } else if (data.motherboard) {
         setProductType("Computers");
       }
+      setMainImage(data.images[0].imageUrl)
       setIsLoading(false);
     }
     getData();
@@ -57,14 +59,14 @@ export default function ProductDetails() {
     await deleteOneProduct(product._id, productType);
     navigate("/all-products");
   }
-  
+
   return (
     <>
       {isLoading === false ? (
         <div className="details-container">
           <div className="edit-image-div">
             <img
-              src={product.images[0].imageUrl || ""}
+              src={mainImage}
               alt=""
               className="details__image"
             />
@@ -77,6 +79,7 @@ export default function ProductDetails() {
                       src={product.images[index]?.imageUrl}
                       className="images"
                       alt=""
+                      onClick={() => setMainImage(product.images[index]?.imageUrl)}
                     />
                   </div>
                   <div className="div">
@@ -84,6 +87,7 @@ export default function ProductDetails() {
                       src={product.images[index + 1]?.imageUrl}
                       className="images"
                       alt=""
+                      onClick={() => setMainImage(product.images[index + 1]?.imageUrl)}
                     />
                   </div>
                   <div className="div">
@@ -91,6 +95,7 @@ export default function ProductDetails() {
                       src={product.images[index + 2]?.imageUrl}
                       className="images"
                       alt=""
+                      onClick={() => setMainImage(product.images[index + 2]?.imageUrl)}
                     />
                   </div>
                 </section>
