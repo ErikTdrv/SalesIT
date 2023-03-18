@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getOneProduct } from "../../../services/productService";
 import ComputerProduct from "../ProductsType/ComputerProduct";
+import Monitor from "../ProductsType/Monitor";
+import PhoneProduct from "../ProductsType/Phone";
 
 export default function EditProduct() {
   let { productId } = useParams();
@@ -18,6 +20,7 @@ export default function EditProduct() {
         setProductType("Computers");
       }
       setProduct(data);
+      console.log(productType)
     }
     getProductData();
   }, []);
@@ -25,9 +28,15 @@ export default function EditProduct() {
     <>
       <div className="add-container">
         <h1>Edit Product</h1>
-      {productType === "Computers" && (
-        <ComputerProduct key={productId} mode={"edit"} data={product} />
-      )}
+        {productType === "Computers" && (
+          <ComputerProduct key={productId} mode={"edit"} data={product} />
+        )}
+        {productType === "Monitors" && (
+          <Monitor key={productId} mode={"edit"} data={product} />
+        )}
+        {productType === "Phones" && (
+          <PhoneProduct key={productId} mode={"edit"} data={product} />
+        )}
       </div>
     </>
   );

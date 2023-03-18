@@ -1,39 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { addProduct } from "../../../services/productService";
+import { addProduct, editOneProduct } from "../../../services/productService";
 import { convertToBase64 } from "../../../services/userService";
 
-export default function Monitor() {
+export default function Monitor({ mode, data }) {
   let [products, setProducts] = useState({});
   let [error, setError] = useState({});
   let [disabled, setDisabled] = useState(true);
-  let [mainError, setMainError] = useState('')
+  let [mainError, setMainError] = useState("");
   let navigate = useNavigate();
+
+  useEffect(() => {
+    if (data !== undefined) {
+      setProducts(data);
+    }
+  }, []);
+
   async function addMonitorHandler(e) {
     e.preventDefault();
-    let request = await addProduct(products, "Monitors");
-    if(request.message){
-      setMainError(request.message.split(':')[2])
+    let request;
+    if (mode === undefined) {
+      request = await addProduct(products, "Monitors");
+    } else if (mode === "edit") {
+      request = await editOneProduct(products, products._id);
     }
-    if(request._id){
-      navigate('/')
+    if (request.message) {
+      return setMainError(request.message.split(": ")[2].split(", ")[0]);
+    }
+    if (request._id && mode === undefined) {
+      navigate("/");
+    } else if (mode === "edit") {
+      navigate(`/all-products/${products._id}`);
     }
   }
   function validateInput(e, type) {
-    if(e.target.value === ''){
-      setError({...error, [type]: `${type} is required`})
-      setDisabled(true)
-    }else {
-      setDisabled(false)
-      setError({...error, [type]: ''})
+    if (e.target.value === "") {
+      setError({ ...error, [type]: `${type} is required` });
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+      setError({ ...error, [type]: "" });
     }
   }
   return (
     <>
       <form className="add-form" onSubmit={addMonitorHandler}>
-      {mainError &&
-      <p className="main-error">{mainError}</p>
-      }
+        {mainError && <p className="main-error">{mainError}</p>}
         <div className="inputs">
           <div className="left-input">
             <div>
@@ -43,6 +55,7 @@ export default function Monitor() {
                   setProducts({ ...products, manufacturer: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Manufacturer")}
+                value={products.manufacturer}
               />
               <span className={products.manufacturer ? "value-there" : ""}>
                 Manufacturer
@@ -58,12 +71,13 @@ export default function Monitor() {
                   setProducts({ ...products, screenresolution: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Screen Resolution")}
+                value={products.screenresolution}
               />
               <span className={products.screenresolution ? "value-there" : ""}>
                 Screen Resolution
               </span>
-              {error['Screen Resolution'] && (
-                <p className="error">{error['Screen Resolution']}</p>
+              {error["Screen Resolution"] && (
+                <p className="error">{error["Screen Resolution"]}</p>
               )}
             </div>
             <div>
@@ -73,6 +87,7 @@ export default function Monitor() {
                   setProducts({ ...products, resolution: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Resolution")}
+                value={products.resolution}
               />
               <span className={products.resolution ? "value-there" : ""}>
                 Resolution
@@ -109,16 +124,13 @@ export default function Monitor() {
                   setProducts({ ...products, refreshrate: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Refresh Rate")}
+                value={products.refreshrate}
               />
-              <span
-                className={
-                  products.refreshrate ? "value-there" : ""
-                }
-              >
+              <span className={products.refreshrate ? "value-there" : ""}>
                 Refresh Rate
               </span>
-              {error['Refresh Rate'] && (
-                <p className="error">{error['Refresh Rate']}</p>
+              {error["Refresh Rate"] && (
+                <p className="error">{error["Refresh Rate"]}</p>
               )}
             </div>
             <div>
@@ -128,11 +140,14 @@ export default function Monitor() {
                   setProducts({ ...products, paneltype: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Panel Type")}
+                value={products.paneltype}
               />
               <span className={products.paneltype ? "value-there" : ""}>
                 Panel Type
               </span>
-              {error['Panel Type'] && <p className="error">{error['Panel Type']}</p>}
+              {error["Panel Type"] && (
+                <p className="error">{error["Panel Type"]}</p>
+              )}
             </div>
             <div className="price" id="price">
               <input
@@ -141,6 +156,7 @@ export default function Monitor() {
                   setProducts({ ...products, price: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Price")}
+                value={products.price}
               />
               <span className={products.price ? "value-there" : ""}>Price</span>
               {error.Price && <p className="error">{error.Price}</p>}
@@ -152,13 +168,20 @@ export default function Monitor() {
           value="Add Product"
           disabled={disabled}
           className="add-btn"
-          onClick={() => setMainError('')}
+          onClick={() => setMainError("")}
         />
       </form>
-      {products.images && (
+      {products.images && mode === undefined && (
         <div className="images">
           {products.images.map((e) => (
             <img src={e} className="mini-img" alt="" />
+          ))}
+        </div>
+      )}
+      {products.images && mode === "edit" && (
+        <div className="images">
+          {products.images.map((e) => (
+            <img src={e.imageUrl} className="mini-img" alt="" />
           ))}
         </div>
       )}
