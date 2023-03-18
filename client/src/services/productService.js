@@ -160,3 +160,23 @@ export const editOneProduct = async (product, productId) => {
     return error
   }
 }
+export const addDiscount = async (discountPercentage, productId, productType) => {
+  try {
+    let request = await fetch(`${API_URL}/products/${productId}/add-discount`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({ discountPercentage, productType })
+    })
+    let data = await request.json();
+    if(request.ok){
+      return data
+    }else {
+      throw new Error(data.error)
+    }
+  } catch (error) {
+    return error
+  }
+}

@@ -1,16 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AddDiscount.css";
 import { useParams, Link } from "react-router-dom";
+import { addDiscount, getOneProduct } from "../../../../services/productService";
 
 export default function AddDiscount() {
   let { productId } = useParams();
   const [discountPercentage, setDiscount] = useState(50);
+  const [productType, setProductType] = useState()
   const [error, setError] = useState("");
-
-  async function addDiscount() {
+  useEffect(() => {
+    async function getProduct(){
+      let data = await getOneProduct(productId);
+      if (data.phonename) {
+        setProductType("Phones");
+      } else if (data.paneltype) {
+        setProductType("Monitors");
+      } else if (data.motherboard) {
+        setProductType("Computers");
+      }
+    }
+    getProduct()
+  }, [])
+  async function onAddDiscount() {
     if (discountPercentage <= 0 || discountPercentage > 99) {
       setError("Discount have to be between 1% - 99% !");
     } else {
+      await addDiscount(discountPercentage, productId, productType)
     }
   }
   return (
@@ -33,7 +48,7 @@ export default function AddDiscount() {
       <Link to={`/all-products/${productId}`}>
         <button>Back</button>
       </Link>
-      <button onClick={addDiscount}>Add</button>
+      <button onClick={onAddDiscount}>Add</button>
       </div>
       {error && <p className="discount__error">{error}</p>}
     </div>
