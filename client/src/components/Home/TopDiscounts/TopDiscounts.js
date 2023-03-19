@@ -7,7 +7,6 @@ export default function TopDiscounts() {
   const [computers, setComputers] = useState([]);
   const [monitors, setMonitors] = useState([]);
   const [phones, setPhones] = useState([]);
-
   useEffect(() => {
     async function getData() {
       let data = await getAllProducts();

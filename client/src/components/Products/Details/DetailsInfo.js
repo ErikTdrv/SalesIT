@@ -1,6 +1,5 @@
 import React from "react";
 export function DetailsInfo({product}){
-  console.log(product.price*Number(product.discount)*0.01)
     return (
         <div className="info-div">
           { product.discount > 0 && (
