@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8080";
+const API_URL = 'https://salesit-api.ew.r.appspot.com';
 
 export const register = async (info) => {
   try {

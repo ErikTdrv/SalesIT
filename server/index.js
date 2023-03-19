@@ -12,7 +12,7 @@ async function startServer() {
     try {
         app.use(cors({
             origin: 'https://salesit-fe.ew.r.appspot.com',
-            // origin: 'http://localhost:4200',
+            // origin: ['http://localhost:3000', 'https://salesit-fe.ew.r.appspot.com'],
             methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'Origin', 'X-Requested-With', 'Accept', 'Cookie'],
             credentials: true,
             allowedHeaders: ['Content-Type, X-Authorization, X-RapidAPI-Key, X-RapidAPI-Host'],

@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8080";
+const API_URL = 'https://salesit-api.ew.r.appspot.com';
 
 export const addProduct = async (product, productName) => {
     product.productName = productName;
@@ -38,6 +38,7 @@ export const getAllProducts = async () => {
       throw new Error(data.error)
     }
 } catch (error) {
+  console.log(error)
     return error
 }
 }
