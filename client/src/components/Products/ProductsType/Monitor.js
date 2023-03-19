@@ -9,7 +9,12 @@ export default function Monitor({ mode, data }) {
   let [disabled, setDisabled] = useState(true);
   let [mainError, setMainError] = useState("");
   let navigate = useNavigate();
-
+  
+  useEffect(() => {
+    if (data !== undefined) {
+      setProducts(data);
+    }
+  }, []);
   async function addMonitorHandler(e) {
     e.preventDefault();
     let request;
