@@ -27,7 +27,7 @@
 .navigation ul li::after {
     content: '';
     width: 0%;
-    height: 1.5px;
+    height: 2px;
     background: #f44336;
     display: block;
     margin-top: -1px;
