@@ -7,6 +7,7 @@ export default function TopDiscounts() {
   const [computers, setComputers] = useState([]);
   const [monitors, setMonitors] = useState([]);
   const [phones, setPhones] = useState([]);
+  const [productLength, setProductLength] = useState(0);
   useEffect(() => {
     async function getData() {
       let data = await getAllProducts();
@@ -24,21 +25,24 @@ export default function TopDiscounts() {
         <h4>Reccomended</h4>
       </div>
       <section className="discounts-section">
-        {computers &&
+        {computers && productLength < 5 &&
           computers.map((computer) => {
             if (computer.discount > 0) {
+              setProductLength(productLength + 1);
               return <Computer key={computer._id} product={computer} />;
             }
           })}
-        {monitors &&
+        {monitors && productLength < 5 &&
           monitors.map((monitor) => {
             if (monitor.discount > 0) {
+              setProductLength(productLength + 1);
               return <Computer key={monitor._id} product={monitor} />;
             }
           })}
-        {phones &&
+        {phones && productLength < 5 &&
           phones.map((phone) => {
             if (phone.discount > 0) {
+              setProductLength(productLength + 1);
               return <Computer key={phone._id} product={phone} />;
             }
           })}
