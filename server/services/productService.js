@@ -4,6 +4,7 @@ let Phone = require("../models/Phone");
 let User = require("../models/User");
 
 const addProduct = async (product) => {
+  product.discount = '0'
   if (product.productName == "Computers") {
     return await Computer.create(product);
   } else if (product.productName === "Monitors") {
