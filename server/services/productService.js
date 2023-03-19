@@ -4,7 +4,6 @@ let Phone = require("../models/Phone");
 let User = require("../models/User");
 
 const addProduct = async (product) => {
-  console.log(product);
   if (product.productName == "Computers") {
     return await Computer.create(product);
   } else if (product.productName === "Monitors") {
@@ -47,7 +46,6 @@ const deleteOneProduct = async (_id, type) => {
   try {
     let deletedProduct;
 
-    console.log(type);
     if (type === "Phones") {
       deletedProduct = await Phone.findByIdAndDelete(_id);
     } else if (type === "Monitors") {
