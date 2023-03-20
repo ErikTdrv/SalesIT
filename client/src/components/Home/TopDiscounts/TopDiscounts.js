@@ -8,6 +8,10 @@ export default function TopDiscounts() {
   const [monitors, setMonitors] = useState([]);
   const [phones, setPhones] = useState([]);
   const [productLength, setProductLength] = useState(0);
+  const [biggestDiscounts, setBiggestDiscounts] = useState([]);
+  function changeIndex(type){
+
+  }
   useEffect(() => {
     async function getData() {
       let data = await getAllProducts();
@@ -15,6 +19,10 @@ export default function TopDiscounts() {
       setComputers(computers);
       setMonitors(monitors);
       setPhones(phones);
+      const filteredProducts = Object.values(data)
+        .flatMap((category) => category)
+        .filter((product) => product.discount >= 50);
+      setBiggestDiscounts(filteredProducts)
     }
     getData();
   }, []);
@@ -25,27 +33,16 @@ export default function TopDiscounts() {
         <h4>Reccomended</h4>
       </div>
       <section className="discounts-section">
-        {computers && productLength < 5 &&
-          computers.map((computer) => {
-            if (computer.discount > 0) {
-              setProductLength(productLength + 1);
-              return <Computer key={computer._id} product={computer} />;
-            }
-          })}
-        {monitors && productLength < 5 &&
-          monitors.map((monitor) => {
-            if (monitor.discount > 0) {
-              setProductLength(productLength + 1);
-              return <Computer key={monitor._id} product={monitor} />;
-            }
-          })}
-        {phones && productLength < 5 &&
-          phones.map((phone) => {
-            if (phone.discount > 0) {
-              setProductLength(productLength + 1);
-              return <Computer key={phone._id} product={phone} />;
-            }
-          })}
+        <button className="switchers" onClick={() => changeIndex("-")}>&#60;</button>
+        <section className="discounts__place">
+
+        </section>
+        <button className="switchers" onClick={() => changeIndex("-")}>&#62;</button>
+        {/* {
+          biggestDiscounts.map((product) => {
+            return <Computer key={product._id} product={product} />;
+          })
+        } */}
       </section>
     </div>
   );

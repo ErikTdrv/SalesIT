@@ -34,3 +34,19 @@
 .discounts-section .computer__image {
     border-radius: 15px 15px 0px 0px;
 }
+.discounts__place {
+    width: 95%;
+    height: 100%;
+}
+.switchers {
+    border: none;
+    width: 3%;
+    cursor: pointer;
+    height: 100%;
+    font-size: 20px;
+    font-weight: 900;
+    transition: 0.5s ease-in-out;
+}
+.switchers:hover {
+    background-color: gray;
+}
