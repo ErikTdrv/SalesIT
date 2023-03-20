@@ -46,6 +46,8 @@ router.get('/get-user', async (req, res) => {
   if(cookie){
     let user = await getUser(req.user._id);
     res.send(user)
+  }else {
+    res.send('No user found!')
   }
 })
 router.get("/logout", async (req, res) => {
