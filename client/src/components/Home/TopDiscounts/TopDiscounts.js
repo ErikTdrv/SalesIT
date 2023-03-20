@@ -8,9 +8,14 @@ export default function TopDiscounts() {
   const [monitors, setMonitors] = useState([]);
   const [phones, setPhones] = useState([]);
   const [productLength, setProductLength] = useState(0);
-  const [biggestDiscounts, setBiggestDiscounts] = useState([]);
-  function changeIndex(type){
-
+  const [allDiscounts, setAllDiscounts] = useState([]);
+  const [index, setIndex] = useState(0);
+  function changeIndex(type) {
+    if (index === 0 && type === "+" && index + 1 < allDiscounts.length && allDiscounts.length > 3) {
+      setIndex(index + 1);
+    } else if (index > 0 && type === "-" && index + 1 < allDiscounts.length && allDiscounts.length > 3) {
+      setIndex(index - 1);
+    }
   }
   useEffect(() => {
     async function getData() {
@@ -21,8 +26,8 @@ export default function TopDiscounts() {
       setPhones(phones);
       const filteredProducts = Object.values(data)
         .flatMap((category) => category)
-        .filter((product) => product.discount >= 50);
-      setBiggestDiscounts(filteredProducts)
+        .filter((product) => product.discount >= 0);
+      setAllDiscounts(filteredProducts);
     }
     getData();
   }, []);
@@ -32,18 +37,21 @@ export default function TopDiscounts() {
         <h1>Top Discounts</h1>
         <h4>Reccomended</h4>
       </div>
-      <section className="discounts-section">
-        <button className="switchers" onClick={() => changeIndex("-")}>&#60;</button>
-        <section className="discounts__place">
-
+      {allDiscounts && (
+        <section className="discounts-section">
+          <button className="switchers" onClick={() => changeIndex("-")}>
+            &#60;
+          </button>
+          <section className="discounts__place">
+            { allDiscounts[index]?._id && <Computer key={allDiscounts[index]._id} product={allDiscounts[index]} />}
+            { allDiscounts[index + 1]?._id && <Computer key={allDiscounts[index + 1]._id} product={allDiscounts[index + 1]} />}
+            { allDiscounts[index + 2]?._id && <Computer key={allDiscounts[index + 2]._id} product={allDiscounts[index + 2]} />}
+          </section>
+          <button className="switchers" onClick={() => changeIndex("+")}>
+            &#62;
+          </button>
         </section>
-        <button className="switchers" onClick={() => changeIndex("-")}>&#62;</button>
-        {/* {
-          biggestDiscounts.map((product) => {
-            return <Computer key={product._id} product={product} />;
-          })
-        } */}
-      </section>
+      )}
     </div>
   );
 }
