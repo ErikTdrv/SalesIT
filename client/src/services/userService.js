@@ -1,4 +1,4 @@
-const API_URL = 'https://salesit-api.ew.r.appspot.com';
+const API_URL = process.env.REACT_APP_API_URL;
 
 export const register = async (info) => {
   try {
@@ -30,6 +30,7 @@ export const login = async (info) => {
       credentials: 'include',
       body: JSON.stringify(info),
     })
+    console.log(`${API_URL}/login`)
     const data = await request.json();
     if(request.ok){
       return data
@@ -37,6 +38,7 @@ export const login = async (info) => {
       throw new Error(data.error)
     }
   } catch (error) {
+    console.log(error)
     return error
   }
 }

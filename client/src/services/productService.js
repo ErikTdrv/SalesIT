@@ -1,4 +1,4 @@
-const API_URL = 'https://salesit-api.ew.r.appspot.com';
+const API_URL = process.env.REACT_APP_API_URL;
 
 export const addProduct = async (product, productName) => {
     product.productName = productName;
