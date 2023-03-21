@@ -8,7 +8,7 @@
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
     background-color: white;
     color: black;
-    min-height: 40%;
+    min-height: 45%;
     
 }
 .form h1 {
@@ -58,7 +58,7 @@ input:focus {
 .login-btn {
     text-align: center;
     position: relative;
-    margin-top: 50px;
+    margin-top: 65px;
     margin-left: 23%;
     margin-bottom: 80px;
     width: 200px;
@@ -107,7 +107,8 @@ input:focus {
     font-weight: 700;
 }
 .login .loader {
-    margin-top: 40px;
+    margin-top: 15px;
+    margin-bottom: 40px;
     top: 68%;
     color: black;
 }
