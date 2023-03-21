@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
-import { register } from "../../services/userService";
+import { convertToBase64, register } from "../../services/userService";
 import Copyright from "../Copyright/Copyright";
 import "./Register.css";
 
@@ -10,33 +10,25 @@ export default function Register() {
   const [auth, setAuth] = useState({});
   const [mainError, setMainError] = useState();
   const [error, setError] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   let { userAuth } = useContext(AuthContext);
   async function onSubmitHandler(e) {
     e.preventDefault();
+    setIsLoading(true);
     if (auth.repass !== auth.password) {
       return setMainError("Passwords must match!");
     }
     let response = await register(auth);
     if (response?.username) {
+      setIsLoading(false);
       userAuth(response);
       navigate("/");
     } else if (response?.message) {
+      setIsLoading(false);
       setMainError(response.message);
     }
   }
-  async function convertToBase64(file) {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
 
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  }
   function validateInput(type, e) {
     if (e.target.value === "") {
       setError({ ...error, [type]: `${type} is required!` });
@@ -47,11 +39,8 @@ export default function Register() {
       const emailRegex = /^[a-zA-Z0-9.-]{4,}@[a-z]+.[a-z]+$/;
       const isValidEmail = emailRegex.test(e.target.value);
       if (!isValidEmail) {
-        console.log("here");
         setError({ ...error, Email: "Email must be valid!" });
       } else {
-        console.log("h2ere");
-
         setError({ ...error, Email: "" });
       }
     }
@@ -63,11 +52,7 @@ export default function Register() {
         {mainError ? <p className="main-error">{mainError}</p> : ""}
         <form onSubmit={onSubmitHandler}>
           {auth?.avatarImg && (
-            <img
-              className="avatarImg"
-              src={auth.avatarImg}
-              alt=""
-            />
+            <img className="avatarImg" src={auth.avatarImg} alt="" />
           )}
           <div className="register-inputs">
             <div className="register-username">
@@ -156,8 +141,9 @@ export default function Register() {
               </label>
             </div>
           </div>
-          <input type="submit" value="Register" className="register-btn" />
+          { !isLoading &&<input type="submit" value="Register" className="register-btn" />}
         </form>
+        {isLoading && <span id="register-loader" className="loader"></span>}
         <p className="reg-text">
           Don't have an account? <Link to="Login">Sign In</Link>
         </p>

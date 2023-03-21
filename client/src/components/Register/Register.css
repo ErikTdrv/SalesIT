@@ -116,3 +116,6 @@ input:focus {
     height: 120px;
     border-radius: 50%;
 }
+.register .loader {
+    color: black;
+}
