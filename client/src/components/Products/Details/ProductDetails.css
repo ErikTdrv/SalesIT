@@ -183,6 +183,8 @@ span p {
     border-radius: 50px;
 }
 .discount-div span {
-    font-weight: 800;
+    font-weight: 900;
     color: rgb(32, 30, 30);
+    font-style: italic;
+
 }

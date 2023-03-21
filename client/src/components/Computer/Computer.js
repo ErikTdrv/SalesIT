@@ -24,10 +24,17 @@ export default function Computer({
     battery,
     os,
     images,
+    discount
   },
 }) {
   return (
     <div className="computer__card">
+      { discount && discount > 0 && (
+        <div className="computer__discount__div">
+        <span className="computer__discount">{discount}%</span>
+        </div>
+      )}
+      
       <div className="price-div">
         <span className="price">{price}$</span>
       </div>
