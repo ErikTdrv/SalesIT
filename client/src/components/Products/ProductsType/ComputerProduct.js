@@ -57,7 +57,7 @@ export default function ComputerProduct({mode, data}) {
                   setProducts({ ...products, manufacturer: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Manufacturer")}
-                value={products?.manufacturer}
+                value={products?.manufacturer || ''}
               />
               <span className={products.manufacturer ? "value-there" : ""}>
                 Manufacturer
@@ -73,7 +73,7 @@ export default function ComputerProduct({mode, data}) {
                   setProducts({ ...products, motherboard: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Motherboard")}
-                value={products?.motherboard}
+                value={products?.motherboard || ''}
               />
               <span className={products.motherboard ? "value-there" : ""}>
                 Motherboard
@@ -89,7 +89,7 @@ export default function ComputerProduct({mode, data}) {
                   setProducts({ ...products, processor: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Processor")}
-                value={products?.processor}
+                value={products?.processor || ''}
               />
               <span className={products.processor ? "value-there" : ""}>
                 Processor
@@ -105,7 +105,7 @@ export default function ComputerProduct({mode, data}) {
                   setProducts({ ...products, videocard: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Videocard")}
-                value={products?.videocard}
+                value={products?.videocard || ''}
               />
               <span className={products.videocard ? "value-there" : ""}>
                 Videocard
@@ -144,7 +144,7 @@ export default function ComputerProduct({mode, data}) {
                   setProducts({ ...products, os: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Os")}
-                value={products?.os}
+                value={products?.os || ''}
               />
               <span className={products.os ? "value-there" : ""}>
                 Operation System
@@ -160,7 +160,7 @@ export default function ComputerProduct({mode, data}) {
                   setProducts({ ...products, ssd: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Ssd")}
-                value={products?.ssd}
+                value={products?.ssd || ''}
 
               />
               <span className={products.ssd ? "value-there" : ""}>SSD</span>
@@ -175,7 +175,7 @@ export default function ComputerProduct({mode, data}) {
                   setProducts({ ...products, harddrive: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Harddrive")}
-                value={products?.harddrive}
+                value={products?.harddrive || ''}
 
               />
               <span className={products.harddrive ? "value-there" : ""}>
@@ -192,7 +192,7 @@ export default function ComputerProduct({mode, data}) {
                   setProducts({ ...products, price: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Price")}
-                value={products?.price}
+                value={products?.price || ''}
 
               />
               <span className={products.price ? "value-there" : ""}>Price</span>

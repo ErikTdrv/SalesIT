@@ -20,7 +20,6 @@ export default function EditProduct() {
         setProductType("Computers");
       }
       setProduct(data);
-      console.log(productType)
     }
     getProductData();
   }, []);
