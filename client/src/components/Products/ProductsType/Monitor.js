@@ -9,7 +9,7 @@ export default function Monitor({ mode, data }) {
   let [disabled, setDisabled] = useState(true);
   let [mainError, setMainError] = useState("");
   let navigate = useNavigate();
-  
+
   useEffect(() => {
     if (data !== undefined) {
       setProducts(data);
@@ -54,7 +54,7 @@ export default function Monitor({ mode, data }) {
                   setProducts({ ...products, manufacturer: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Manufacturer")}
-                value={products.manufacturer}
+                value={products.manufacturer || ''}
               />
               <span className={products.manufacturer ? "value-there" : ""}>
                 Manufacturer
@@ -70,7 +70,7 @@ export default function Monitor({ mode, data }) {
                   setProducts({ ...products, screenresolution: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Screen Resolution")}
-                value={products.screenresolution}
+                value={products.screenresolution || ''}
               />
               <span className={products.screenresolution ? "value-there" : ""}>
                 Screen Resolution
@@ -86,7 +86,7 @@ export default function Monitor({ mode, data }) {
                   setProducts({ ...products, resolution: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Resolution")}
-                value={products.resolution}
+                value={products.resolution || ''}
               />
               <span className={products.resolution ? "value-there" : ""}>
                 Resolution
@@ -123,7 +123,7 @@ export default function Monitor({ mode, data }) {
                   setProducts({ ...products, refreshrate: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Refresh Rate")}
-                value={products.refreshrate}
+                value={products.refreshrate || ''}
               />
               <span className={products.refreshrate ? "value-there" : ""}>
                 Refresh Rate
@@ -139,7 +139,7 @@ export default function Monitor({ mode, data }) {
                   setProducts({ ...products, paneltype: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Panel Type")}
-                value={products.paneltype}
+                value={products.paneltype || ''}
               />
               <span className={products.paneltype ? "value-there" : ""}>
                 Panel Type
@@ -155,7 +155,7 @@ export default function Monitor({ mode, data }) {
                   setProducts({ ...products, price: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Price")}
-                value={products.price}
+                value={products.price || ''}
               />
               <span className={products.price ? "value-there" : ""}>Price</span>
               {error.Price && <p className="error">{error.Price}</p>}
