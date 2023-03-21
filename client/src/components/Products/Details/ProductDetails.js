@@ -145,7 +145,7 @@ export default function ProductDetails() {
           <DetailsInfo product={product} />
         </div>
       ) : (
-        <h1>IS LOADING</h1>
+        <span class="loader"></span>
       )}
     </>
   );
