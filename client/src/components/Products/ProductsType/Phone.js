@@ -52,7 +52,7 @@ export default function PhoneProduct({ mode, data }){
                   setProducts({ ...products, phonename: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "phonename")}
-                value={products.phonename}
+                value={products.phonename || ''}
                  />
             <span className={products.phonename ? "value-there" : ""}>
               Phone Name
@@ -66,7 +66,7 @@ export default function PhoneProduct({ mode, data }){
                   setProducts({ ...products, capacity: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "capacity")}
-                value={products.capacity}
+                value={products.capacity || ''}
                  />
             <span className={products.capacity ? "value-there" : ""}>
               Capacity
@@ -80,7 +80,7 @@ export default function PhoneProduct({ mode, data }){
                   setProducts({ ...products, displaysize: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "displaysize")}
-                value={products.displaysize}
+                value={products.displaysize || ''}
                  />
             <span className={products.displaysize ? "value-there" : ""}>
               Display Size
@@ -94,7 +94,7 @@ export default function PhoneProduct({ mode, data }){
                   setProducts({ ...products, color: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "color")}
-                value={products.color}
+                value={products.color || ''}
                  />
             <span className={products.color ? "value-there" : ""}>
               Color
@@ -132,7 +132,7 @@ export default function PhoneProduct({ mode, data }){
                   setProducts({ ...products, camera: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "camera")} 
-                value={products.camera}
+                value={products.camera || ''}
                 
                 />
             <span
@@ -149,7 +149,7 @@ export default function PhoneProduct({ mode, data }){
                   setProducts({ ...products, battery: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "battery")}
-                value={products.battery}
+                value={products.battery || ''}
                  />
             <span className={products.battery ? "value-there" : ""}>
               Battery
@@ -163,7 +163,7 @@ export default function PhoneProduct({ mode, data }){
                   setProducts({ ...products, os: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "os")} 
-                value={products.os}
+                value={products.os || ''}
                 
                 />
             <span className={products.os ? "value-there" : ""}>
@@ -178,7 +178,7 @@ export default function PhoneProduct({ mode, data }){
                   setProducts({ ...products, price: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "price")}
-                value={products.price}
+                value={products.price || ''}
                 
                 />
             <span className={products.price ? "value-there" : ""}>Price</span>
