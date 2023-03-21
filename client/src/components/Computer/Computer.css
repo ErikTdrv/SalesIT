@@ -46,8 +46,9 @@
     background-color: #f44336;
 }
 .computer__card .price {
-    padding: 5px 15px;
-    width: 60px;
+    padding: 3px 15px;
+    min-width: 60px;
+    white-space: nowrap;
     text-align: center;
     background-color: gray;
     font-size: 14px;
@@ -57,7 +58,7 @@
     position: absolute;
     /* top: 44%; */
     /* text-decoration: line-through 1px red; */
-    left: 60%;
+    left: 57%;
 }
 hr {
     width: 100%;
@@ -82,4 +83,21 @@ hr {
     justify-content: center;
     align-items: center;
     border-radius: 30px;
+}
+.newPrice {
+    display: inline-block;
+}
+.price-div .newPrice {
+    font-weight: 800;
+    color: red;
+}
+.deletedPrice {
+    text-decoration: line-through 1px black;
+    font-size: 10px;
+}
+#deletedPrice {
+    font-size: 10px;
+}
+#newPrice {
+    font-size: 15px;
 }

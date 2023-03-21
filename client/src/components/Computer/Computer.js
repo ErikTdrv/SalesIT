@@ -36,7 +36,11 @@ export default function Computer({
       )}
       
       <div className="price-div">
-        <span className="price">{price}$</span>
+        { discount === '0' ? (
+          <span className="price">{price}$</span>
+        ) : (
+          <span id="deletedPrice" className="price deletedPrice">{price}$<span id="newPrice" className="newPrice">{price - (Number(discount)*0.01) * price}$</span></span>
+        )}
       </div>
       <img className="computer__image" src={images[0].imageUrl} alt="" />
       <div className="computer__info">
