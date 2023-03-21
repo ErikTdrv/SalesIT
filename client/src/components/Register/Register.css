@@ -8,7 +8,7 @@
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
     background-color: white;
     color: black;
-    min-height: 80%;
+    min-height: 60%;
     
 }
 input[type="file"] {
@@ -18,8 +18,12 @@ input[type="file"] {
     margin-right: 10px;
     transition: 0.3s ease-in-out;
 }
-.register .fa-solid:hover {
+.register label:hover .fa-solid{
+    cursor: pointer;
     transform: rotate(45deg);
+}
+.register label:hover {
+    cursor: pointer;
 }
 .register h1 {
     text-align: center;
