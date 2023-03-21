@@ -9,17 +9,21 @@ export default function Login() {
   const [authInfo, setAuthInfo] = useState({});
   const [error, setError] = useState({});
   const [mainError, setMainError] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   let { userAuth } = useContext(AuthContext);
   let navigate = useNavigate();
   
   async function loginHandler(e) {
     e.preventDefault();
+    setIsLoading(true)
     let data = await login(authInfo);
     if (data.message) {
       setMainError(data.message);
+      setIsLoading(false)
     }else if(data.username){
       userAuth(data)
       navigate('/')
+      setIsLoading(false)
     }
   }
   function validateInput(e) {
@@ -50,6 +54,8 @@ export default function Login() {
   return (
     <>
       <div className="login">
+
+
         <div className="form">
           <h1>Login</h1>
           {mainError ? <p className="main-error">{mainError}</p> : ""}
@@ -90,13 +96,15 @@ export default function Login() {
                 )}
               </div>
             </div>
-            <input
+            { !isLoading && <input
               type="submit"
               value="Login"
               id="loginBtn"
               className="login-btn"
-            />
+            />}
+            
           </form>
+          {isLoading && <span className="loader"></span>}
           <p className="text">
             Don't have an account? <Link to="/register">Sign Up</Link>
           </p>
