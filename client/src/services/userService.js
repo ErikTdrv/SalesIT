@@ -30,7 +30,6 @@ export const login = async (info) => {
       credentials: 'include',
       body: JSON.stringify(info),
     })
-    console.log(`${API_URL}/login`)
     const data = await request.json();
     if(request.ok){
       return data
