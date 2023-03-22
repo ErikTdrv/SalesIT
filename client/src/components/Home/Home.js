@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
 import HomeFooter from "./Home-Footer/Footer";
 import "./Home.css";
 import TopDiscounts from "./TopDiscounts/TopDiscounts";
 
 export default function Home() {
+  const { isAuth } = useContext(AuthContext);
+  console.log(isAuth)
   return (
     <>
     <div className="home">
@@ -16,9 +19,13 @@ export default function Home() {
           top of your tech game - shop with us today!
         </h2>
         <div className="home-buttons">
-        <Link to='/login'><button>Login</button></Link>
-        <Link to='/register'><button>Register</button></Link>
-        <Link to='/all-products'><button>All Products</button></Link>
+        { !isAuth ? 
+          <>
+          <Link to='/login'><button>Login</button></Link>
+          <Link to='/register'><button>Register</button></Link>
+          </> 
+          :
+          <Link to='/all-products'><button>All Products</button></Link>}
         </div>
       </div>
     </div>
