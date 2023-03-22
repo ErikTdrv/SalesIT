@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { getCurrentUser, logoutUser } from "./services/userService";
 import EditProduct from "./components/Products/Edit-Product/EditProduct";
 import AddDiscount from "./components/Products/Details/Add-Discount/AddDiscount";
+import Profile from "./components/Profile/Profile";
 
 function App() {
   useEffect(() => {
@@ -48,6 +49,7 @@ function App() {
         <Route path="/all-products/:productId/add-discount" element={<AddDiscount />} />
         <Route path="/add-product" element={<AddProduct />} />
         <Route path="/card" element={<ShoppingCard />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </AuthContext.Provider>
   );
