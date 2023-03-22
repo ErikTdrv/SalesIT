@@ -92,7 +92,7 @@ export default function AllItems() {
           <HomeFooter />
         </>
       ) : (
-        <span class="loader"></span>
+        <span className="loader"></span>
       )}
     </>
   );
