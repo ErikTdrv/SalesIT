@@ -7,7 +7,6 @@ import TopDiscounts from "./TopDiscounts/TopDiscounts";
 
 export default function Home() {
   const { isAuth } = useContext(AuthContext);
-  console.log(isAuth)
   return (
     <>
     <div className="home">
