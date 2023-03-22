@@ -142,7 +142,7 @@ export default function ShoppingCard() {
             {products?.length === 0 ? (
               <h3>No Added Products</h3>
             ) : (
-              <span class="loader"></span>
+              <span className="loader"></span>
             )}
           </div>
         </div>
