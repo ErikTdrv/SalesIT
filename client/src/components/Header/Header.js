@@ -22,7 +22,7 @@ export default function Header(){
         <ul className="authul">
             { isAuth ? 
             <>
-            <li><i className="fa-solid fa-user"></i></li>
+            <li><NavLink activeclassname='activeCard' className='Link' to='/profile'><i className="fa-solid fa-user"></i></NavLink></li>
             <li><NavLink activeclassname='activeCard' className='Link' to='/card'><i className="fa-solid fa-cart-shopping"></i></NavLink></li> 
             <li onClick={() => userLogout()} className='logout'>Logout</li>
             </>
