@@ -145,7 +145,7 @@ export default function ProductDetails() {
           <DetailsInfo product={product} />
         </div>
       ) : (
-        <span class="loader"></span>
+        <span className="loader"></span>
       )}
     </>
   );
