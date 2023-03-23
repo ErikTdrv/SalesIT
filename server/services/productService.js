@@ -3,7 +3,11 @@ let Monitor = require("../models/Monitor");
 let Phone = require("../models/Phone");
 let User = require("../models/User");
 
-const addProduct = async (product) => {
+const addProduct = async (product, userId) => {
+  const user = await User.findById(userId);
+  let newArray = user.addedProducts;
+  newArray.push(product)
+  await User.findByIdAndUpdate(userId, {addedProducts: newArray});
   product.discount = '0'
   if (product.productName == "Computers") {
     return await Computer.create(product);

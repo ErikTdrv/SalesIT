@@ -24,7 +24,7 @@ router.post('/add-product',  uploader.array('productPhotos'), async (req, res) =
         }
         body.images = imagesArr
         body.owner = req.user._id;
-        let product = await addProduct(body)
+        let product = await addProduct(body, req.user._id)
         res.status(201).json(product)
     } catch (error) {
         console.log(error)
