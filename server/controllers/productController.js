@@ -55,7 +55,7 @@ router.post('/products/:id', async (req, res) => {
     try {
         let _id = req.params.id;
         let { type } = req.body;
-        let deletedProduct = await deleteOneProduct(_id, type)
+        let deletedProduct = await deleteOneProduct(_id, type, req.user._id)
         res.status(200).json(deletedProduct)
     } catch (error) {
         res.status(500).send('Error retrieving data');

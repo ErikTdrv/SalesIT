@@ -4,18 +4,21 @@ let Phone = require("../models/Phone");
 let User = require("../models/User");
 
 const addProduct = async (product, userId) => {
+
   const user = await User.findById(userId);
+  let newProduct;
   let newArray = user.addedProducts;
-  newArray.push(product)
-  await User.findByIdAndUpdate(userId, {addedProducts: newArray});
   product.discount = '0'
   if (product.productName == "Computers") {
-    return await Computer.create(product);
+    newProduct = await Computer.create(product);
   } else if (product.productName === "Monitors") {
-    return await Monitor.create(product);
+    newProduct = await Monitor.create(product);
   } else if (product.productName === "Phones") {
-    return await Phone.create(product);
+    newProduct = await Phone.create(product);
   }
+  newArray.push(newProduct)
+  await User.findByIdAndUpdate(userId, {addedProducts: newArray});
+  return newProduct
 };
 const getAllProducts = async () => {
   try {
@@ -47,22 +50,33 @@ const getOneProduct = async (_id) => {
     return error;
   }
 };
-const deleteOneProduct = async (_id, type) => {
+const deleteOneProduct = async (productId, type, userId) => {
   try {
     let deletedProduct;
-
     if (type === "Phones") {
-      deletedProduct = await Phone.findByIdAndDelete(_id);
+      deletedProduct = await Phone.findByIdAndDelete(productId);
     } else if (type === "Monitors") {
-      deletedProduct = await Monitor.findByIdAndDelete(_id);
+      deletedProduct = await Monitor.findByIdAndDelete(productId);
     } else if (type === "Computers") {
-      deletedProduct = await Computer.findByIdAndDelete(_id);
+      deletedProduct = await Computer.findByIdAndDelete(productId);
     }
+    await deleteProductFromUserAddedProducts(userId, deletedProduct._id)
     return deletedProduct;
   } catch (error) {
     return error;
   }
 };
+const deleteProductFromUserAddedProducts = async (userId, productId) => {
+  try {
+    let user = await User.findById(userId);
+    let newArray = user.addedProducts;
+    let indexOfProduct = newArray.findIndex((e) => e._id.toString() == productId.toString());
+    newArray.splice(indexOfProduct, 1)
+    await User.findByIdAndUpdate(userId, {addedProducts: newArray})
+  } catch (error) {
+    return error
+  }
+}
 const addToCard = async (id, product) => {
   try {
     let user = await User.findById(id);
