@@ -16,9 +16,7 @@ const addProduct = async (product, userId) => {
   } else if (product.productName === "Phones") {
     newProduct = await Phone.create(product);
   }
-  console.log(newProduct)
   newArray.push(newProduct)
-  console.log(newArray)
   await User.findByIdAndUpdate(userId, {createdProducts: newArray});
   return newProduct
 };
@@ -120,6 +118,14 @@ const getCardProducts = async (userId) => {
     return error;
   }
 };
+const getUserOwnProducts = async (userId) => {
+  try {
+    let user = await User.findById(userId);
+    return user.createdProducts;
+  } catch (error) {
+    return error
+  }
+}
 const editOneProduct = async (data, productId) => {
   try {
     let updatedProduct;
@@ -161,5 +167,6 @@ module.exports = {
   removeFromCard,
   getCardProducts,
   editOneProduct, 
-  addDiscount
+  addDiscount,
+  getUserOwnProducts,
 };
