@@ -31,15 +31,18 @@ export default function ProductDetails() {
       const { owner } = data;
       user = await getCurrentUser();
       setIsOwner(owner._id === user?._id);
-      const alreadyAdded = user?.addedProducts?.some((e) => e._id === data._id);
-      setAlreadyAdded(alreadyAdded ? true : false);
+      let alreadyAdded;
       if (data.phonename) {
         setProductType("Phones");
+        alreadyAdded = user?.addedPhones?.some((e) => e === data._id);
       } else if (data.paneltype) {
         setProductType("Monitors");
+        alreadyAdded = user?.addedMonitors?.some((e) => e === data._id);
       } else if (data.motherboard) {
         setProductType("Computers");
+        alreadyAdded = user?.addedComputers?.some((e) => e === data._id);
       }
+      setAlreadyAdded(alreadyAdded ? true : false);
       setMainImage(data.images[0].imageUrl);
       setIsLoading(false);
     }
