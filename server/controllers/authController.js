@@ -63,7 +63,7 @@ router.get("/logout", async (req, res) => {
 router.get('/profile', async (req, res) => {
   try {
     let products = await getUserOwnProducts(req.user._id);
-    res.status(201).json(user);
+    res.status(201).json(products);
   } catch (error) {
     res.status(400).json({ error: error.message });
 

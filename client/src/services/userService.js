@@ -84,3 +84,16 @@ export const logoutUser = async() => {
     credentials: 'include',
   })
 }
+export const getProfileProducts = async () => {
+  let products = await fetch(`${API_URL}/profile`, {
+    method: 'GET',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: 'include'
+  })
+  const data = await products.json()
+  if(products.ok){
+    return data
+  }
+}
