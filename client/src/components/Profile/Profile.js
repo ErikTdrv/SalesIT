@@ -6,7 +6,9 @@ import "./Profile.css";
 
 export default function Profile() {
   const { user } = useContext(AuthContext);
-
+    useEffect(() => {
+        console.log(user)
+    }, [])
   return (
     <>
       <div className="product__all">

@@ -1,14 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { AuthContext } from "../../../contexts/AuthContext";
 import { addProduct, editOneProduct } from "../../../services/productService";
 import { convertToBase64 } from "../../../services/userService";
 
 export default function PhoneProduct({ mode, data }){
-    let [products, setProducts] = useState({});
-    let [error, setError] = useState({});
-    let [disabled, setDisabled] = useState(true);
-    let [mainError, setMainError] = useState('')
-    let navigate = useNavigate();
+  let [products, setProducts] = useState({});
+  let [error, setError] = useState({});
+  let [disabled, setDisabled] = useState(true);
+  let [mainError, setMainError] = useState('')
+  let navigate = useNavigate();
+  let { user, userAuth } = useContext(AuthContext)
+  useEffect(() => {
+    if (data !== undefined) {
+      setProducts(data);
+    }
+  }, []);
   function validateInput(e, type){
     if(e.target.value === ''){
       setError({...error, [type]: `${type} is required`})
@@ -18,11 +25,6 @@ export default function PhoneProduct({ mode, data }){
       setError({...error, [type]: ''})
     }
   }
-  useEffect(() => {
-    if (data !== undefined) {
-      setProducts(data);
-    }
-  }, []);
   async function addPhoneProduct(e){
     e.preventDefault()
     let request;
@@ -34,6 +36,10 @@ export default function PhoneProduct({ mode, data }){
     if (request.message) {
       return setMainError(request.message.split(": ")[2].split(", ")[0]);
     }
+    let array = user.createdProducts;
+    array.push(request);
+    user.createdProducts = array
+    userAuth(user)
     if (request._id && mode === undefined) {
       navigate("/");
     } else if (mode === "edit") {
