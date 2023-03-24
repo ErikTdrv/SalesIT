@@ -71,8 +71,10 @@ const deleteProductFromUserAddedProducts = async (userId, productId) => {
     let user = await User.findById(userId);
     let newArray = user.addedProducts;
     let indexOfProduct = newArray.findIndex((e) => e._id.toString() == productId.toString());
-    newArray.splice(indexOfProduct, 1)
-    await User.findByIdAndUpdate(userId, {addedProducts: newArray})
+    if(indexOfProduct !== -1){
+      newArray.splice(indexOfProduct, 1)
+      await User.findByIdAndUpdate(userId, {addedProducts: newArray})
+    }
   } catch (error) {
     return error
   }
