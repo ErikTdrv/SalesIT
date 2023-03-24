@@ -4,11 +4,10 @@ let Phone = require("../models/Phone");
 let User = require("../models/User");
 
 const addProduct = async (product, userId) => {
-
   const user = await User.findById(userId);
   let newProduct;
   let newArray = user.createdProducts;
-  product.discount = '0'
+  product.discount = "0";
   if (product.productName == "Computers") {
     newProduct = await Computer.create(product);
   } else if (product.productName === "Monitors") {
@@ -16,9 +15,9 @@ const addProduct = async (product, userId) => {
   } else if (product.productName === "Phones") {
     newProduct = await Phone.create(product);
   }
-  newArray.push(newProduct)
-  await User.findByIdAndUpdate(userId, {createdProducts: newArray});
-  return newProduct
+  newArray.push(newProduct);
+  await User.findByIdAndUpdate(userId, { createdProducts: newArray });
+  return newProduct;
 };
 const getAllProducts = async () => {
   try {
@@ -60,7 +59,7 @@ const deleteOneProduct = async (productId, type, userId) => {
     } else if (type === "Computers") {
       deletedProduct = await Computer.findByIdAndDelete(productId);
     }
-    await deleteProductFromUserCreatedProducts(userId, deletedProduct._id)
+    await deleteProductFromUserCreatedProducts(userId, deletedProduct._id);
     return deletedProduct;
   } catch (error) {
     return error;
@@ -70,19 +69,30 @@ const deleteProductFromUserCreatedProducts = async (userId, productId) => {
   try {
     let user = await User.findById(userId);
     let newArray = user.createdProducts;
-    let indexOfProduct = newArray.findIndex((e) => e._id.toString() == productId.toString());
-    if(indexOfProduct !== -1){
-      newArray.splice(indexOfProduct, 1)
-      await User.findByIdAndUpdate(userId, {createdProducts: newArray})
+    let indexOfProduct = newArray.findIndex(
+      (e) => e._id.toString() == productId.toString()
+    );
+    if (indexOfProduct !== -1) {
+      newArray.splice(indexOfProduct, 1);
+      await User.findByIdAndUpdate(userId, { createdProducts: newArray });
     }
   } catch (error) {
-    return error
+    return error;
   }
-}
+};
 const addToCard = async (id, product) => {
   try {
     let user = await User.findById(id);
-    let array = user.addedProducts;
+    let array;
+
+    if (product?.phonename) {
+      array = user.addedPhones;
+    } else if (product?.paneltype) {
+      array = user.addedMonitors;
+    } else if (product?.motherboard) {
+      array = user.addedComputers;
+    }
+
     let alreadyAdded = array.map((el) => {
       if (el._id === product._id) {
         return true;
@@ -91,8 +101,14 @@ const addToCard = async (id, product) => {
     if (alreadyAdded?.includes(true)) {
       throw new Error("Product is already added!");
     }
-    array.push(product);
-    await User.findByIdAndUpdate(id, { addedProducts: array });
+    array.push(product._id);
+    if (product?.phonename) {
+      await User.findByIdAndUpdate(id, { addedPhones: array });
+    } else if (product?.paneltype) {
+      await User.findByIdAndUpdate(id, { addedMonitors: array });
+    } else if (product?.motherboard) {
+      await User.findByIdAndUpdate(id, { addedComputers: array });
+    }
   } catch (error) {
     return error;
   }
@@ -123,9 +139,9 @@ const getUserOwnProducts = async (userId) => {
     let user = await User.findById(userId);
     return user.createdProducts;
   } catch (error) {
-    return error
+    return error;
   }
-}
+};
 const editOneProduct = async (data, productId) => {
   try {
     let updatedProduct;
@@ -134,46 +150,72 @@ const editOneProduct = async (data, productId) => {
         runValidators: true,
       });
     } else if (data?.paneltype) {
-        updatedProduct = await Monitor.findByIdAndUpdate(productId, data, {
-            runValidators: true,
-          });
+      updatedProduct = await Monitor.findByIdAndUpdate(productId, data, {
+        runValidators: true,
+      });
     } else if (data?.motherboard) {
-        updatedProduct = await Computer.findByIdAndUpdate({_id: productId}, data, {runValidators: true});
+      updatedProduct = await Computer.findByIdAndUpdate(
+        { _id: productId },
+        data,
+        { runValidators: true }
+      );
     }
     return updatedProduct;
   } catch (error) {
-    return error
+    return error;
   }
 };
-const addDiscount = async (discountPercentage, productId, productType, userId) => {
+const addDiscount = async (
+  discountPercentage,
+  productId,
+  productType,
+  userId
+) => {
   try {
-    if(productType === 'Computers'){
-      await Computer.findByIdAndUpdate(productId, {discount: discountPercentage})
-    }else if(productType === 'Monitors'){
-      await Monitor.findByIdAndUpdate(productId, {discount: discountPercentage})
-    }else if(productType === 'Phones'){
-      await Phone.findByIdAndUpdate(productId, {discount: discountPercentage})
+    if (productType === "Computers") {
+      await Computer.findByIdAndUpdate(productId, {
+        discount: discountPercentage,
+      });
+    } else if (productType === "Monitors") {
+      await Monitor.findByIdAndUpdate(productId, {
+        discount: discountPercentage,
+      });
+    } else if (productType === "Phones") {
+      await Phone.findByIdAndUpdate(productId, {
+        discount: discountPercentage,
+      });
     }
     let user = await User.findById(userId);
     //Updating discounts manually as there is no ref in the model
     let createdProductsArr = user.createdProducts;
-    let newCreatedProduct = createdProductsArr.find((product) => (product._id).toString() ===(productId).toString())
+    let newCreatedProduct = createdProductsArr.find(
+      (product) => product._id.toString() === productId.toString()
+    );
     newCreatedProduct.discount = discountPercentage;
-    let indexOfCreatedProduct = createdProductsArr.findIndex((product) => (product._id).toString() === (productId).toString());
-    createdProductsArr.splice(indexOfCreatedProduct, 1, newCreatedProduct)
+    let indexOfCreatedProduct = createdProductsArr.findIndex(
+      (product) => product._id.toString() === productId.toString()
+    );
+    createdProductsArr.splice(indexOfCreatedProduct, 1, newCreatedProduct);
 
     let addedProductsArr = user.addedProducts;
-    if(addedProductsArr.length > 0){
-      let newAddedProduct = addedProductsArr.find((product) => (product._id).toString() ===(productId).toString())
+    if (addedProductsArr.length > 0) {
+      let newAddedProduct = addedProductsArr.find(
+        (product) => product._id.toString() === productId.toString()
+      );
       newAddedProduct.discount = discountPercentage;
-      let indexOfAddedProduct = addedProductsArr.findIndex((product) => (product._id).toString() === (productId).toString());
-      addedProductsArr.splice(indexOfAddedProduct, 1, newAddedProduct)
+      let indexOfAddedProduct = addedProductsArr.findIndex(
+        (product) => product._id.toString() === productId.toString()
+      );
+      addedProductsArr.splice(indexOfAddedProduct, 1, newAddedProduct);
     }
-    await User.findByIdAndUpdate(userId, {createdProducts: createdProductsArr, addedProducts: addedProductsArr})
+    await User.findByIdAndUpdate(userId, {
+      createdProducts: createdProductsArr,
+      addedProducts: addedProductsArr,
+    });
   } catch (error) {
-    return error
+    return error;
   }
-}
+};
 module.exports = {
   addProduct,
   getAllProducts,
@@ -182,7 +224,7 @@ module.exports = {
   addToCard,
   removeFromCard,
   getCardProducts,
-  editOneProduct, 
+  editOneProduct,
   addDiscount,
   getUserOwnProducts,
 };
