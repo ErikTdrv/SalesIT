@@ -66,9 +66,9 @@ export function DetailsInfo({product}){
                     <p>Videocard:</p> {product.Battery}
                   </span>
                 )}
-                {product?.screenresolution && (
+                {product?.screensize && (
                   <span>
-                    <p>Screen Resolution:</p> {product.screenresolution}
+                    <p>Screen Size:</p> {product.screenrsize}
                   </span>
                 )}
                 {product?.paneltype && (

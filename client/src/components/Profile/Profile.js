@@ -10,7 +10,6 @@ export default function Profile() {
     useEffect(() => {
         async function getProducts(){
             let products = await getProfileProducts()
-            console.log(products)
         }
         getProducts()
     }, [])

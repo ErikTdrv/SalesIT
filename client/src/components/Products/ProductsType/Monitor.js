@@ -67,16 +67,16 @@ export default function Monitor({ mode, data }) {
               <input
                 type="text"
                 onChange={(e) =>
-                  setProducts({ ...products, screenresolution: e.target.value })
+                  setProducts({ ...products, screensize: e.target.value })
                 }
-                onBlur={(e) => validateInput(e, "Screen Resolution")}
-                value={products.screenresolution || ''}
+                onBlur={(e) => validateInput(e, "Screen Size")}
+                value={products.screensize || ''}
               />
-              <span className={products.screenresolution ? "value-there" : ""}>
-                Screen Resolution
+              <span className={products.screensize ? "value-there" : ""}>
+                Screen Size
               </span>
-              {error["Screen Resolution"] && (
-                <p className="error">{error["Screen Resolution"]}</p>
+              {error["Screen Size"] && (
+                <p className="error">{error["Screen Size"]}</p>
               )}
             </div>
             <div>

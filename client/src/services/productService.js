@@ -12,7 +12,6 @@ export const addProduct = async (product, productName) => {
           body: JSON.stringify(product),
         });
         let data = await request.json();
-        console.log(data)
         if(request.ok){
           return data
         }else {

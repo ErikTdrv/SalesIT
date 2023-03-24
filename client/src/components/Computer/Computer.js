@@ -12,7 +12,7 @@ export default function Computer({
     ssd,
     harddrive,
     price,
-    screenresolution,
+    screensize,
     resolution,
     refreshrate,
     paneltype,
