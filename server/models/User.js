@@ -31,6 +31,7 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
   addedProducts: [{}],
+  createdProducts: [{}],
 });
 
 userSchema.pre("save", function (next) {
