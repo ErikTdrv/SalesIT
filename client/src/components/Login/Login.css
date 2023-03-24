@@ -112,3 +112,6 @@ input:focus {
     top: 68%;
     color: black;
 }
+/* .blur {
+    filter: blur(1px);
+} */

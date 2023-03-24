@@ -54,8 +54,6 @@ export default function Login() {
   return (
     <>
       <div className="login">
-
-
         <div className="form">
           <h1>Login</h1>
           {mainError ? <p className="main-error">{mainError}</p> : ""}
