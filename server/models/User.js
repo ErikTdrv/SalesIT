@@ -31,6 +31,24 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
   addedProducts: [{}],
+  addedComputers: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Computer",
+    },
+  ],
+  addedMonitors: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Monitor",
+    },
+  ],
+  addedPhones: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Phone",
+    },
+  ],
   createdProducts: [{}],
 });
 
