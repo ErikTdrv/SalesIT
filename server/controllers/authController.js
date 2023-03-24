@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const cloudinary = require("cloudinary");
 const { register, login, getUser } = require("../services/authService");
+const { getUserOwnProducts } = require("../services/productService");
 
 router.post("/register", async (req, res) => {
   const data = req.body;
@@ -59,4 +60,13 @@ router.get("/logout", async (req, res) => {
   // let token = req.user.token;
   // await logout(token)
 });
+router.get('/profile', async (req, res) => {
+  try {
+    let products = await getUserOwnProducts(req.user._id);
+    res.status(201).json(user);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+
+  }
+})
 module.exports = router;
