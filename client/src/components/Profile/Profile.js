@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import { getProfileProducts } from "../../services/userService";
 import Copyright from "../Copyright/Copyright";
 import ShoppingCard from "../Shopping/Shopping";
 import "./Profile.css";
@@ -7,28 +8,32 @@ import "./Profile.css";
 export default function Profile() {
   const { user } = useContext(AuthContext);
     useEffect(() => {
-        console.log(user)
+        async function getProducts(){
+            let products = await getProfileProducts()
+            console.log(products)
+        }
+        getProducts()
     }, [])
   return (
     <>
       <div className="product__all">
         <div className="profile__info">
           <img
-            src="http://res.cloudinary.com/dzywd3xdo/image/upload/v1679261660/SalesIT/upwhr9qtjohdlljghnp1.jpg"
+            src={user.avatarImg}
             alt="avatar-img"
           />
           <div className="profile__info__auth">
             <li>
               Username:
-              <span> todorowwww</span>
+              <span> {user.username}</span>
             </li>
             <li>
               Email:
-              <span> eriktdrv@gmail.com</span>
+              <span> {user.email}</span>
             </li>
             <li>
               Phone Number:
-              <span> +359 89 604 8446</span>
+              <span> {user.phone}</span>
             </li>
           </div>
         </div>
