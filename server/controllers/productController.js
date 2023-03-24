@@ -93,7 +93,7 @@ router.post('/products/:id/add-discount', async (req, res) => {
     try {
         let { discountPercentage, productType } = req.body;
         let productId = req.params.id;
-        await addDiscount(discountPercentage, productId, productType)
+        await addDiscount(discountPercentage, productId, productType, req.user._id)
         res.status(200).json({message: 'Successfully added discount!'})
     } catch (error) {
         

@@ -145,7 +145,7 @@ const editOneProduct = async (data, productId) => {
     return error
   }
 };
-const addDiscount = async (discountPercentage, productId, productType) => {
+const addDiscount = async (discountPercentage, productId, productType, userId) => {
   try {
     if(productType === 'Computers'){
       await Computer.findByIdAndUpdate(productId, {discount: discountPercentage})
@@ -154,6 +154,22 @@ const addDiscount = async (discountPercentage, productId, productType) => {
     }else if(productType === 'Phones'){
       await Phone.findByIdAndUpdate(productId, {discount: discountPercentage})
     }
+    let user = await User.findById(userId);
+    //Updating discounts manually as there is no ref in the model
+    let createdProductsArr = user.createdProducts;
+    let newCreatedProduct = createdProductsArr.find((product) => (product._id).toString() ===(productId).toString())
+    newCreatedProduct.discount = discountPercentage;
+    let indexOfCreatedProduct = createdProductsArr.findIndex((product) => (product._id).toString() === (productId).toString());
+    createdProductsArr.splice(indexOfCreatedProduct, 1, newCreatedProduct)
+
+    let addedProductsArr = user.addedProducts;
+    if(addedProductsArr.length > 0){
+      let newAddedProduct = addedProductsArr.find((product) => (product._id).toString() ===(productId).toString())
+      newAddedProduct.discount = discountPercentage;
+      let indexOfAddedProduct = addedProductsArr.findIndex((product) => (product._id).toString() === (productId).toString());
+      addedProductsArr.splice(indexOfAddedProduct, 1, newAddedProduct)
+    }
+    await User.findByIdAndUpdate(userId, {createdProducts: createdProductsArr, addedProducts: addedProductsArr})
   } catch (error) {
     return error
   }
