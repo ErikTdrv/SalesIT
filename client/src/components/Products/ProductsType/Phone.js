@@ -36,10 +36,6 @@ export default function PhoneProduct({ mode, data }){
     if (request.message) {
       return setMainError(request.message.split(": ")[2].split(", ")[0]);
     }
-    let array = user.createdProducts;
-    array.push(request);
-    user.createdProducts = array
-    userAuth(user)
     if (request._id && mode === undefined) {
       navigate("/");
     } else if (mode === "edit") {
