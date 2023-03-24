@@ -5,6 +5,7 @@ import {
 } from "../../services/productService";
 import "./Shopping.css";
 import { Link } from "react-router-dom";
+import { getProfileProducts } from "../../services/userService";
 
 export default function ShoppingCard({ mode }) {
   let [products, setProducts] = useState();
@@ -13,7 +14,12 @@ export default function ShoppingCard({ mode }) {
   let [totalPrice, setTotalPrice] = useState(0);
   useEffect(() => {
     async function getProducts() {
-      let products = await getProductCard();
+      let products;
+      if(mode === 'profile'){
+        products = await getProfileProducts()
+      }else {
+        products = await getProductCard();
+      }
       setProducts(products);
       setIsLoading(false);
       setTotalPrice(
