@@ -116,20 +116,26 @@ const addToCard = async (id, product) => {
 const removeFromCard = async (userId, productId) => {
   try {
     let user = await User.findById(userId);
-    let indexOfComputer = user.addedComputers.findIndex((product) => (product._id).toString() === (productId).toString())
-    let indexOfPhones = user.addedPhones.findIndex((product) => (product._id).toString() === (productId).toString())
-    let indexOfMonitors = user.addedMonitors.findIndex((product) => (product._id).toString() === (productId).toString())
-    if(indexOfComputer !== -1){
+    let indexOfComputer = user.addedComputers.findIndex(
+      (product) => product._id.toString() === productId.toString()
+    );
+    let indexOfPhones = user.addedPhones.findIndex(
+      (product) => product._id.toString() === productId.toString()
+    );
+    let indexOfMonitors = user.addedMonitors.findIndex(
+      (product) => product._id.toString() === productId.toString()
+    );
+    if (indexOfComputer !== -1) {
       let productsArray = user.addedComputers;
-      productsArray.splice(indexOfComputer, 1)
+      productsArray.splice(indexOfComputer, 1);
       await User.findByIdAndUpdate(userId, { addedComputers: productsArray });
-    }else if(indexOfPhones !== -1){
+    } else if (indexOfPhones !== -1) {
       let productsArray = user.addedPhones;
-      productsArray.splice(indexOfPhones, 1)
+      productsArray.splice(indexOfPhones, 1);
       await User.findByIdAndUpdate(userId, { addedPhones: productsArray });
-    }else if(indexOfMonitors !== -1){
+    } else if (indexOfMonitors !== -1) {
       let productsArray = user.addedMonitors;
-      productsArray.splice(indexOfMonitors, 1)
+      productsArray.splice(indexOfMonitors, 1);
       await User.findByIdAndUpdate(userId, { addedMonitors: productsArray });
     }
   } catch (error) {
@@ -207,20 +213,8 @@ const addDiscount = async (
     );
     createdProductsArr.splice(indexOfCreatedProduct, 1, newCreatedProduct);
 
-    let addedProductsArr = user.addedProducts;
-    if (addedProductsArr.length > 0) {
-      let newAddedProduct = addedProductsArr.find(
-        (product) => product._id.toString() === productId.toString()
-      );
-      newAddedProduct.discount = discountPercentage;
-      let indexOfAddedProduct = addedProductsArr.findIndex(
-        (product) => product._id.toString() === productId.toString()
-      );
-      addedProductsArr.splice(indexOfAddedProduct, 1, newAddedProduct);
-    }
     await User.findByIdAndUpdate(userId, {
       createdProducts: createdProductsArr,
-      addedProducts: addedProductsArr,
     });
   } catch (error) {
     return error;
