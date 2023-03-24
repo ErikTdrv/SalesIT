@@ -15,9 +15,9 @@ export default function ShoppingCard({ mode }) {
   useEffect(() => {
     async function getProducts() {
       let products;
-      if(mode === 'profile'){
-        products = await getProfileProducts()
-      }else {
+      if (mode === "profile") {
+        products = await getProfileProducts();
+      } else {
         products = await getProductCard();
       }
       setProducts(products);
@@ -48,7 +48,7 @@ export default function ShoppingCard({ mode }) {
         <div className="shopping-container">
           {mode === "profile" ? (
             <h1>Profile Products</h1>
-            ) : (
+          ) : (
             <h1>Shopping Card</h1>
           )}
           <div className="card__products">
@@ -62,11 +62,18 @@ export default function ShoppingCard({ mode }) {
                     {products[index]?.phonename}
                   </h1>
                   <span className="product__price">
-                    {products[index]?.price}$
+                    {products[index]?.discount > 0
+                      ? (
+                          products[index].price -
+                          Number(products[index].discount) * 0.01 * products[index].price
+                        ).toFixed(2)
+                      : `${products[index]?.price}$`}
                   </span>
-                  <button onClick={() => removeProduct(products[index]._id)}>
-                    Remove
-                  </button>
+                  {mode !== "profile" && (
+                    <button onClick={() => removeProduct(products[index]?._id)}>
+                      Remove
+                    </button>
+                  )}
                   <Link to={`/all-products/${products[index]?._id}`}>
                     <button>Details</button>
                   </Link>
@@ -80,13 +87,20 @@ export default function ShoppingCard({ mode }) {
                     {products[index + 1]?.phonename}
                   </h1>
                   <span className="product__price">
-                    {products[index + 1]?.price}$
+                    {products[index + 1]?.discount > 0
+                      ? (
+                          products[index].price -
+                          Number(products[index + 1].discount) * 0.01 * products[index + 1].price
+                        ).toFixed(2)
+                      : `${products[index + 1]?.price}$`}
                   </span>
-                  <button
-                    onClick={() => removeProduct(products[index + 1]._id)}
-                  >
-                    Remove
-                  </button>
+                  {mode !== "profile" && (
+                    <button
+                      onClick={() => removeProduct(products[index + 1]?._id)}
+                    >
+                      Remove
+                    </button>
+                  )}
                   <Link to={`/all-products/${products[index + 1]?._id}`}>
                     <button>Details</button>
                   </Link>
@@ -100,13 +114,20 @@ export default function ShoppingCard({ mode }) {
                     {products[index + 2]?.phonename}
                   </h1>
                   <span className="product__price">
-                    {products[index + 2]?.price}$
+                    {products[index + 2]?.discount > 0
+                      ? (
+                          products[index + 2].price -
+                          Number(products[index + 2].discount) * 0.01 * products[index + 2].price
+                        ).toFixed(2)
+                      : `${products[index + 2]?.price}$`}
                   </span>
-                  <button
-                    onClick={() => removeProduct(products[index + 2]._id)}
-                  >
-                    Remove
-                  </button>
+                  {mode !== "profile" && (
+                    <button
+                      onClick={() => removeProduct(products[index + 2]?._id)}
+                    >
+                      Remove
+                    </button>
+                  )}
                   <Link to={`/all-products/${products[index + 2]?._id}`}>
                     <button>Details</button>
                   </Link>
@@ -120,7 +141,12 @@ export default function ShoppingCard({ mode }) {
                     {products[index + 3]?.phonename}
                   </h1>
                   <span className="product__price">
-                    {products[index + 3]?.price}$
+                    {products[index + 3]?.discount > 0
+                      ? (
+                          products[index + 3].price -
+                          Number(products[index + 3].discount) * 0.01 * products[index + 3].price
+                        ).toFixed(2)
+                      : `${products[index + 3]?.price}$`}
                   </span>
                   <button
                     onClick={() => removeProduct(products[index + 3]._id)}
@@ -149,7 +175,7 @@ export default function ShoppingCard({ mode }) {
         <div className="shopping-container">
           {mode === "profile" ? (
             <h1>Profile Products</h1>
-            ) : (
+          ) : (
             <h1>Shopping Card</h1>
           )}
           <div className="card__products">
