@@ -7,7 +7,7 @@ const addProduct = async (product, userId) => {
 
   const user = await User.findById(userId);
   let newProduct;
-  let newArray = user.addedProducts;
+  let newArray = user.createdProducts;
   product.discount = '0'
   if (product.productName == "Computers") {
     newProduct = await Computer.create(product);
@@ -16,8 +16,10 @@ const addProduct = async (product, userId) => {
   } else if (product.productName === "Phones") {
     newProduct = await Phone.create(product);
   }
+  console.log(newProduct)
   newArray.push(newProduct)
-  await User.findByIdAndUpdate(userId, {addedProducts: newArray});
+  console.log(newArray)
+  await User.findByIdAndUpdate(userId, {createdProducts: newArray});
   return newProduct
 };
 const getAllProducts = async () => {
@@ -60,20 +62,20 @@ const deleteOneProduct = async (productId, type, userId) => {
     } else if (type === "Computers") {
       deletedProduct = await Computer.findByIdAndDelete(productId);
     }
-    await deleteProductFromUserAddedProducts(userId, deletedProduct._id)
+    await deleteProductFromUserCreatedProducts(userId, deletedProduct._id)
     return deletedProduct;
   } catch (error) {
     return error;
   }
 };
-const deleteProductFromUserAddedProducts = async (userId, productId) => {
+const deleteProductFromUserCreatedProducts = async (userId, productId) => {
   try {
     let user = await User.findById(userId);
-    let newArray = user.addedProducts;
+    let newArray = user.createdProducts;
     let indexOfProduct = newArray.findIndex((e) => e._id.toString() == productId.toString());
     if(indexOfProduct !== -1){
       newArray.splice(indexOfProduct, 1)
-      await User.findByIdAndUpdate(userId, {addedProducts: newArray})
+      await User.findByIdAndUpdate(userId, {createdProducts: newArray})
     }
   } catch (error) {
     return error
