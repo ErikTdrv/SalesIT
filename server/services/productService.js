@@ -116,12 +116,22 @@ const addToCard = async (id, product) => {
 const removeFromCard = async (userId, productId) => {
   try {
     let user = await User.findById(userId);
-    let productsArray = user.addedProducts;
-    let indexOfProduct = productsArray.findIndex(
-      (product) => product._id === productId
-    );
-    productsArray.splice(indexOfProduct, 1);
-    await User.findByIdAndUpdate(userId, { addedProducts: productsArray });
+    let indexOfComputer = user.addedComputers.findIndex((product) => (product._id).toString() === (productId).toString())
+    let indexOfPhones = user.addedPhones.findIndex((product) => (product._id).toString() === (productId).toString())
+    let indexOfMonitors = user.addedMonitors.findIndex((product) => (product._id).toString() === (productId).toString())
+    if(indexOfComputer !== -1){
+      let productsArray = user.addedComputers;
+      productsArray.splice(indexOfComputer, 1)
+      await User.findByIdAndUpdate(userId, { addedComputers: productsArray });
+    }else if(indexOfPhones !== -1){
+      let productsArray = user.addedPhones;
+      productsArray.splice(indexOfPhones, 1)
+      await User.findByIdAndUpdate(userId, { addedPhones: productsArray });
+    }else if(indexOfMonitors !== -1){
+      let productsArray = user.addedMonitors;
+      productsArray.splice(indexOfMonitors, 1)
+      await User.findByIdAndUpdate(userId, { addedMonitors: productsArray });
+    }
   } catch (error) {
     return error;
   }
