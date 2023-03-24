@@ -144,8 +144,16 @@ const removeFromCard = async (userId, productId) => {
 };
 const getCardProducts = async (userId) => {
   try {
-    let user = await User.findById(userId);
-    return user.addedProducts;
+    let user = await User.findById(userId)
+      .populate("addedMonitors")
+      .populate("addedPhones")
+      .populate("addedComputers");
+    let array = [
+      ...user.addedComputers,
+      ...user.addedMonitors,
+      ...user.addedPhones,
+    ];
+    return array;
   } catch (error) {
     return error;
   }
