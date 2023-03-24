@@ -31,7 +31,7 @@ export default function Profile() {
           </div>
         </div>
         <div className="profile__products">
-            <ShoppingCard/>
+            <ShoppingCard mode={'profile'}/>
         </div>
       </div>
       <Copyright />

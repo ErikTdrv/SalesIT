@@ -6,7 +6,7 @@ import {
 import "./Shopping.css";
 import { Link } from "react-router-dom";
 
-export default function ShoppingCard() {
+export default function ShoppingCard({ mode }) {
   let [products, setProducts] = useState();
   let [isLoading, setIsLoading] = useState(true);
   let [index, setIndex] = useState(0);
@@ -40,7 +40,11 @@ export default function ShoppingCard() {
     <>
       {!isLoading && products.length > 0 ? (
         <div className="shopping-container">
-          <h1>Shopping Card</h1>
+          {mode === "profile" ? (
+            <h1>Profile Products</h1>
+            ) : (
+            <h1>Shopping Card</h1>
+          )}
           <div className="card__products">
             <h3>All Added Products</h3>
             <section className="card__section">
@@ -133,11 +137,15 @@ export default function ShoppingCard() {
             </div>
             <span className="total-price">Total Price: {totalPrice}$</span>
           </div>
-          <button className="buy-btn">Buy</button>
+          {mode !== "profile" && <button className="buy-btn">Buy</button>}
         </div>
       ) : (
         <div className="shopping-container">
-          <h1>Shopping Card</h1>
+          {mode === "profile" ? (
+            <h1>Profile Products</h1>
+            ) : (
+            <h1>Shopping Card</h1>
+          )}
           <div className="card__products">
             {products?.length === 0 ? (
               <h3>No Added Products</h3>
