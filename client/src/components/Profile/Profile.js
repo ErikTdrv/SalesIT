@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import Copyright from "../Copyright/Copyright";
+import ShoppingCard from "../Shopping/Shopping";
 import "./Profile.css";
 
 export default function Profile() {
@@ -30,10 +31,11 @@ export default function Profile() {
           </div>
         </div>
         <div className="profile__products">
-          <h1>heelo</h1>
+            <ShoppingCard/>
         </div>
       </div>
       <Copyright />
     </>
+    
   );
 }
