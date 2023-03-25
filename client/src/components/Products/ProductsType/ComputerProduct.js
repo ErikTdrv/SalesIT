@@ -3,59 +3,63 @@ import { useNavigate } from "react-router";
 import { addProduct, editOneProduct } from "../../../services/productService";
 import { convertToBase64 } from "../../../services/userService";
 
-export default function ComputerProduct({mode, data}) {
-  let [products, setProducts] = useState({manufacturer: '', motherboard: '', processor: '', videocard: '', os: '', ssd: '', harddrive: '', images: []});
+export default function ComputerProduct({ mode, data }) {
+  let [products, setProducts] = useState({
+    manufacturer: "",
+    motherboard: "",
+    processor: "",
+    videocard: "",
+    os: "",
+    ssd: "",
+    harddrive: "",
+    images: [],
+  });
   let [error, setError] = useState({});
-  let [disabled, setDisabled] = useState(true)
-  let [mainError, setMainError] = useState('')
+  let [disabled, setDisabled] = useState(true);
+  let [mainError, setMainError] = useState("");
   let [isLoading, setIsLoading] = useState(false);
   let navigate = useNavigate();
-  let formClassName = isLoading ? 'add-form blurred' : 'add-form';
+  let formClassName = isLoading ? "add-form blurred" : "add-form";
   useEffect(() => {
-    if(data !== undefined){
-      setProducts(data)
+    if (data !== undefined) {
+      setProducts(data);
     }
-
-  }, [])
+  }, []);
   async function onAddHandler(e) {
     e.preventDefault();
-    setIsLoading(true)
+    setIsLoading(true);
     let request;
-    if(mode === undefined){
+    if (mode === undefined) {
       request = await addProduct(products, "Computers");
-    }else if(mode === 'edit'){
-      request = await editOneProduct(products, products._id)
+    } else if (mode === "edit") {
+      request = await editOneProduct(products, products._id);
     }
-    if(request.message){
-      return setMainError(request.message.split(': ')[2].split(', ')[0])
+    if (request.message) {
+      return setMainError(request.message.split(": ")[2].split(", ")[0]);
     }
-    if(request._id && mode === undefined){
-      setIsLoading(false)
-      navigate('/')
-    }else if(mode === 'edit'){
-      setIsLoading(false)
-      navigate(`/all-products/${products._id}`)
+    if (request._id && mode === undefined) {
+      setIsLoading(false);
+      navigate("/");
+    } else if (mode === "edit") {
+      setIsLoading(false);
+      navigate(`/all-products/${products._id}`);
     }
   }
 
   function validateInput(e, type) {
-    if(e.target.value === ''){
-      setError({...error, [type]: `${type} is required`})
-      setDisabled(true)
-    }else {
-      setDisabled(false)
-      setError({...error, [type]: ''})
+    if (e.target.value === "") {
+      setError({ ...error, [type]: `${type} is required` });
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+      setError({ ...error, [type]: "" });
     }
   }
   return (
     <>
-      { isLoading && (
-        <span className="loader"></span>
-      )}
+      {isLoading && <span className="loader"></span>}
       <form className={formClassName} onSubmit={onAddHandler}>
-      {mainError &&
-      <p className="main-error">{mainError}</p>
-      }
+        {mainError && <p className="main-error">{mainError}</p>}
         <div className="inputs">
           <div className="left-input">
             <div className="manufacturer">
@@ -65,7 +69,7 @@ export default function ComputerProduct({mode, data}) {
                   setProducts({ ...products, manufacturer: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Manufacturer")}
-                value={products?.manufacturer || ''}
+                value={products?.manufacturer || ""}
               />
               <span className={products.manufacturer ? "value-there" : ""}>
                 Manufacturer
@@ -81,7 +85,7 @@ export default function ComputerProduct({mode, data}) {
                   setProducts({ ...products, motherboard: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Motherboard")}
-                value={products?.motherboard || ''}
+                value={products?.motherboard || ""}
               />
               <span className={products.motherboard ? "value-there" : ""}>
                 Motherboard
@@ -97,14 +101,12 @@ export default function ComputerProduct({mode, data}) {
                   setProducts({ ...products, processor: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Processor")}
-                value={products?.processor || ''}
+                value={products?.processor || ""}
               />
               <span className={products.processor ? "value-there" : ""}>
                 Processor
               </span>
-              {error.Processor && (
-                <p className="error">{error.Processor}</p>
-              )}
+              {error.Processor && <p className="error">{error.Processor}</p>}
             </div>
             <div className="videocard">
               <input
@@ -113,14 +115,12 @@ export default function ComputerProduct({mode, data}) {
                   setProducts({ ...products, videocard: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Videocard")}
-                value={products?.videocard || ''}
+                value={products?.videocard || ""}
               />
               <span className={products.videocard ? "value-there" : ""}>
                 Videocard
               </span>
-              {error.Videocard && (
-                <p className="error">{error.Videocard}</p>
-              )}
+              {error.Videocard && <p className="error">{error.Videocard}</p>}
             </div>
             <div className="avatar">
               <label htmlFor="avatar">
@@ -152,14 +152,12 @@ export default function ComputerProduct({mode, data}) {
                   setProducts({ ...products, os: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Os")}
-                value={products?.os || ''}
+                value={products?.os || ""}
               />
               <span className={products.os ? "value-there" : ""}>
                 Operation System
               </span>
-              {error.Os && (
-                <p className="error">{error.Os}</p>
-              )}
+              {error.Os && <p className="error">{error.Os}</p>}
             </div>
             <div className="ssd">
               <input
@@ -168,13 +166,10 @@ export default function ComputerProduct({mode, data}) {
                   setProducts({ ...products, ssd: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Ssd")}
-                value={products?.ssd || ''}
-
+                value={products?.ssd || ""}
               />
               <span className={products.ssd ? "value-there" : ""}>SSD</span>
-              {error.Ssd && (
-                <p className="error">{error.Ssd}</p>
-              )}
+              {error.Ssd && <p className="error">{error.Ssd}</p>}
             </div>
             <div className="harddrive">
               <input
@@ -183,15 +178,12 @@ export default function ComputerProduct({mode, data}) {
                   setProducts({ ...products, harddrive: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Harddrive")}
-                value={products?.harddrive || ''}
-
+                value={products?.harddrive || ""}
               />
               <span className={products.harddrive ? "value-there" : ""}>
                 Hard Drive
               </span>
-              {error.Harddrive && (
-                <p className="error">{error.Harddrive}</p>
-              )}
+              {error.Harddrive && <p className="error">{error.Harddrive}</p>}
             </div>
             <div className="price" id="price">
               <input
@@ -200,13 +192,10 @@ export default function ComputerProduct({mode, data}) {
                   setProducts({ ...products, price: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Price")}
-                value={products?.price || ''}
-
+                value={products?.price || ""}
               />
               <span className={products.price ? "value-there" : ""}>Price</span>
-              {error.Price && (
-                <p className="error">{error.Price}</p>
-              )}
+              {error.Price && <p className="error">{error.Price}</p>}
             </div>
           </div>
         </div>
@@ -217,15 +206,26 @@ export default function ComputerProduct({mode, data}) {
             ))}
           </div>
         )}
-        {products.images && mode === 'edit' && (
+        {products.images && mode === "edit" && (
           <div className="images">
             {products.images.map((e) => (
-              <img src={e.imageUrl} key={e.imageId} className="mini-img" alt="" />
+              <img
+                src={e.imageUrl}
+                key={e.imageId}
+                className="mini-img"
+                alt=""
+              />
             ))}
           </div>
         )}
 
-        <input type="submit" disabled={disabled} onClick={() => setMainError('')} value="Add Product" className="add-btn" />
+        <input
+          type="submit"
+          disabled={disabled}
+          onClick={() => setMainError("")}
+          value="Add Product"
+          className="add-btn"
+        />
       </form>
     </>
   );

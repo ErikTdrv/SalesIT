@@ -8,6 +8,8 @@ export default function Monitor({ mode, data }) {
   let [error, setError] = useState({});
   let [disabled, setDisabled] = useState(true);
   let [mainError, setMainError] = useState("");
+  let [isLoading, setIsLoading] = useState(false);
+  let formClassName = isLoading ? "add-form blurred" : "add-form";
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -17,6 +19,7 @@ export default function Monitor({ mode, data }) {
   }, []);
   async function addMonitorHandler(e) {
     e.preventDefault();
+    setIsLoading(true);
     let request;
     if (mode === undefined) {
       request = await addProduct(products, "Monitors");
@@ -27,8 +30,10 @@ export default function Monitor({ mode, data }) {
       return setMainError(request.message.split(": ")[2].split(", ")[0]);
     }
     if (request._id && mode === undefined) {
+      setIsLoading(false);
       navigate("/");
     } else if (mode === "edit") {
+      setIsLoading(false);
       navigate(`/all-products/${products._id}`);
     }
   }
@@ -43,7 +48,8 @@ export default function Monitor({ mode, data }) {
   }
   return (
     <>
-      <form className="add-form" onSubmit={addMonitorHandler}>
+      {isLoading && <span className="loader"></span>}
+      <form className={formClassName} onSubmit={addMonitorHandler}>
         {mainError && <p className="main-error">{mainError}</p>}
         <div className="inputs">
           <div className="left-input">
@@ -54,7 +60,7 @@ export default function Monitor({ mode, data }) {
                   setProducts({ ...products, manufacturer: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Manufacturer")}
-                value={products.manufacturer || ''}
+                value={products.manufacturer || ""}
               />
               <span className={products.manufacturer ? "value-there" : ""}>
                 Manufacturer
@@ -70,7 +76,7 @@ export default function Monitor({ mode, data }) {
                   setProducts({ ...products, screensize: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Screen Size")}
-                value={products.screensize || ''}
+                value={products.screensize || ""}
               />
               <span className={products.screensize ? "value-there" : ""}>
                 Screen Size
@@ -86,7 +92,7 @@ export default function Monitor({ mode, data }) {
                   setProducts({ ...products, resolution: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Resolution")}
-                value={products.resolution || ''}
+                value={products.resolution || ""}
               />
               <span className={products.resolution ? "value-there" : ""}>
                 Resolution
@@ -123,7 +129,7 @@ export default function Monitor({ mode, data }) {
                   setProducts({ ...products, refreshrate: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Refresh Rate")}
-                value={products.refreshrate || ''}
+                value={products.refreshrate || ""}
               />
               <span className={products.refreshrate ? "value-there" : ""}>
                 Refresh Rate
@@ -139,7 +145,7 @@ export default function Monitor({ mode, data }) {
                   setProducts({ ...products, paneltype: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Panel Type")}
-                value={products.paneltype || ''}
+                value={products.paneltype || ""}
               />
               <span className={products.paneltype ? "value-there" : ""}>
                 Panel Type
@@ -155,7 +161,7 @@ export default function Monitor({ mode, data }) {
                   setProducts({ ...products, price: e.target.value })
                 }
                 onBlur={(e) => validateInput(e, "Price")}
-                value={products.price || ''}
+                value={products.price || ""}
               />
               <span className={products.price ? "value-there" : ""}>Price</span>
               {error.Price && <p className="error">{error.Price}</p>}
