@@ -3,8 +3,6 @@ const computerSchema = new mongoose.Schema({
   manufacturer: {
     type: String,
     required: true,
-    minlength: [2, "Manufacturer should have at least 2 characters!"],
-    maxlength: [10, "Manufacturer cannot have more than 10 characters!"],
   },
   motherboard: {
     required: [true, 'Motherboard is required!'],

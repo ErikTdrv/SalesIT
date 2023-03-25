@@ -3,8 +3,6 @@ const monitorSchema = new mongoose.Schema({
   manufacturer: {
     type: String,
     required: true,
-    minlength: [4, "Manufacturer should have at least 4 characters!"],
-    maxlength: [10, "Manufacturer cannot have more than 10 characters!"],
   },
   screensize: {
     required: [true, 'Screen Size is required'],
