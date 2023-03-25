@@ -22,7 +22,7 @@
 }
 
 .loader:after {
-  color: #FF3D00;
+  color: red;
   transform: rotateY(70deg);
   animation-delay: .4s;
 }
