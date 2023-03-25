@@ -97,7 +97,7 @@ export function DetailsInfo({product}){
             { product.discount > 0 ? (
               <span>
                 <p>Price: </p>
-                <span className="old">{(product.price - (Number(product.discount)*0.01) * product.price).toFixed(2)}$</span>
+                <span className="old">{product.price}$</span>
                 <span className="new">{(product.price - (Number(product.discount)*0.01) * product.price).toFixed(2)}$</span> 
               </span>
             ) : (
