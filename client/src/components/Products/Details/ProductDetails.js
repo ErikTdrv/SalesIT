@@ -14,7 +14,7 @@ import "./ProductDetails.css";
 export default function ProductDetails() {
   const { isAuth } = useContext(AuthContext);
   const { productId } = useParams();
-  const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState(0);
   const [product, setProduct] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [productType, setProductType] = useState("");
@@ -45,14 +45,15 @@ export default function ProductDetails() {
       setAlreadyAdded(alreadyAdded ? true : false);
       setMainImage(data.images[0].imageUrl);
       setIsLoading(false);
+      console.log(data)
     }
     getData();
   }, []);
 
   function changeIndex(type) {
-    if (index === 0 && type === "+" && index + 1 < product.images.length) {
+    if (type === "+" && index + 3 < product.images.length) {
       setIndex(index + 1);
-    } else if (index > 0 && type === "-" && index + 1 < product.images.length) {
+    } else if (index > 0 && type === "-") {
       setIndex(index - 1);
     }
   }
