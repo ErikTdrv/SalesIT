@@ -46,7 +46,7 @@
     background-color: #f44336;
 }
 .computer__card .price {
-    padding: 3px 15px;
+    padding: 0px 10px;
     min-width: 60px;
     white-space: nowrap;
     text-align: center;
@@ -58,7 +58,7 @@
     position: absolute;
     /* top: 44%; */
     /* text-decoration: line-through 1px red; */
-    left: 57%;
+    left: 65%;
 }
 hr {
     width: 100%;
@@ -67,7 +67,7 @@ hr {
     position: relative;
 }
 .price-div .price {
-    margin-top: 135px;
+    margin-top: 138px;
 }
 .computer__discount__div {
     position: absolute;
