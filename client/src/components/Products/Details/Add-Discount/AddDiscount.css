@@ -44,3 +44,12 @@
     font-weight: 700;
     margin: 10px;
 }
+.blurred {
+    filter: blur(50px);
+}
+.add-container .loader {
+    color: black;
+}
+.add-container .loader::after {
+    color: red;
+}

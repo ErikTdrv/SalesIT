@@ -8,7 +8,9 @@ export default function ComputerProduct({mode, data}) {
   let [error, setError] = useState({});
   let [disabled, setDisabled] = useState(true)
   let [mainError, setMainError] = useState('')
+  let [isLoading, setIsLoading] = useState(false);
   let navigate = useNavigate();
+  let formClassName = isLoading ? 'add-form blurred' : 'add-form';
   useEffect(() => {
     if(data !== undefined){
       setProducts(data)
@@ -17,6 +19,7 @@ export default function ComputerProduct({mode, data}) {
   }, [])
   async function onAddHandler(e) {
     e.preventDefault();
+    setIsLoading(true)
     let request;
     if(mode === undefined){
       request = await addProduct(products, "Computers");
@@ -27,8 +30,10 @@ export default function ComputerProduct({mode, data}) {
       return setMainError(request.message.split(': ')[2].split(', ')[0])
     }
     if(request._id && mode === undefined){
+      setIsLoading(false)
       navigate('/')
     }else if(mode === 'edit'){
+      setIsLoading(false)
       navigate(`/all-products/${products._id}`)
     }
   }
@@ -44,7 +49,10 @@ export default function ComputerProduct({mode, data}) {
   }
   return (
     <>
-      <form className="add-form" onSubmit={onAddHandler}>
+      { isLoading && (
+        <span className="loader"></span>
+      )}
+      <form className={formClassName} onSubmit={onAddHandler}>
       {mainError &&
       <p className="main-error">{mainError}</p>
       }
