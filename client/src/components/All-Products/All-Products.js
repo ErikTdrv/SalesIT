@@ -25,7 +25,7 @@ export default function AllItems() {
     }
     getData();
   }, []);
-  function handlePriceFilter(minValue, maxValue, reset) {
+  function handlePriceFilter(minValue, maxValue) {
     setMaxPrice(maxValue);
     setMinPrice(minValue);
   }

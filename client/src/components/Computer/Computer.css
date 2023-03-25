@@ -97,6 +97,7 @@ hr {
 }
 #deletedPrice {
     font-size: 10px;
+    left: 50%;
 }
 #newPrice {
     font-size: 15px;
