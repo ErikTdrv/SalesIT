@@ -112,6 +112,16 @@ export default function Filter(props) {
           />
           +2000$
         </label>
+        <label htmlFor="reset">
+          <input
+            type="radio"
+            id="0"
+            name="price-range"
+            value="reset"
+            onClick={() => filterPrice(undefined, undefined)}
+          />
+          All
+        </label>
       </div>
     </article>
   );

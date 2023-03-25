@@ -78,3 +78,13 @@ h4 {
 .avatar .fa-solid {
     padding-right: 5px;
 }
+.reset-btn {
+    border-radius: 20px;
+    border: none;
+    padding: 10px 0px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.reset-btn:hover {
+    background-color: #f44336;
+}
