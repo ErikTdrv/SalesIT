@@ -68,7 +68,7 @@ export function DetailsInfo({product}){
                 )}
                 {product?.screensize && (
                   <span>
-                    <p>Screen Size:</p> {product.screenrsize}
+                    <p>Screen Size:</p> {product.screensize}
                   </span>
                 )}
                 {product?.paneltype && (
