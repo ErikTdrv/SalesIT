@@ -16,6 +16,7 @@ export default function Register() {
     e.preventDefault();
     setIsLoading(true);
     if (auth.repass !== auth.password) {
+      isLoading(false)
       return setMainError("Passwords must match!");
     }
     let response = await register(auth);
