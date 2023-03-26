@@ -17,7 +17,6 @@ export default function Header(){
             { isAuth && 
             <li><NavLink activeclassname='active' className='Link' to='/add-product'>Add Product</NavLink></li>
             }
-            <li><NavLink activeclassname='active' className='Link' to='/about'>About</NavLink></li>
         </ul>
         <ul className="authul">
             { isAuth ? 
