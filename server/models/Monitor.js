@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const monitorSchema = new mongoose.Schema({
   manufacturer: {
     type: String,
+    maxlength: [30, 'Manufacturer cannot have more than 15 characters!'],
     required: true,
   },
   screensize: {
