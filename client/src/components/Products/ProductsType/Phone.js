@@ -10,7 +10,6 @@ export default function PhoneProduct({ mode, data }){
   let [disabled, setDisabled] = useState(true);
   let [mainError, setMainError] = useState('')
   let navigate = useNavigate();
-  let { user, userAuth } = useContext(AuthContext)
   useEffect(() => {
     if (data !== undefined) {
       setProducts(data);
@@ -194,14 +193,14 @@ export default function PhoneProduct({ mode, data }){
       {products.images && mode === undefined && (
         <div className="images">
           {products.images.map((e) => (
-            <img src={e} key={e.imageId} className="mini-img" alt="" />
+            <img src={e} key={e.imageId} className="mini-img" alt="no-img" />
           ))}
         </div>
       )}
       {products.images && mode === "edit" && (
         <div className="images">
           {products.images.map((e) => (
-            <img src={e.imageUrl} key={e.imageId} className="mini-img" alt="" />
+            <img src={e.imageUrl} key={e.imageId} className="mini-img" alt="no-img" />
           ))}
         </div>
       )}

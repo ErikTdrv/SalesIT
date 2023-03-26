@@ -102,7 +102,6 @@ export default function Monitor({ mode, data }) {
             <div className="avatar">
               <label htmlFor="avatar">
                 <i className="fa-solid fa-plus"></i>Add Images
-              </label>
               <input
                 type="file"
                 multiple
@@ -114,11 +113,12 @@ export default function Monitor({ mode, data }) {
                     images: await Promise.all(
                       Array.from(e.target.files).map(
                         async (e) => await convertToBase64(e)
-                      )
-                    ),
-                  })
-                }
-              />
+                        )
+                        ),
+                      })
+                    }
+                    />
+                    </label>
             </div>
           </div>
           <div className="right-input">

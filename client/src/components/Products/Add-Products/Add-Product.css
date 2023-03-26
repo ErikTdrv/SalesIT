@@ -146,3 +146,14 @@
     color: red;
     font-weight: 700;
 }
+.add-form .avatar {
+    cursor: pointer;
+}
+.add-form label .fa-solid{
+    transition: 0.3s ease-in-out;
+
+}
+.add-form label:hover .fa-solid{
+    cursor: pointer;
+    transform: rotate(45deg);
+}

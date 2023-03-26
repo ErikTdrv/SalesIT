@@ -124,8 +124,6 @@ export default function ComputerProduct({ mode, data }) {
             </div>
             <div className="avatar">
               <label htmlFor="avatar">
-                <i className="fa-solid fa-plus"></i>Add Images
-              </label>
               <input
                 type="file"
                 multiple
@@ -137,11 +135,13 @@ export default function ComputerProduct({ mode, data }) {
                     images: await Promise.all(
                       Array.from(e.target.files).map(
                         async (e) => await convertToBase64(e)
-                      )
-                    ),
-                  })
-                }
+                        )
+                        ),
+                      })
+                    }
               />
+                    <i className="fa-solid fa-plus"></i>Add Images
+              </label>
             </div>
           </div>
           <div className="right-input">
