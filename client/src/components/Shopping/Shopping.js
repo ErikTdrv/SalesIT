@@ -148,11 +148,13 @@ export default function ShoppingCard({ mode }) {
                         ).toFixed(2)
                       : `${products[index + 3]?.price}$`}
                   </span>
-                  <button
-                    onClick={() => removeProduct(products[index + 3]._id)}
-                  >
-                    Remove
-                  </button>
+                  {mode !== "profile" && (
+                    <button
+                      onClick={() => removeProduct(products[index + 2]?._id)}
+                    >
+                      Remove
+                    </button>
+                  )}
                   <Link to={`/all-products/${products[index + 3]?._id}`}>
                     <button>Details</button>
                   </Link>
