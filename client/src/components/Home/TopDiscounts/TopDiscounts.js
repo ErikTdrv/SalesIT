@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getAllProducts } from "../../../services/productService";
-import Computer from "../../Computer/Computer";
+import Product from "../../Product/Product";
 import "./TopDiscounts.css";
 
 export default function TopDiscounts() {
@@ -49,19 +49,19 @@ export default function TopDiscounts() {
 
           <section className="discounts__place">
             {allDiscounts[index]?._id && (
-              <Computer
+              <Product
                 key={allDiscounts[index]._id}
                 product={allDiscounts[index]}
               />
             )}
             {allDiscounts[index + 1]?._id && (
-              <Computer
+              <Product
                 key={allDiscounts[index + 1]._id}
                 product={allDiscounts[index + 1]}
               />
             )}
             {allDiscounts[index + 2]?._id && (
-              <Computer
+              <Product
                 key={allDiscounts[index + 2]._id}
                 product={allDiscounts[index + 2]}
               />

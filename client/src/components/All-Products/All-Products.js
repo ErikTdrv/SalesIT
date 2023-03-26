@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getAllProducts } from "../../services/productService";
-import Computer from "../Computer/Computer";
+import Product from "../Product/Product";
 import HomeFooter from "../Home/Home-Footer/Footer";
 import "./All-Products.css";
 import Filter from "./Filter";
@@ -21,7 +21,6 @@ export default function AllItems() {
       setMonitors(monitors);
       setPhones(phones);
       setIsLoading(false);
-      console.log(computers);
     }
     getData();
   }, []);
@@ -82,60 +81,60 @@ export default function AllItems() {
                   (productFilter === "all" || productFilter === "computers") &&
                   computers.map((computer) => {
                     if (minPrice === undefined && maxPrice === undefined) {
-                      return <Computer key={computer._id} product={computer} />;
+                      return <Product key={computer._id} product={computer} />;
                     } else if (
                       minPrice === 2000 &&
                       maxPrice === undefined &&
                       computer.price >= 2000
                     ) {
-                      return <Computer key={computer._id} product={computer} />;
+                      return <Product key={computer._id} product={computer} />;
                     } else if (
                       minPrice !== undefined &&
                       maxPrice !== undefined &&
                       computer.price >= minPrice &&
                       computer.price <= maxPrice
                     ) {
-                      return <Computer key={computer._id} product={computer} />;
+                      return <Product key={computer._id} product={computer} />;
                     }
                   })}
                 {monitors &&
                   (productFilter === "all" || productFilter === "monitors") &&
                   monitors.map((monitor) => {
                     if (minPrice === undefined && maxPrice === undefined) {
-                      return <Computer key={monitor._id} product={monitor} />;
+                      return <Product key={monitor._id} product={monitor} />;
                     } else if (
                       minPrice === 2000 &&
                       maxPrice === undefined &&
                       monitor.price >= 2000
                     ) {
-                      return <Computer key={monitor._id} product={monitor} />;
+                      return <Product key={monitor._id} product={monitor} />;
                     } else if (
                       minPrice !== undefined &&
                       maxPrice !== undefined &&
                       monitor.price >= minPrice &&
                       monitor.price <= maxPrice
                     ) {
-                      return <Computer key={monitor._id} product={monitor} />;
+                      return <Product key={monitor._id} product={monitor} />;
                     }
                   })}
                 {phones &&
                   (productFilter === "all" || productFilter === "phones") &&
                   phones.map((phone) => {
                     if (minPrice === undefined && maxPrice === undefined) {
-                      return <Computer key={phone._id} product={phone} />;
+                      return <Product key={phone._id} product={phone} />;
                     } else if (
                       minPrice === 2000 &&
                       maxPrice === undefined &&
                       phone.price >= 2000
                     ) {
-                      return <Computer key={phone._id} product={phone} />;
+                      return <Product key={phone._id} product={phone} />;
                     } else if (
                       minPrice !== undefined &&
                       maxPrice !== undefined &&
                       phone.price >= minPrice &&
                       phone.price <= maxPrice
                     ) {
-                      return <Computer key={phone._id} product={phone} />;
+                      return <Product key={phone._id} product={phone} />;
                     }
                   })}
               </article>

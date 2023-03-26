@@ -179,14 +179,14 @@ export default function Monitor({ mode, data }) {
       {products.images && mode === undefined && (
         <div className="images">
           {products.images.map((e) => (
-            <img src={e} key={e.imageId} className="mini-img" alt="" />
+            <img src={e} key={e.imageId} className="mini-img" alt="no-img" />
           ))}
         </div>
       )}
       {products.images && mode === "edit" && (
         <div className="images">
           {products.images.map((e) => (
-            <img src={e.imageUrl} key={e.imageId} className="mini-img" alt="" />
+            <img src={e.imageUrl} key={e.imageId} className="mini-img" alt="no-img" />
           ))}
         </div>
       )}

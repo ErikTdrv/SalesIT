@@ -1,8 +1,8 @@
 import React from "react";
-import "./Computer.css";
+import "./Product.css";
 import { Link } from "react-router-dom";
 
-export default function Computer({
+export default function Product({
   product: {
     _id,
     manufacturer,
