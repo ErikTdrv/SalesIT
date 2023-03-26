@@ -4,6 +4,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 380px;
+    min-height: 42%;
+    max-height: 45%;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
     background-color: white;
