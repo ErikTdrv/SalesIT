@@ -23,15 +23,15 @@ export const addProduct = async (product, productName) => {
 };
 export const getAllProducts = async () => {
   try {
-    let request = await fetch(`${API_URL}/products`, {
+    let response = await fetch(`${API_URL}/products`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
       credentials: "include",
     });
-    let data = await request.json();
-    if(request.ok){
+    let data = await response.json();
+    if(response.ok){
       return data
     }else {
       throw new Error(data.error)
@@ -43,15 +43,15 @@ export const getAllProducts = async () => {
 }
 export const getOneProduct = async (_id) => {
   try {
-    let request = await fetch(`${API_URL}/products/${_id}`, {
+    let response = await fetch(`${API_URL}/products/${_id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
       credentials: "include",
     });
-    let data = await request.json();
-    if(request.ok){
+    let data = await response.json();
+    if(response.ok){
       return data
     }else {
       throw new Error(data.error)
@@ -62,7 +62,7 @@ export const getOneProduct = async (_id) => {
 }
 export const deleteOneProduct = async (_id, type) => {
   try {
-    let request = await fetch(`${API_URL}/products/${_id}`, {
+    let response = await fetch(`${API_URL}/products/${_id}`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -71,8 +71,8 @@ export const deleteOneProduct = async (_id, type) => {
       body: JSON.stringify({type})
 
     })
-    let data = await request.json();
-    if(request.ok){
+    let data = await response.json();
+    if(response.ok){
       return data
     }else {
       throw new Error(data.error)
@@ -83,7 +83,7 @@ export const deleteOneProduct = async (_id, type) => {
 }
 export const addProductToCard = async (_id, product) => {
   try {
-    let request = await fetch(`${API_URL}/products/${_id}/add-to-card`, {
+    let response = await fetch(`${API_URL}/products/${_id}/add-to-card`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -92,8 +92,8 @@ export const addProductToCard = async (_id, product) => {
       body: JSON.stringify({product})
 
     })
-    let data = await request.json();
-    if(request.ok){
+    let data = await response.json();
+    if(response.ok){
       return data
     }else {
       throw new Error(data.error)
@@ -104,15 +104,15 @@ export const addProductToCard = async (_id, product) => {
 }
 export const removeProductFromCard = async (_id) => {
   try {
-    let request = await fetch(`${API_URL}/products/${_id}/add-to-card`, {
+    let response = await fetch(`${API_URL}/products/${_id}/add-to-card`, {
       method: 'DELETE',
       headers: {
         "Content-Type": "application/json",
       },
       credentials: "include",
     })
-    let data = await request.json();
-      if(request.ok){
+    let data = await response.json();
+      if(response.ok){
         return data
       }else {
         throw new Error(data.error)
@@ -123,15 +123,15 @@ export const removeProductFromCard = async (_id) => {
 }
 export const getProductCard = async () => {
   try {
-    let request = await fetch(`${API_URL}/product-card`, {
+    let response = await fetch(`${API_URL}/product-card`, {
       method: 'GET',
       headers: {
         "Content-Type": "application/json",
       },
       credentials: "include",
     })
-    let data = await request.json();
-    if(request.ok){
+    let data = await response.json();
+    if(response.ok){
       return data
     }else {
       throw new Error(data.error)
@@ -142,7 +142,7 @@ export const getProductCard = async () => {
 }
 export const editOneProduct = async (product, productId) => {
   try {
-    let request = await fetch(`${API_URL}/products/${productId}`, {
+    let response = await fetch(`${API_URL}/products/${productId}`, {
       method: 'PUT',
       headers: {
         "Content-Type": "application/json",
@@ -150,8 +150,8 @@ export const editOneProduct = async (product, productId) => {
       credentials: "include",
       body: JSON.stringify(product)
     })
-    let data = await request.json();
-    if(request.ok){
+    let data = await response.json();
+    if(response.ok){
       return data
     }else {
       throw new Error(data.error)
@@ -162,7 +162,7 @@ export const editOneProduct = async (product, productId) => {
 }
 export const addDiscount = async (discountPercentage, productId, productType) => {
   try {
-    let request = await fetch(`${API_URL}/products/${productId}/add-discount`, {
+    let response = await fetch(`${API_URL}/products/${productId}/add-discount`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -170,8 +170,8 @@ export const addDiscount = async (discountPercentage, productId, productType) =>
       credentials: "include",
       body: JSON.stringify({ discountPercentage, productType })
     })
-    let data = await request.json();
-    if(request.ok){
+    let data = await response.json();
+    if(response.ok){
       return data
     }else {
       throw new Error(data.error)

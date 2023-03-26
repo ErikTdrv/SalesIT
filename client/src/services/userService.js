@@ -2,7 +2,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 export const register = async (info) => {
   try {
-    let request = await fetch(`${API_URL}/register`, {
+    let response = await fetch(`${API_URL}/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -10,8 +10,8 @@ export const register = async (info) => {
       credentials: 'include',
       body: JSON.stringify(info),
     });
-    const data = await request.json();
-    if(request.ok){
+    const data = await response.json();
+    if(response.ok){
       return data
     }else {
       throw new Error(data.error)
@@ -22,7 +22,7 @@ export const register = async (info) => {
 };
 export const login = async (info) => {
   try {
-    let request = await fetch(`${API_URL}/login`, {
+    let response = await fetch(`${API_URL}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,8 +30,8 @@ export const login = async (info) => {
       credentials: 'include',
       body: JSON.stringify(info),
     })
-    const data = await request.json();
-    if(request.ok){
+    const data = await response.json();
+    if(response.ok){
       return data
     }else {
       throw new Error(data.error)
@@ -57,15 +57,15 @@ export const convertToBase64 = async (file) => {
 }
 export const getCurrentUser = async () => {
   try {
-    let request = await fetch(`${API_URL}/get-user`, {
+    let response = await fetch(`${API_URL}/get-user`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },    
       credentials: 'include',
     })
-    const data = await request.json();
-    if(request.ok){
+    const data = await response.json();
+    if(response.ok){
       return data
     }else {
       throw new Error(data.error)
