@@ -6,18 +6,22 @@ const monitorSchema = new mongoose.Schema({
   },
   screensize: {
     required: [true, 'Screen Size is required'],
+    maxlength: [15, 'Screen Size cannot have more than 15 characters!'],
     type: String,
   },
   resolution: {
     required: [true, 'Resolution is required'],
+    maxlength: [15, 'Resolution cannot have more than 15 characters!'],
     type: String,
   },
   refreshrate: {
     required: [true, 'Refresh Rate is required'],
+    maxlength: [10, 'Refresh Rate cannot have more than 10 characters!'],
     type: String,
   },
   paneltype: {
     required: [true, 'Panel Type is required'],
+    maxlength: [10, 'Panel Type cannot have more than 10 characters!'],
     type: String,
   },
   price: {
