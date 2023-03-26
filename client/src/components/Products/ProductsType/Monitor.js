@@ -171,7 +171,7 @@ export default function Monitor({ mode, data }) {
         <input
           type="submit"
           value="Add Product"
-          disabled={disabled}
+          disabled={Object.values(error).some((e) => e.length > 0) || Object.values(products).some((e) => e.length === 0)}
           className="add-btn"
           onClick={() => setMainError("")}
         />

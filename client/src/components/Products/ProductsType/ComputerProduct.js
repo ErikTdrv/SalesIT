@@ -50,7 +50,10 @@ export default function ComputerProduct({ mode, data }) {
     if (e.target.value === "") {
       setError({ ...error, [type]: `${type} is required` });
       setDisabled(true);
-    } else {
+    } else if(type === 'Price' && isNaN(Number(e.target.value))){
+      setError({...error, [type]: `Price must be a valid number!`})
+      setDisabled(true);
+    }else {
       setDisabled(false);
       setError({ ...error, [type]: "" });
     }
@@ -221,7 +224,7 @@ export default function ComputerProduct({ mode, data }) {
 
         <input
           type="submit"
-          disabled={disabled}
+          disabled={Object.values(error).some((e) => e.length > 0) || Object.values(products).some((e) => e.length === 0)}
           onClick={() => setMainError("")}
           value="Add Product"
           className="add-btn"
