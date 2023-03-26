@@ -4,9 +4,8 @@ import { addProduct, editOneProduct } from "../../../services/productService";
 import { convertToBase64 } from "../../../services/userService";
 
 export default function Monitor({ mode, data }) {
-  let [products, setProducts] = useState({});
+  let [products, setProducts] = useState({manufacturer: '', screensize: '',resolution: '', refreshrate: '',paneltype:'', price:'', images: []});
   let [error, setError] = useState({});
-  let [disabled, setDisabled] = useState(true);
   let [mainError, setMainError] = useState("");
   let [isLoading, setIsLoading] = useState(false);
   let formClassName = isLoading ? "add-form blurred" : "add-form";
@@ -40,9 +39,7 @@ export default function Monitor({ mode, data }) {
   function validateInput(e, type) {
     if (e.target.value === "") {
       setError({ ...error, [type]: `${type} is required` });
-      setDisabled(true);
     } else {
-      setDisabled(false);
       setError({ ...error, [type]: "" });
     }
   }
