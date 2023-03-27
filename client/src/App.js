@@ -1,5 +1,5 @@
 import "./App.css";
-import Header from "./components/Header/Header";
+
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Login from "./components/Authentication/Login/Login";
@@ -8,13 +8,14 @@ import AllItems from "./components/All-Products/All-Products";
 import AddProduct from "./components/Products/Add-Products/Add-Product";
 import ShoppingCard from "./components/Shopping/Shopping";
 import ProductDetails from "./components/Products/Product-Details/ProductDetails";
+import EditProduct from "./components/Products/Edit-Product/EditProduct";
+import AddDiscount from "./components/Products/Product-Details/Add-Discount/AddDiscount";
+import Profile from "./components/Profile/Profile";
+import Header from "./components/Main/Header/Header";
 
 import { AuthContext } from "./contexts/AuthContext";
 import { useEffect, useState } from "react";
 import { getCurrentUser, logoutUser } from "./services/userService";
-import EditProduct from "./components/Products/Edit-Product/EditProduct";
-import AddDiscount from "./components/Products/Product-Details/Add-Discount/AddDiscount";
-import Profile from "./components/Profile/Profile";
 
 function App() {
   useEffect(() => {
