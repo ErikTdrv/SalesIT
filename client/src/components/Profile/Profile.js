@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { getProfileProducts } from "../../services/userService";
-import Copyright from "../Copyright/Copyright";
+import Copyright from "../Main/Copyright/Copyright";
 import ShoppingCard from "../Shopping/Shopping";
 import "./Profile.css";
 

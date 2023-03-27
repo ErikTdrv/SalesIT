@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { login } from "../../../services/userService";
-import Copyright from "../../Copyright/Copyright";
+import Copyright from "../../Main/Copyright/Copyright";
 
 import "./Login.css";
 

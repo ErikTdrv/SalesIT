@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getAllProducts } from "../../services/productService";
 import Product from "../Product/Product";
-import HomeFooter from "../Home/Home-Footer/Footer";
+import HomeFooter from "../Main/Home-Footer/Footer";
 import "./All-Products.css";
 import Filter from "./Filter";
 
