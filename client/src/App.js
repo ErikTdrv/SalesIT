@@ -7,13 +7,13 @@ import Register from "./components/Register/Register";
 import AllItems from "./components/All-Products/All-Products";
 import AddProduct from "./components/Products/Add-Products/Add-Product";
 import ShoppingCard from "./components/Shopping/Shopping";
-import ProductDetails from "./components/Products/Details/ProductDetails";
+import ProductDetails from "./components/Products/Product-Details/ProductDetails";
 
 import { AuthContext } from "./contexts/AuthContext";
 import { useEffect, useState } from "react";
 import { getCurrentUser, logoutUser } from "./services/userService";
 import EditProduct from "./components/Products/Edit-Product/EditProduct";
-import AddDiscount from "./components/Products/Details/Add-Discount/AddDiscount";
+import AddDiscount from "./components/Products/Product-Details/Add-Discount/AddDiscount";
 import Profile from "./components/Profile/Profile";
 
 function App() {
