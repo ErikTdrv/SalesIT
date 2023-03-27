@@ -39,6 +39,8 @@ export default function Monitor({ mode, data }) {
   function validateInput(e, type) {
     if (e.target.value === "") {
       setError({ ...error, [type]: `${type} is required` });
+    }else if(type === 'Price' && isNaN(Number(e.target.value))){
+      setError({...error, [type]: `Price must be a valid number!`})
     } else {
       setError({ ...error, [type]: "" });
     }

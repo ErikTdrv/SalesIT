@@ -7,7 +7,6 @@ import { convertToBase64 } from "../../../services/userService";
 export default function PhoneProduct({ mode, data }) {
   let [products, setProducts] = useState({phonename: '',capacity: '', displaysize: '',color:'', camera:'',price: '', battery: '', os:'',images:[]});
   let [error, setError] = useState({});
-  let [disabled, setDisabled] = useState(true);
   let [mainError, setMainError] = useState("");
   let navigate = useNavigate();
   useEffect(() => {
@@ -18,9 +17,9 @@ export default function PhoneProduct({ mode, data }) {
   function validateInput(e, type) {
     if (e.target.value === "") {
       setError({ ...error, [type]: `${type} is required` });
-      setDisabled(true);
+    }else if(type === 'price' && isNaN(Number(e.target.value))){
+      setError({...error, [type]: `Price must be a valid number!`})
     } else {
-      setDisabled(false);
       setError({ ...error, [type]: "" });
     }
   }
@@ -175,7 +174,7 @@ export default function PhoneProduct({ mode, data }) {
               value={products.price || ""}
             />
             <span className={products.price ? "value-there" : ""}>Price</span>
-            {error.price && <p className="error">Price is required!</p>}
+            {error.price && <p className="error">{error.price}</p>}
           </div>
         </div>
       </div>

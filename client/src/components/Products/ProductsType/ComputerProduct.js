@@ -12,6 +12,7 @@ export default function ComputerProduct({ mode, data }) {
     os: "",
     ssd: "",
     harddrive: "",
+    price: "",
     images: [],
   });
   let [error, setError] = useState({});
