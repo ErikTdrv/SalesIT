@@ -204,17 +204,17 @@ export default function ComputerProduct({ mode, data }) {
         </div>
         {products.images && mode === undefined && (
           <div className="images">
-            {products.images.map((e) => (
-              <img src={e} key={e.imageId} className="mini-img" alt="" />
+            {products.images.map((e, index) => (
+              <img src={e} key={`${e.imageId}-${index}`} className="mini-img" alt="" />
             ))}
           </div>
         )}
         {products.images && mode === "edit" && (
           <div className="images">
-            {products.images.map((e) => (
+            {products.images.map((e, index) => (
               <img
                 src={e.imageUrl}
-                key={e.imageId}
+                key={`${e.imageId}-${index}`}
                 className="mini-img"
                 alt=""
               />
