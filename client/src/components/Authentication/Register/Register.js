@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext";
-import { convertToBase64, register } from "../../services/userService";
-import Copyright from "../Copyright/Copyright";
+import { AuthContext } from "../../../contexts/AuthContext";
+import Copyright from "../../Copyright/Copyright";
+import { convertToBase64, register } from "../../../services/userService";
+
 import "./Register.css";
 
 export default function Register() {
