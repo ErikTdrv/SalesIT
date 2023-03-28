@@ -80,19 +80,20 @@ export default function AllItems() {
                 {computers &&
                   (productFilter === "all" || productFilter === "computers") &&
                   computers.map((computer) => {
+                    let percentage = computer.discount > 0 ? computer.discount/100 : 1
                     if (minPrice === undefined && maxPrice === undefined) {
                       return <Product key={computer._id} product={computer} />;
                     } else if (
                       minPrice === 2000 &&
                       maxPrice === undefined &&
-                      computer.price >= 2000
+                      computer.price * percentage >= 2000
                     ) {
                       return <Product key={computer._id} product={computer} />;
                     } else if (
                       minPrice !== undefined &&
                       maxPrice !== undefined &&
-                      computer.price >= minPrice &&
-                      computer.price <= maxPrice
+                      computer.price * percentage >= minPrice &&
+                      computer.price * percentage <= maxPrice
                     ) {
                       return <Product key={computer._id} product={computer} />;
                     }
@@ -100,19 +101,20 @@ export default function AllItems() {
                 {monitors &&
                   (productFilter === "all" || productFilter === "monitors") &&
                   monitors.map((monitor) => {
+                    let percentage = monitor.discount > 0 ? monitor.discount/100 : 1
                     if (minPrice === undefined && maxPrice === undefined) {
                       return <Product key={monitor._id} product={monitor} />;
                     } else if (
                       minPrice === 2000 &&
                       maxPrice === undefined &&
-                      monitor.price >= 2000
+                      monitor.price * percentage >= 2000
                     ) {
                       return <Product key={monitor._id} product={monitor} />;
                     } else if (
                       minPrice !== undefined &&
                       maxPrice !== undefined &&
-                      monitor.price >= minPrice &&
-                      monitor.price <= maxPrice
+                      monitor.price * percentage >= minPrice &&
+                      monitor.price * percentage <= maxPrice
                     ) {
                       return <Product key={monitor._id} product={monitor} />;
                     }
@@ -120,19 +122,21 @@ export default function AllItems() {
                 {phones &&
                   (productFilter === "all" || productFilter === "phones") &&
                   phones.map((phone) => {
+                    let percentage = phone.discount > 0 ? phone.discount/100 : 1
+
                     if (minPrice === undefined && maxPrice === undefined) {
                       return <Product key={phone._id} product={phone} />;
                     } else if (
                       minPrice === 2000 &&
                       maxPrice === undefined &&
-                      phone.price >= 2000
+                      phone.price * percentage >= 2000
                     ) {
                       return <Product key={phone._id} product={phone} />;
                     } else if (
                       minPrice !== undefined &&
                       maxPrice !== undefined &&
-                      phone.price >= minPrice &&
-                      phone.price <= maxPrice
+                      phone.price * percentage >= minPrice &&
+                      phone.price * percentage <= maxPrice
                     ) {
                       return <Product key={phone._id} product={phone} />;
                     }
