@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router";
 import { addProduct, editOneProduct } from "../../../services/productService";
 import { convertToBase64 } from "../../../services/userService";
 
 export default function ComputerProduct({ mode, data }) {
-  let [products, setProducts] = useState({
+  const [products, setProducts] = useState({
     manufacturer: "",
     motherboard: "",
     processor: "",
@@ -15,50 +15,59 @@ export default function ComputerProduct({ mode, data }) {
     price: "",
     images: [],
   });
-  let [error, setError] = useState({});
-  let [disabled, setDisabled] = useState(true);
-  let [mainError, setMainError] = useState("");
-  let [isLoading, setIsLoading] = useState(false);
-  let navigate = useNavigate();
+  const [error, setError] = useState({});
+  const [disabled, setDisabled] = useState(true);
+  const [mainError, setMainError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   let formClassName = isLoading ? "add-form blurred" : "add-form";
+  const navigate = useNavigate();
+
+  const validateInput = useCallback(
+    (e, type) => {
+      if (e.target.value === "") {
+        setError({ ...error, [type]: `${type} is required` });
+        setDisabled(true);
+      } else if(type === 'Price' && isNaN(Number(e.target.value))){
+        setError({...error, [type]: `Price must be a valid number!`})
+        setDisabled(true);
+      }else {
+        setDisabled(false);
+        setError({ ...error, [type]: "" });
+      }
+    },
+    [error]
+  );
+
+  const onAddHandler = useCallback(
+    async (e) => {
+      e.preventDefault();
+      setIsLoading(true);
+      let request;
+      if (mode === undefined) {
+        request = await addProduct(products, "Computers");
+      } else if (mode === "edit") {
+        request = await editOneProduct(products, products._id);
+      }
+      if (request.message) {
+        return setMainError(request.message.split(": ")[2].split(", ")[0]);
+      }
+      if (request._id && mode === undefined) {
+        setIsLoading(false);
+        navigate("/");
+      } else if (mode === "edit") {
+        setIsLoading(false);
+        navigate(`/all-products/${products._id}`);
+      }
+    },
+    [mode, navigate, products]
+  );
+
   useEffect(() => {
     if (data !== undefined) {
       setProducts(data);
     }
-  }, []);
-  async function onAddHandler(e) {
-    e.preventDefault();
-    setIsLoading(true);
-    let request;
-    if (mode === undefined) {
-      request = await addProduct(products, "Computers");
-    } else if (mode === "edit") {
-      request = await editOneProduct(products, products._id);
-    }
-    if (request.message) {
-      return setMainError(request.message.split(": ")[2].split(", ")[0]);
-    }
-    if (request._id && mode === undefined) {
-      setIsLoading(false);
-      navigate("/");
-    } else if (mode === "edit") {
-      setIsLoading(false);
-      navigate(`/all-products/${products._id}`);
-    }
-  }
+  }, [data]);
 
-  function validateInput(e, type) {
-    if (e.target.value === "") {
-      setError({ ...error, [type]: `${type} is required` });
-      setDisabled(true);
-    } else if(type === 'Price' && isNaN(Number(e.target.value))){
-      setError({...error, [type]: `Price must be a valid number!`})
-      setDisabled(true);
-    }else {
-      setDisabled(false);
-      setError({ ...error, [type]: "" });
-    }
-  }
   return (
     <>
       {isLoading && <span className="loader"></span>}
