@@ -1,18 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { getProfileProducts } from "../../services/userService";
 import Copyright from "../Main/Copyright/Copyright";
-import ShoppingCard from "../Shopping/Shopping";
+import ShoppingCard from "../Shopping/ShoppingCard";
 import "./Profile.css";
 
 export default function Profile() {
   const { user } = useContext(AuthContext);
-    useEffect(() => {
-        async function getProducts(){
-            let products = await getProfileProducts()
-        }
-        getProducts()
-    }, [])
+
   return (
     <>
       <div className="product__all">
