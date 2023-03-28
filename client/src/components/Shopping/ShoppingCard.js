@@ -22,22 +22,24 @@ export default function ShoppingCard({ mode }) {
       }
       setProducts(products);
       setIsLoading(false);
-      setTotalPrice(
-        products.reduce((acc, { price, discount }) => {
-          if(discount > 0){
-            price = price*(discount/100)
-          }
-          return Number(acc) + Number(price)
-        }, 0)
-      );
+      settingTotalPrice(products)
     }
     getProducts();
   }, []);
+  function settingTotalPrice(currProducts){
+    setTotalPrice(currProducts?.reduce((acc, { price, discount }) => {
+      if(discount > 0){
+        price = price*(discount/100)
+      }
+      return Number(acc) + Number(price)
+    }, 0))
+  }
   async function removeProduct(productId) {
     await removeProductFromCard(productId);
     let updatedProducts = products.filter(
       (product) => product._id !== productId
     );
+    settingTotalPrice(updatedProducts)
     setProducts(updatedProducts);
   }
   function validateIndex(type) {
