@@ -23,7 +23,12 @@ export default function ShoppingCard({ mode }) {
       setProducts(products);
       setIsLoading(false);
       setTotalPrice(
-        products.reduce((acc, { price }) => Number(acc) + Number(price), 0)
+        products.reduce((acc, { price, discount }) => {
+          if(discount > 0){
+            price = price*(discount/100)
+          }
+          return Number(acc) + Number(price)
+        }, 0)
       );
     }
     getProducts();

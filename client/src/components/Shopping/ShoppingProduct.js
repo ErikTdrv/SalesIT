@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function ShoppingProduct({ product, removeProduct, mode }) {
+export default function ShoppingProduct({ product, removeProduct, mode, settingTotalPrice, products }) {
   return (
     <article className="card__product">
       <img src={product.images[0].imageUrl} alt="product-img" />
@@ -15,9 +15,12 @@ export default function ShoppingProduct({ product, removeProduct, mode }) {
               product.price -
               Number(product.discount) * 0.01 * product.price
             ).toFixed(2) + `$`
-          : `${product.price}$`}
+          : `${Number(product.price).toFixed(2)}$`}
       </span>
-      {!mode && <button onClick={() => removeProduct(product._id)}>Remove</button>}
+      {!mode && <button onClick={() => {
+        removeProduct(product._id)
+        settingTotalPrice(products)
+      }}>Remove</button>}
       
       <Link to={`/all-products/${product._id}`}>
         <button>Details</button>
