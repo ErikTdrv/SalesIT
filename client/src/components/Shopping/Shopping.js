@@ -4,8 +4,8 @@ import {
   removeProductFromCard,
 } from "../../services/productService";
 import "./Shopping.css";
-import { Link } from "react-router-dom";
 import { getProfileProducts } from "../../services/userService";
+import ShoppingProduct from "./ShoppingProduct";
 
 export default function ShoppingCard({ mode }) {
   let [products, setProducts] = useState();
@@ -54,112 +54,11 @@ export default function ShoppingCard({ mode }) {
           <div className="card__products">
             <h3>All Added Products</h3>
             <section className="card__section">
-              {products[index] && (
-                <article className="card__product">
-                  <img src={products[index]?.images[0].imageUrl} alt="" />
-                  <h1>
-                    {products[index]?.manufacturer}
-                    {products[index]?.phonename}
-                  </h1>
-                  <span className="product__price">
-                    {products[index]?.discount > 0
-                      ? (
-                          products[index].price -
-                          Number(products[index].discount) * 0.01 * products[index].price
-                        ).toFixed(2)
-                      : `${products[index]?.price}$`}
-                  </span>
-                  {mode !== "profile" && (
-                    <button onClick={() => removeProduct(products[index]?._id)}>
-                      Remove
-                    </button>
-                  )}
-                  <Link to={`/all-products/${products[index]?._id}`}>
-                    <button>Details</button>
-                  </Link>
-                </article>
-              )}
-              {products[index + 1] && (
-                <article className="card__product">
-                  <img src={products[index + 1]?.images[0].imageUrl} alt="" />
-                  <h1>
-                    {products[index + 1]?.manufacturer}
-                    {products[index + 1]?.phonename}
-                  </h1>
-                  <span className="product__price">
-                    {products[index + 1]?.discount > 0
-                      ? (
-                          products[index].price -
-                          Number(products[index + 1].discount) * 0.01 * products[index + 1].price
-                        ).toFixed(2)
-                      : `${products[index + 1]?.price}$`}
-                  </span>
-                  {mode !== "profile" && (
-                    <button
-                      onClick={() => removeProduct(products[index + 1]?._id)}
-                    >
-                      Remove
-                    </button>
-                  )}
-                  <Link to={`/all-products/${products[index + 1]?._id}`}>
-                    <button>Details</button>
-                  </Link>
-                </article>
-              )}
-              {products[index + 2] && (
-                <article className="card__product">
-                  <img src={products[index + 2]?.images[0].imageUrl} alt="" />
-                  <h1>
-                    {products[index + 2]?.manufacturer}
-                    {products[index + 2]?.phonename}
-                  </h1>
-                  <span className="product__price">
-                    {products[index + 2]?.discount > 0
-                      ? (
-                          products[index + 2].price -
-                          Number(products[index + 2].discount) * 0.01 * products[index + 2].price
-                        ).toFixed(2)
-                      : `${products[index + 2]?.price}$`}
-                  </span>
-                  {mode !== "profile" && (
-                    <button
-                      onClick={() => removeProduct(products[index + 2]?._id)}
-                    >
-                      Remove
-                    </button>
-                  )}
-                  <Link to={`/all-products/${products[index + 2]?._id}`}>
-                    <button>Details</button>
-                  </Link>
-                </article>
-              )}
-              {products[index + 3] && (
-                <article className="card__product">
-                  <img src={products[index + 3]?.images[0].imageUrl} alt="" />
-                  <h1>
-                    {products[index + 3]?.manufacturer}
-                    {products[index + 3]?.phonename}
-                  </h1>
-                  <span className="product__price">
-                    {products[index + 3]?.discount > 0
-                      ? (
-                          products[index + 3].price -
-                          Number(products[index + 3].discount) * 0.01 * products[index + 3].price
-                        ).toFixed(2)
-                      : `${products[index + 3]?.price}$`}
-                  </span>
-                  {mode !== "profile" && (
-                    <button
-                      onClick={() => removeProduct(products[index + 2]?._id)}
-                    >
-                      Remove
-                    </button>
-                  )}
-                  <Link to={`/all-products/${products[index + 3]?._id}`}>
-                    <button>Details</button>
-                  </Link>
-                </article>
-              )}
+              {
+                products.slice(index, index + 4).map((product) => {
+                  return <ShoppingProduct key={product._id} product={product} removeProduct={removeProduct} mode={mode}/>
+                })
+              }
             </section>
             <div className="switch__buttons">
               <button className="switchers" onClick={() => validateIndex("-")}>
