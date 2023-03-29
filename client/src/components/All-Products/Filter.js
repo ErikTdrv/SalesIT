@@ -7,8 +7,8 @@ export default function Filter(props) {
   return (
     <article className="filter">
       <h2>Filter</h2>
-      <h4>Manufacturer</h4>
-      <div className="all-inputs">
+      {/* <h4>Manufacturer</h4> */}
+      {/* <div className="all-inputs">
         <label htmlFor="ASUS">
           <input type="checkbox" id="ASUS" value="ASUS" />
           ASUS
@@ -49,7 +49,7 @@ export default function Filter(props) {
           <input type="checkbox" id="Huawei" value="Huawei" />
           Huawei
         </label>
-      </div>
+      </div> */}
       <h4>Price</h4>
       <div className="all-inputs">
         <label htmlFor="0">
