@@ -29,7 +29,7 @@ export default function ShoppingCard({ mode }) {
   function settingTotalPrice(currProducts){
     setTotalPrice(currProducts?.reduce((acc, { price, discount }) => {
       if(discount > 0){
-        price = price*(discount/100)
+        price = price - (price*(discount/100))
       }
       return Number(acc) + Number(price)
     }, 0))
@@ -75,7 +75,7 @@ export default function ShoppingCard({ mode }) {
                 &#62;
               </button>
             </div>
-            <span className="total-price">Total Price: {totalPrice}$</span>
+            <span className="total-price">Total Price: {totalPrice.toFixed(2)}$</span>
           </div>
           {mode !== "profile" && <button className="buy-btn">Buy</button>}
         </div>
