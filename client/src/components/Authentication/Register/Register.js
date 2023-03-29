@@ -158,7 +158,7 @@ export default function Register() {
         </form>
         {isLoading && <span id="register-loader" className="loader"></span>}
         <p className="reg-text">
-          Don't have an account? <Link to="Login">Sign In</Link>
+          Don't have an account? <Link to="/login">Sign In</Link>
         </p>
       </div>
       <Copyright />
