@@ -8,16 +8,17 @@ import "./Register.css";
 
 export default function Register() {
   const navigate = useNavigate();
-  const [auth, setAuth] = useState({});
+  const [auth, setAuth] = useState({email: '', username: '', password: '', repass: '', phone: ''});
   const [mainError, setMainError] = useState();
   const [error, setError] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   let { userAuth } = useContext(AuthContext);
+  const registerClass = isLoading ? 'register-blur' : ''
   async function onSubmitHandler(e) {
     e.preventDefault();
     setIsLoading(true);
     if (auth.repass !== auth.password) {
-      isLoading(false)
+      setIsLoading(false);
       return setMainError("Passwords must match!");
     }
     let response = await register(auth);
@@ -27,7 +28,7 @@ export default function Register() {
       navigate("/");
     } else if (response?.message) {
       setIsLoading(false);
-      setMainError(response.message);
+      setMainError(response.message.split(": ")[2].split(", ")[0]);
     }
   }
 
@@ -51,8 +52,8 @@ export default function Register() {
     <>
       <div className="register">
         <h1>Register</h1>
+        <form onSubmit={onSubmitHandler} className={registerClass}>
         {mainError ? <p className="main-error">{mainError}</p> : ""}
-        <form onSubmit={onSubmitHandler}>
           {auth?.avatarImg && (
             <img className="avatarImg" src={auth.avatarImg} alt="" />
           )}
@@ -143,7 +144,17 @@ export default function Register() {
               </label>
             </div>
           </div>
-          { !isLoading &&<input type="submit" value="Register" className="register-btn" />}
+          {!isLoading && (
+            <input
+              type="submit"
+              value="Register"
+              disabled={
+                Object.values(error).some((e) => e.length > 0) ||
+                Object.values(auth).some((e) => e.length === 0)
+              }
+              className="register-btn"
+            />
+          )}
         </form>
         {isLoading && <span id="register-loader" className="loader"></span>}
         <p className="reg-text">

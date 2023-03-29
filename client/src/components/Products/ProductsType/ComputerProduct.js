@@ -16,7 +16,6 @@ export default function ComputerProduct({ mode, data }) {
     images: [],
   });
   const [error, setError] = useState({});
-  const [disabled, setDisabled] = useState(true);
   const [mainError, setMainError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   let formClassName = isLoading ? "add-form blurred" : "add-form";
@@ -26,12 +25,9 @@ export default function ComputerProduct({ mode, data }) {
     (e, type) => {
       if (e.target.value === "") {
         setError({ ...error, [type]: `${type} is required` });
-        setDisabled(true);
       } else if(type === 'Price' && isNaN(Number(e.target.value))){
         setError({...error, [type]: `Price must be a valid number!`})
-        setDisabled(true);
       }else {
-        setDisabled(false);
         setError({ ...error, [type]: "" });
       }
     },

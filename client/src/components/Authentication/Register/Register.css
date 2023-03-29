@@ -9,7 +9,7 @@
     background-color: white;
     color: black;
     min-height: 45%;
-    max-height: 75%;
+    max-height: 85%;
     
 }
 input[type="file"] {
@@ -119,4 +119,10 @@ input:focus {
 }
 .register .loader {
     color: black;
+}
+.register-btn:disabled {
+    background-color: gray;
+}
+.register-blur {
+    filter: blur(10px);
 }
