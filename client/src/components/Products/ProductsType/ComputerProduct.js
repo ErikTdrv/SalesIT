@@ -42,7 +42,7 @@ export default function ComputerProduct({ mode, data }) {
       if (mode === undefined) {
         request = await addProduct(products, "Computers");
       } else if (mode === "edit") {
-        request = await editOneProduct(products, products._id);
+        request = await editOneProduct(products, products._id, "Computers");
       }
       if (request.message) {
         return setMainError(request.message.split(": ")[2].split(", ")[0]);
@@ -219,7 +219,7 @@ export default function ComputerProduct({ mode, data }) {
           <div className="images">
             {products.images.map((e, index) => (
               <img
-                src={e.imageUrl}
+                src={e.imageUrl || e}
                 key={`${e.imageId}-${index}`}
                 className="mini-img"
                 alt=""

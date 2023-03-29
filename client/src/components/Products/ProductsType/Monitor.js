@@ -4,13 +4,20 @@ import { addProduct, editOneProduct } from "../../../services/productService";
 import { convertToBase64 } from "../../../services/userService";
 
 export default function Monitor({ mode, data }) {
-  let [products, setProducts] = useState({manufacturer: '', screensize: '',resolution: '', refreshrate: '',paneltype:'', price:'', images: []});
+  let [products, setProducts] = useState({
+    manufacturer: "",
+    screensize: "",
+    resolution: "",
+    refreshrate: "",
+    paneltype: "",
+    price: "",
+    images: [],
+  });
   let [error, setError] = useState({});
   let [mainError, setMainError] = useState("");
   let [isLoading, setIsLoading] = useState(false);
   let formClassName = isLoading ? "add-form blurred" : "add-form";
   let navigate = useNavigate();
-
   useEffect(() => {
     if (data !== undefined) {
       setProducts(data);
@@ -23,7 +30,7 @@ export default function Monitor({ mode, data }) {
     if (mode === undefined) {
       request = await addProduct(products, "Monitors");
     } else if (mode === "edit") {
-      request = await editOneProduct(products, products._id);
+      request = await editOneProduct(products, products._id, "Monitors");
     }
     if (request.message) {
       return setMainError(request.message.split(": ")[2].split(", ")[0]);
@@ -36,11 +43,12 @@ export default function Monitor({ mode, data }) {
       navigate(`/all-products/${products._id}`);
     }
   }
+  
   function validateInput(e, type) {
     if (e.target.value === "") {
       setError({ ...error, [type]: `${type} is required` });
-    }else if(type === 'Price' && isNaN(Number(e.target.value))){
-      setError({...error, [type]: `Price must be a valid number!`})
+    } else if (type === "Price" && isNaN(Number(e.target.value))) {
+      setError({ ...error, [type]: `Price must be a valid number!` });
     } else {
       setError({ ...error, [type]: "" });
     }
@@ -101,23 +109,23 @@ export default function Monitor({ mode, data }) {
             <div className="avatar">
               <label htmlFor="avatar">
                 <i className="fa-solid fa-plus"></i>Add Images
-              <input
-                type="file"
-                multiple
-                name="avatar"
-                id="avatar"
-                onChange={async (e) =>
-                  setProducts({
-                    ...products,
-                    images: await Promise.all(
-                      Array.from(e.target.files).map(
-                        async (e) => await convertToBase64(e)
+                <input
+                  type="file"
+                  multiple
+                  name="avatar"
+                  id="avatar"
+                  onChange={async (e) =>
+                    setProducts({
+                      ...products,
+                      images: await Promise.all(
+                        Array.from(e.target.files).map(
+                          async (e) => await convertToBase64(e)
                         )
-                        ),
-                      })
-                    }
-                    />
-                    </label>
+                      ),
+                    })
+                  }
+                />
+              </label>
             </div>
           </div>
           <div className="right-input">
@@ -170,23 +178,37 @@ export default function Monitor({ mode, data }) {
         <input
           type="submit"
           value="Add Product"
-          disabled={Object.values(error).some((e) => e.length > 0) || Object.values(products).some((e) => e.length === 0)}
+          disabled={
+            Object.values(error).some((e) => e.length > 0) ||
+            Object.values(products).some((e) => e.length === 0)
+          }
           className="add-btn"
           onClick={() => setMainError("")}
         />
       </form>
       {products.images && mode === undefined && (
         <div className="images">
+          <h1>Ok</h1>
           {products.images.map((e, index) => (
-            <img src={e} key={`${e.imageId}-${index}`} className="mini-img" alt="no-img" />
+            <img
+              src={e}
+              key={`${e.imageId}-${index}`}
+              className="mini-img n"
+              alt="no-img"
+            />
           ))}
         </div>
       )}
       {products.images && mode === "edit" && (
         <div className="images">
-          {products.images.map((e, index) => (
-            <img src={e.imageUrl} key={`${e.imageId}-${index}`} className="mini-img" alt="no-img" />
-          ))}
+          {products.images.map((e, index) => 
+            <img
+              src={e.imageUrl || e}
+              key={`${e.imageId}-${index}`}
+              className="mini-img"
+              alt="no-img"
+            />
+          )}
         </div>
       )}
     </>

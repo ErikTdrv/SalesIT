@@ -29,7 +29,7 @@ export default function PhoneProduct({ mode, data }) {
     if (mode === undefined) {
       request = await addProduct(products, "Phones");
     } else if (mode === "edit") {
-      request = await editOneProduct(products, products._id);
+      request = await editOneProduct(products, products._id, "Phones");
     }
     if (request.message) {
       return setMainError(request.message.split(": ")[2].split(", ")[0]);
@@ -190,7 +190,7 @@ export default function PhoneProduct({ mode, data }) {
         <div className="images">
           {products.images.map((e, index) => (
             <img
-              src={e.imageUrl}
+              src={e.imageUrl || e}
               key={`${e.imageId}-${index}`}
               className="mini-img"
               alt="no-img"
