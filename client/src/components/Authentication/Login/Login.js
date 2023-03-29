@@ -7,7 +7,7 @@ import Copyright from "../../Main/Copyright/Copyright";
 import "./Login.css";
 
 export default function Login() {
-  const [authInfo, setAuthInfo] = useState({});
+  const [authInfo, setAuthInfo] = useState({email: '', password: ''});
   const [error, setError] = useState({});
   const [mainError, setMainError] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -100,6 +100,10 @@ export default function Login() {
               value="Login"
               id="loginBtn"
               className="login-btn"
+              disabled={
+                Object.values(error).some((e) => e.length > 0) ||
+                Object.values(authInfo).some((e) => e.length === 0)
+              }
             />}
             
           </form>
