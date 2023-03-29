@@ -7,15 +7,14 @@ export const AuthGuard = ({ children }) => {
 
   if (isAuth) {
     return <Navigate to="/" replace />;
-  }
-
-  return children;
+  } 
+  return <Outlet/>;
 };
 export const UserGuard = ({ children }) => {
   const { isAuth } = useContext(AuthContext);
 
   if (isAuth) {
-    return children;
+    return <Outlet/>;
   }
   return <Navigate to="/login" replace />;
 };
