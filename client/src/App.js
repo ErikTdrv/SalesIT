@@ -16,38 +16,46 @@ import Header from "./components/Main/Header/Header";
 import { AuthContext } from "./contexts/AuthContext";
 import { useEffect, useState } from "react";
 import { getCurrentUser, logoutUser } from "./services/userService";
+import { AuthGuard } from "./components/Main/RouteGuard";
 
 function App() {
   useEffect(() => {
-    async function getUser(){
-      let user = await getCurrentUser()
-      setUser(user)
+    async function getUser() {
+      let user = await getCurrentUser();
+      setUser(user);
     }
-    getUser()
-  }, [])
-  let navigate = useNavigate()
+    getUser();
+  }, []);
+  let navigate = useNavigate();
   let [user, setUser] = useState({});
   const isAuth = user?._id ? true : false;
   const userAuth = (authData) => {
     setUser(authData);
-  }
-  
+  };
+
   const userLogout = async () => {
-    await logoutUser()
+    await logoutUser();
     setUser({});
-    navigate('/')
-  }
+    navigate("/");
+  };
   return (
-    <AuthContext.Provider value={{ user,setUser, userAuth, userLogout, isAuth }}>
+    <AuthContext.Provider
+      value={{ user, setUser, userAuth, userLogout, isAuth }}
+    >
       <Header />
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route element={<AuthGuard />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
         <Route path="/all-products" exact element={<AllItems />} />
         <Route path="/all-products/:productId" element={<ProductDetails />} />
         <Route path="/all-products/:productId/edit" element={<EditProduct />} />
-        <Route path="/all-products/:productId/add-discount" element={<AddDiscount />} />
+        <Route
+          path="/all-products/:productId/add-discount"
+          element={<AddDiscount />}
+        />
         <Route path="/add-product" element={<AddProduct />} />
         <Route path="/card" element={<ShoppingCard />} />
         <Route path="/profile" element={<Profile />} />
