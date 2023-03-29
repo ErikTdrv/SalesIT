@@ -140,7 +140,7 @@ export const getProductCard = async () => {
     return error
   }
 }
-export const editOneProduct = async (product, productId) => {
+export const editOneProduct = async (product, productId, productType) => {
   try {
     let response = await fetch(`${API_URL}/products/${productId}`, {
       method: 'PUT',
@@ -148,7 +148,7 @@ export const editOneProduct = async (product, productId) => {
         "Content-Type": "application/json",
       },
       credentials: "include",
-      body: JSON.stringify(product)
+      body: JSON.stringify(product, productType)
     })
     let data = await response.json();
     if(response.ok){

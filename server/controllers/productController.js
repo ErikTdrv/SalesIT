@@ -64,10 +64,27 @@ router.post('/products/:id', async (req, res) => {
 router.put('/products/:id', async (req, res) => {
     try {
         let _id = req.params.id;
-        let product = req.body;
-        let editedProduct = await editOneProduct(product, _id)
+        let body = req.body;
+        let {images, productName} = req.body;
+        let imagesArr = [];
+        if(!images){
+            throw new Error('Images are required!')
+        }
+        if(images){
+            for(let el of images){
+                const uploaded = await cloudinary.v2.uploader.upload(el, { fetch_format: "auto", folder: productName });
+                let objectToPush =  {
+                    imageUrl: uploaded.url,
+                    imageId: uploaded.public_id,
+                }
+                imagesArr.push(objectToPush)
+            }
+        }
+        body.images = imagesArr
+        let editedProduct = await editOneProduct(body, _id)
         res.status(200).json(editedProduct)
     } catch (error) {
+        console.log(error)
         res.status(500).send({ error: error.message });
     }
 })
