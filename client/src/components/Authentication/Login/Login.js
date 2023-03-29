@@ -11,9 +11,9 @@ export default function Login() {
   const [error, setError] = useState({});
   const [mainError, setMainError] = useState();
   const [isLoading, setIsLoading] = useState(false);
-  let { userAuth } = useContext(AuthContext);
-  let navigate = useNavigate();
-  
+  const { userAuth } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const loginClassName = isLoading ? 'login-form login-blur' : 'login-form ';
   async function loginHandler(e) {
     e.preventDefault();
     setIsLoading(true)
@@ -57,8 +57,8 @@ export default function Login() {
       <div className="login">
         <div className="form">
           <h1>Login</h1>
+          <form className={loginClassName} onSubmit={loginHandler}>
           {mainError ? <p className="main-error">{mainError}</p> : ""}
-          <form className="login-form" onSubmit={loginHandler}>
             <div className="inputs">
               <div className="email">
                 <input
