@@ -43,8 +43,9 @@
     margin-top: 20px;
     display: flex;
     width: 100%;
-    min-height: 83.2%;
+    height: 800px;
 }
+
 .filter {
     flex: 0 0 15%;
     background-color: white;

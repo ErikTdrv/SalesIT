@@ -81,19 +81,25 @@ export default function AllItems() {
                   (productFilter === "all" || productFilter === "computers") &&
                   computers.map((computer) => {
                     let percentage = computer.discount > 0 ? computer.discount/100 : 1
+                    let price;
+                    if(percentage !== 1){
+                      price = computer.price - (computer.price * percentage)
+                    }else {
+                      price = computer.price
+                    }
                     if (minPrice === undefined && maxPrice === undefined) {
                       return <Product key={computer._id} product={computer} />;
                     } else if (
                       minPrice === 2000 &&
                       maxPrice === undefined &&
-                      computer.price * percentage >= 2000
+                      price > 2000
                     ) {
                       return <Product key={computer._id} product={computer} />;
                     } else if (
                       minPrice !== undefined &&
                       maxPrice !== undefined &&
-                      computer.price * percentage >= minPrice &&
-                      computer.price * percentage <= maxPrice
+                      price >= minPrice &&
+                      price <= maxPrice
                     ) {
                       return <Product key={computer._id} product={computer} />;
                     }
@@ -102,19 +108,25 @@ export default function AllItems() {
                   (productFilter === "all" || productFilter === "monitors") &&
                   monitors.map((monitor) => {
                     let percentage = monitor.discount > 0 ? monitor.discount/100 : 1
+                    let price;
+                    if(percentage !== 1){
+                      price = monitor.price - (monitor.price * percentage)
+                    }else {
+                      price = monitor.price
+                    }
                     if (minPrice === undefined && maxPrice === undefined) {
                       return <Product key={monitor._id} product={monitor} />;
                     } else if (
                       minPrice === 2000 &&
                       maxPrice === undefined &&
-                      monitor.price * percentage >= 2000
+                      price * percentage > 2000
                     ) {
                       return <Product key={monitor._id} product={monitor} />;
                     } else if (
                       minPrice !== undefined &&
                       maxPrice !== undefined &&
-                      monitor.price * percentage >= minPrice &&
-                      monitor.price * percentage <= maxPrice
+                      price * percentage >= minPrice &&
+                      price * percentage <= maxPrice
                     ) {
                       return <Product key={monitor._id} product={monitor} />;
                     }
@@ -123,20 +135,25 @@ export default function AllItems() {
                   (productFilter === "all" || productFilter === "phones") &&
                   phones.map((phone) => {
                     let percentage = phone.discount > 0 ? phone.discount/100 : 1
-
+                    let price;
+                    if(percentage !== 1){
+                      price = phone.price - (phone.price * percentage)
+                    }else {
+                      price = phone.price
+                    }
                     if (minPrice === undefined && maxPrice === undefined) {
                       return <Product key={phone._id} product={phone} />;
                     } else if (
                       minPrice === 2000 &&
                       maxPrice === undefined &&
-                      phone.price * percentage >= 2000
+                      price * percentage > 2000
                     ) {
                       return <Product key={phone._id} product={phone} />;
                     } else if (
                       minPrice !== undefined &&
                       maxPrice !== undefined &&
-                      phone.price * percentage >= minPrice &&
-                      phone.price * percentage <= maxPrice
+                      price * percentage >= minPrice &&
+                      price * percentage <= maxPrice
                     ) {
                       return <Product key={phone._id} product={phone} />;
                     }
