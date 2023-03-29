@@ -16,7 +16,7 @@ import Header from "./components/Main/Header/Header";
 import { AuthContext } from "./contexts/AuthContext";
 import { useEffect, useState } from "react";
 import { getCurrentUser, logoutUser } from "./services/userService";
-import { AuthGuard } from "./components/Main/RouteGuard";
+import { AuthGuard, UserGuard } from "./components/Main/RouteGuard";
 
 function App() {
   useEffect(() => {
@@ -49,16 +49,18 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Route>
+        <Route element={<UserGuard />}>
+          <Route path="/all-products/:productId/edit" element={<EditProduct />}/>
+          <Route path="/add-product" element={<AddProduct />} />
+          <Route path="/card" element={<ShoppingCard />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/all-products/:productId/add-discount"
+            element={<AddDiscount />}
+          />
+        </Route>
         <Route path="/all-products" exact element={<AllItems />} />
         <Route path="/all-products/:productId" element={<ProductDetails />} />
-        <Route path="/all-products/:productId/edit" element={<EditProduct />} />
-        <Route
-          path="/all-products/:productId/add-discount"
-          element={<AddDiscount />}
-        />
-        <Route path="/add-product" element={<AddProduct />} />
-        <Route path="/card" element={<ShoppingCard />} />
-        <Route path="/profile" element={<Profile />} />
       </Routes>
     </AuthContext.Provider>
   );
