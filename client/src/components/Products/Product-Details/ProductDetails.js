@@ -45,7 +45,6 @@ export default function ProductDetails() {
       setAlreadyAdded(alreadyAdded ? true : false);
       setMainImage(data.images[0].imageUrl);
       setIsLoading(false);
-      console.log(data)
     }
     getData();
   }, []);
