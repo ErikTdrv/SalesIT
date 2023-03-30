@@ -188,7 +188,6 @@ export default function Monitor({ mode, data }) {
       </form>
       {products.images && mode === undefined && (
         <div className="images">
-          <h1>Ok</h1>
           {products.images.map((e, index) => (
             <img
               src={e}
