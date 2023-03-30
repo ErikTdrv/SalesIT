@@ -62,6 +62,7 @@ export default function Login() {
             <div className="inputs">
               <div className="email">
                 <input
+                  data-testid="email-input"
                   type="text"
                   onChange={(e) =>
                     setAuthInfo({ ...authInfo, email: e.target.value })
