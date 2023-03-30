@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 export function DetailsInfo({product}){
     return (
         <div className="info-div">
@@ -87,9 +88,12 @@ export function DetailsInfo({product}){
                   </span>
                 )}
                 {product?.owner && (
+                  <Link to={`/global-profile/${product.owner._id}`} className='owner-link'>
                   <span>
-                    <p>Owner:</p> {product.owner.username}
+                    Owner:
+                    <p>{product.owner.username} </p> ←
                   </span>
+                  </Link>
                 )}
               </div>
             </div>
