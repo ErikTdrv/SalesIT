@@ -7,7 +7,7 @@ import "./Shopping.css";
 import { getProfileProducts } from "../../services/userService";
 import ShoppingProduct from "./ShoppingProduct";
 
-export default function ShoppingCard({ mode }) {
+export default function ShoppingCard({ mode, user }) {
   let [products, setProducts] = useState();
   let [isLoading, setIsLoading] = useState(true);
   let [index, setIndex] = useState(0);
@@ -17,7 +17,9 @@ export default function ShoppingCard({ mode }) {
       let products;
       if (mode === "profile") {
         products = await getProfileProducts();
-      } else {
+      }else if(mode === 'global'){
+        products = user.createdProducts;
+      }else {
         products = await getProductCard();
       }
       setProducts(products);
@@ -51,7 +53,7 @@ export default function ShoppingCard({ mode }) {
   }
   return (
     <>
-      {!isLoading && products.length > 0 ? (
+      {!isLoading && products?.length > 0 ? (
         <div className="shopping-container">
           {mode === "profile" ? (
             <h1>Profile Products</h1>
@@ -77,15 +79,12 @@ export default function ShoppingCard({ mode }) {
             </div>
             <span className="total-price">Total Price: {totalPrice.toFixed(2)}$</span>
           </div>
-          {mode !== "profile" && <button className="buy-btn">Buy</button>}
+          {mode !== "profile" && mode !== 'global' && <button className="buy-btn">Buy</button>}
         </div>
       ) : (
         <div className="shopping-container">
-          {mode === "profile" ? (
-            <h1>Profile Products</h1>
-          ) : (
-            <h1>Shopping Card</h1>
-          )}
+          {mode === 'global' && mode === "profile" && <h1>Profile Products</h1>}
+          {mode !== 'global' && mode !== 'profile' && <h1>Shopping Card</h1>}
           <div className="card__products">
             {products?.length === 0 ? (
               <h3>No Added Products</h3>
