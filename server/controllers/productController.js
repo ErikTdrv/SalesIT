@@ -70,7 +70,7 @@ router.put('/products/:id', async (req, res) => {
         if(!images){
             throw new Error('Images are required!')
         }
-        if(images){
+        if(images && !images[0].imageUrl){
             for(let el of images){
                 const uploaded = await cloudinary.v2.uploader.upload(el, { fetch_format: "auto", folder: productName });
                 let objectToPush =  {
@@ -79,8 +79,8 @@ router.put('/products/:id', async (req, res) => {
                 }
                 imagesArr.push(objectToPush)
             }
+            body.images = imagesArr
         }
-        body.images = imagesArr
         let editedProduct = await editOneProduct(body, _id)
         res.status(200).json(editedProduct)
     } catch (error) {
