@@ -69,4 +69,14 @@ router.get('/profile', async (req, res) => {
 
   }
 })
+router.get('/global-profile/:id', async (req, res) => {
+  try {
+    let id = req.params.id;
+    let user = await getUser(id)
+    res.status(201).json(user);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+    
+  }
+})
 module.exports = router;
