@@ -97,3 +97,16 @@ export const getProfileProducts = async () => {
     return data
   }
 }
+export const getUserById = async (userId) => {
+  let response = await fetch(`${API_URL}/global-user/${userId}`, {
+    method: 'GET',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: 'include'
+  })
+  const user = await response.json()
+  if(response.ok){
+    return user
+  }
+}
