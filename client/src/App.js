@@ -54,6 +54,7 @@ function App() {
           <Route path="/add-product" element={<AddProduct />} />
           <Route path="/card" element={<ShoppingCard />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/global-profile/:userId" element={<Profile mode={'global'}/>} />
           <Route
             path="/all-products/:productId/add-discount"
             element={<AddDiscount />}
