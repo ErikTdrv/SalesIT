@@ -52,9 +52,17 @@ router.get('/get-user', async (req, res) => {
   }
 })
 router.get("/logout", async (req, res) => {
-  res.clearCookie("auth");
+  try {
+    res.clearCookie("auth", {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none',
+    });
+    res.send({ message: "Cookie cleared successfully" });
+  } catch (error) {
+    console.log(error)
+  }
   // res.cookie("auth", 'none', { httpOnly: true, sameSite: 'none' , secure: true});
-  res.send({ message: "Cookie cleared successfully" });
 
   // -- Clearing token from local storage
   // let token = req.user.token;

@@ -29,12 +29,14 @@ export default function ShoppingCard({ mode, user }) {
     getProducts();
   }, []);
   function settingTotalPrice(currProducts){
-    setTotalPrice(currProducts?.reduce((acc, { price, discount }) => {
-      if(discount > 0){
-        price = price - (price*(discount/100))
-      }
-      return Number(acc) + Number(price)
-    }, 0))
+    if(currProducts?.length > 0){
+      setTotalPrice(currProducts?.reduce((acc, { price, discount }) => {
+        if(discount > 0){
+          price = price - (price*(discount/100))
+        }
+        return Number(acc) + Number(price)
+      }, 0))
+    }
   }
   async function removeProduct(productId) {
     await removeProductFromCard(productId);
