@@ -73,6 +73,7 @@ router.get('/global-profile/:id', async (req, res) => {
   try {
     let id = req.params.id;
     let user = await getUser(id)
+    console.log(user)
     res.status(201).json(user);
   } catch (error) {
     res.status(400).json({ error: error.message });
