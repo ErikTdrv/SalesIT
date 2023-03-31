@@ -49,7 +49,27 @@ const userSchema = new mongoose.Schema({
       ref: "Phone",
     },
   ],
-  createdProducts: [{}],
+  createdProducts: [
+    {},
+  ],
+  createdPhones: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Phone",
+    },
+  ],
+  createdMonitors: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Monitor",
+    },
+  ],
+  createdComputers: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Computer",
+    },
+  ],
 });
 
 userSchema.pre("save", function (next) {
