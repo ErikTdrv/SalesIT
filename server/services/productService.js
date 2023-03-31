@@ -168,7 +168,8 @@ const getCardProducts = async (userId) => {
 const getUserOwnProducts = async (userId) => {
   try {
     let user = await User.findById(userId);
-    return user.createdProducts;
+    let products = [...user.createdComputers, ...user.createdMonitors, ...user.createdPhones]
+    return products;
   } catch (error) {
     return error;
   }
