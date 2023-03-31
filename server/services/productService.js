@@ -6,17 +6,24 @@ let User = require("../models/User");
 const addProduct = async (product, userId) => {
   const user = await User.findById(userId);
   let newProduct;
-  let newArray = user.createdProducts;
+  let newArray;
   product.discount = "0";
   if (product.productName == "Computers") {
+    newArray = user?.createdComputers;
     newProduct = await Computer.create(product);
+    newArray.push(newProduct);
+    await User.findByIdAndUpdate(userId, { createdComputers: newArray });
   } else if (product.productName === "Monitors") {
+    newArray = user?.createdMonitors;
     newProduct = await Monitor.create(product);
+    newArray.push(newProduct);
+    await User.findByIdAndUpdate(userId, { createdMonitors: newArray });
   } else if (product.productName === "Phones") {
+    newArray = user?.createdPhones;
     newProduct = await Phone.create(product);
+    newArray.push(newProduct);
+    await User.findByIdAndUpdate(userId, { createdPhones: newArray });
   }
-  newArray.push(newProduct);
-  await User.findByIdAndUpdate(userId, { createdProducts: newArray });
   return newProduct;
 };
 const getAllProducts = async () => {
