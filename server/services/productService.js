@@ -217,21 +217,21 @@ const addDiscount = async (
         discount: discountPercentage,
       });
     }
-    let user = await User.findById(userId);
-    //Updating discounts manually as there is no ref in the model
-    let createdProductsArr = user.createdProducts;
-    let newCreatedProduct = createdProductsArr.find(
-      (product) => product._id.toString() === productId.toString()
-    );
-    newCreatedProduct.discount = discountPercentage;
-    let indexOfCreatedProduct = createdProductsArr.findIndex(
-      (product) => product._id.toString() === productId.toString()
-    );
-    createdProductsArr.splice(indexOfCreatedProduct, 1, newCreatedProduct);
+    // let user = await User.findById(userId);
+    // //Updating discounts manually as there is no ref in the model
+    // let createdProductsArr = user.createdProducts;
+    // let newCreatedProduct = createdProductsArr.find(
+    //   (product) => product._id.toString() === productId.toString()
+    // );
+    // newCreatedProduct.discount = discountPercentage;
+    // let indexOfCreatedProduct = createdProductsArr.findIndex(
+    //   (product) => product._id.toString() === productId.toString()
+    // );
+    // createdProductsArr.splice(indexOfCreatedProduct, 1, newCreatedProduct);
 
-    await User.findByIdAndUpdate(userId, {
-      createdProducts: createdProductsArr,
-    });
+    // await User.findByIdAndUpdate(userId, {
+    //   createdProducts: createdProductsArr,
+    // });
   } catch (error) {
     return error;
   }
