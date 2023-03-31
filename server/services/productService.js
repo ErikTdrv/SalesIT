@@ -66,23 +66,36 @@ const deleteOneProduct = async (productId, type, userId) => {
     } else if (type === "Computers") {
       deletedProduct = await Computer.findByIdAndDelete(productId);
     }
-    await deleteProductFromUserCreatedProducts(userId, deletedProduct._id);
+    await deleteProductFromUserCreatedProducts(userId, deletedProduct._id, type);
     return deletedProduct;
   } catch (error) {
     return error;
   }
 };
-const deleteProductFromUserCreatedProducts = async (userId, productId) => {
+const deleteProductFromUserCreatedProducts = async (userId, productId, type) => {
   try {
-    let user = await User.findById(userId);
-    let newArray = user.createdProducts;
-    let indexOfProduct = newArray.findIndex(
-      (e) => e._id.toString() == productId.toString()
-    );
-    if (indexOfProduct !== -1) {
-      newArray.splice(indexOfProduct, 1);
-      await User.findByIdAndUpdate(userId, { createdProducts: newArray });
+    const user = await User.findById(userId);
+    let newArray;
+    const updateObject = {};
+
+    switch (type) {
+      case "Phones":
+        newArray = user.createdPhones;
+        updateObject.createdPhones = newArray.filter((product) => product._id.toString() !== productId.toString());
+        break;
+      case "Monitors":
+        newArray = user.createdMonitors;
+        updateObject.createdMonitors = newArray.filter((product) => product._id.toString() !== productId.toString());
+        break;
+      case "Computers":
+        newArray = user.createdComputers;
+        updateObject.createdComputers = newArray.filter((product) => product._id.toString() !== productId.toString());
+        break;
+      default:
+        throw new Error("Invalid product type");
     }
+
+    await User.findByIdAndUpdate(userId, updateObject);
   } catch (error) {
     return error;
   }
@@ -167,7 +180,7 @@ const getCardProducts = async (userId) => {
 };
 const getUserOwnProducts = async (userId) => {
   try {
-    let user = await User.findById(userId);
+    let user = await User.findById(userId).populate('createdComputers').populate('createdMonitors').populate('createdPhones');
     let products = [...user.createdComputers, ...user.createdMonitors, ...user.createdPhones]
     return products;
   } catch (error) {
