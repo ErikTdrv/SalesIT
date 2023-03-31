@@ -11,17 +11,17 @@ const addProduct = async (product, userId) => {
   if (product.productName == "Computers") {
     newArray = user?.createdComputers;
     newProduct = await Computer.create(product);
-    newArray.push(newProduct);
+    newArray.push(newProduct._id);
     await User.findByIdAndUpdate(userId, { createdComputers: newArray });
   } else if (product.productName === "Monitors") {
     newArray = user?.createdMonitors;
     newProduct = await Monitor.create(product);
-    newArray.push(newProduct);
+    newArray.push(newProduct._id);
     await User.findByIdAndUpdate(userId, { createdMonitors: newArray });
   } else if (product.productName === "Phones") {
     newArray = user?.createdPhones;
     newProduct = await Phone.create(product);
-    newArray.push(newProduct);
+    newArray.push(newProduct._id);
     await User.findByIdAndUpdate(userId, { createdPhones: newArray });
   }
   return newProduct;
