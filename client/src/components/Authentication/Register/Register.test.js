@@ -1,8 +1,14 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
 import Register from "./Register";
-import { render, screen, fireEvent, waitFor, getByTestId } from "@testing-library/react";
-import Cookies from 'js-cookie';
+import {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+  getByTestId,
+} from "@testing-library/react";
+import Cookies from "js-cookie";
 
 describe("Register Component", () => {
   const mockUserAuth = {
@@ -122,5 +128,37 @@ describe("Register Component", () => {
     fireEvent.blur(phoneInput);
     expect(screen.getByText("Phone is required!")).toBeInTheDocument();
   });
- 
+  it("it redirects after successful register", () => {
+    render(
+      <Router>
+        <AuthContext.Provider value={mockUserAuth}>
+          <Register />
+        </AuthContext.Provider>
+      </Router>
+    );
+    const registerBtn = screen.getByRole("button", { name: "Register" });
+
+    const usernameInput = screen.getByTestId("username-input");
+    fireEvent.change(usernameInput, { target: { value: "test" } });
+    fireEvent.blur(usernameInput);
+
+    const emailInput = screen.getByTestId("email-input");
+    fireEvent.change(emailInput, { target: { value: "test@gmail.com" } });
+    fireEvent.blur(emailInput);
+
+    const passwordInput = screen.getByTestId("password-input");
+    fireEvent.change(passwordInput, { target: { value: "123456" } });
+    fireEvent.blur(passwordInput);
+
+    const rePassInput = screen.getByTestId("repass-input");
+    fireEvent.change(rePassInput, { target: { value: "123456" } });
+    fireEvent.blur(rePassInput);
+
+    const phoneInput = screen.getByTestId("phone-input");
+    fireEvent.change(phoneInput, { target: { value: "+359 111111111" } });
+    fireEvent.blur(phoneInput);
+
+    fireEvent.click(registerBtn);
+    expect(window.location.href).toEqual("http://localhost/");
+  });
 });
