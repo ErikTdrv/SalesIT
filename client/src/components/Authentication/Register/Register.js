@@ -44,7 +44,7 @@ export default function Register() {
     } else {
       setError({ ...error, [type]: "" });
     }
-    if (type === "Email") {
+    if (type === "Email" && e.target.value !== "") {
       const emailRegex = /^[a-zA-Z0-9.-]{4,}@[a-z]+.[a-z]+$/;
       const isValidEmail = emailRegex.test(e.target.value);
       if (!isValidEmail) {
