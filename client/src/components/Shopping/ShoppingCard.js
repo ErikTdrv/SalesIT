@@ -41,7 +41,7 @@ export default function ShoppingCard({ mode, user }) {
   async function removeProduct(productId) {
     await removeProductFromCard(productId);
     let updatedProducts = products.filter(
-      (product) => product._id !== productId
+      (product) => product?._id !== productId
     );
     settingTotalPrice(updatedProducts)
     setProducts(updatedProducts);
