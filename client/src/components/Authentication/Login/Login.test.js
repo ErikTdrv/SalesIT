@@ -5,6 +5,7 @@ import userEvent from "@testing-library/user-event";
 import Login from "./Login";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
+import Cookies from 'js-cookie';
 
 describe("Login component", () => {
 
@@ -122,8 +123,25 @@ describe("Login component", () => {
     fireEvent.change(screen.getByTestId("password-input"), { target: { value: "" } });
     expect(loginBtn).toBeDisabled();
   });
-  it("sends email and password to the backend and receives a response", async () => {
-   //TO DO!
+  it("it redirects after successful login", () => {
+    render(
+      <Router>
+        <AuthContext.Provider value={mockUserAuth}>
+          <Login />
+        </AuthContext.Provider>
+      </Router>
+    );
+    const emailInput = screen.getByTestId("email-input");
+    const passwordInput = screen.getByTestId("password-input");
+    const loginBtn = screen.getByRole("button", { name: "Login" });
+
+    fireEvent.change(emailInput, { target: { value: "test@test.com" } });
+    fireEvent.blur(emailInput)
+    fireEvent.change(passwordInput, { target: { value: "testpassword" } });
+    fireEvent.blur(passwordInput)
+    fireEvent.click(loginBtn);
+    expect(window.location.href).toEqual("http://localhost/");
+
   });
   
 });
