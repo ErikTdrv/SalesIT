@@ -161,4 +161,75 @@ describe("Register Component", () => {
     fireEvent.click(registerBtn);
     expect(window.location.href).toEqual("http://localhost/");
   });
+  it("disables the register button when empty field", () => {
+    render(
+      <Router>
+        <AuthContext.Provider value={mockUserAuth}>
+          <Register />
+        </AuthContext.Provider>
+      </Router>
+    );
+    //Different cases
+    const registerBtn = screen.getByRole("button", { name: "Register" });
+    expect(registerBtn).toBeDisabled();
+    
+    const usernameInput = screen.getByTestId("username-input");
+    fireEvent.change(usernameInput, { target: { value: "" } });
+    fireEvent.blur(usernameInput);
+    expect(registerBtn).toBeDisabled();
+
+    const emailInput = screen.getByTestId("email-input");
+    fireEvent.change(emailInput, { target: { value: "" } });
+    fireEvent.blur(emailInput);
+    expect(registerBtn).toBeDisabled();
+
+    const passwordInput = screen.getByTestId("password-input");
+    fireEvent.change(passwordInput, { target: { value: "" } });
+    fireEvent.blur(passwordInput);
+    expect(registerBtn).toBeDisabled();
+
+    const rePassInput = screen.getByTestId("repass-input");
+    fireEvent.change(rePassInput, { target: { value: "" } });
+    fireEvent.blur(rePassInput);
+    expect(registerBtn).toBeDisabled();
+
+    const phoneInput = screen.getByTestId("phone-input");
+    fireEvent.change(phoneInput, { target: { value: "+359 111111111" } });
+    fireEvent.blur(phoneInput);
+    expect(registerBtn).toBeDisabled();
+
+  });
+  it("disables the register button when invalid email", () => {
+    render(
+      <Router>
+        <AuthContext.Provider value={mockUserAuth}>
+          <Register />
+        </AuthContext.Provider>
+      </Router>
+    );
+    //Different cases
+    const registerBtn = screen.getByRole("button", { name: "Register" });
+    
+    const usernameInput = screen.getByTestId("username-input");
+    fireEvent.change(usernameInput, { target: { value: "test" } });
+    fireEvent.blur(usernameInput);
+
+    const emailInput = screen.getByTestId("email-input");
+    fireEvent.change(emailInput, { target: { value: "test" } });
+    fireEvent.blur(emailInput);
+
+    const passwordInput = screen.getByTestId("password-input");
+    fireEvent.change(passwordInput, { target: { value: "123456" } });
+    fireEvent.blur(passwordInput);
+
+    const rePassInput = screen.getByTestId("repass-input");
+    fireEvent.change(rePassInput, { target: { value: "123456" } });
+    fireEvent.blur(rePassInput);
+
+    const phoneInput = screen.getByTestId("phone-input");
+    fireEvent.change(phoneInput, { target: { value: "+359 111111111" } });
+    fireEvent.blur(phoneInput);
+    expect(screen.getByText("Email must be valid!")).toBeInTheDocument();
+    expect(registerBtn).toBeDisabled();
+  });
 });
