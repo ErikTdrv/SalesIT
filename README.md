@@ -2,7 +2,7 @@
 Sales app made for educational purpose, created with React as Front-End, Node.js as Back-End and MongoDB as database.
 
 <p align="center">
-  <img style="text-align: center" src="/public/githubsite.png" width="550" title="project-image">
+  <img style="text-align: center" src="./client/public/githubsite.png" width="550" title="project-image">
 </p>
  
 ## General information
