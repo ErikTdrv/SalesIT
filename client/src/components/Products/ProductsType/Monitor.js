@@ -33,7 +33,7 @@ export default function Monitor({ mode, data }) {
       request = await editOneProduct(products, products._id, "Monitors");
     }
     if (request.message) {
-      return setMainError(request.message.split(": ")[2].split(", ")[0]);
+      return setMainError(request.message.split(": ")[2].split(", ")[0] || request.message);
     }
     if (request._id && mode === undefined) {
       setIsLoading(false);

@@ -45,7 +45,7 @@ export default function ComputerProduct({ mode, data }) {
         request = await editOneProduct(products, products._id, "Computers");
       }
       if (request.message) {
-        return setMainError(request.message.split(": ")[2].split(", ")[0]);
+        return setMainError(request.message.split(": ")[2].split(", ")[0] || request.message);
       }
       if (request._id && mode === undefined) {
         setIsLoading(false);

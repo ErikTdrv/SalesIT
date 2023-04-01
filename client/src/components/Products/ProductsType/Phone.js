@@ -32,7 +32,7 @@ export default function PhoneProduct({ mode, data }) {
       request = await editOneProduct(products, products._id, "Phones");
     }
     if (request.message) {
-      return setMainError(request.message.split(": ")[2].split(", ")[0]);
+      return setMainError(request.message.split(": ")[2].split(", ")[0] || request.message);
     }
     if (request._id && mode === undefined) {
       navigate("/");
