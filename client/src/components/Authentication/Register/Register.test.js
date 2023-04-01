@@ -47,4 +47,34 @@ describe("Register Component", () => {
     fireEvent.change(phoneInput, {target: { value: '+359 111111111'}});
     expect(phoneInput.value).toBe('+359 111111111')
   });
+  it("should give an error if password mismatch", () => {
+    render(
+        <Router>
+          <AuthContext.Provider value={mockUserAuth}>
+            <Register />
+          </AuthContext.Provider>
+        </Router>
+      );
+    const registerBtn = screen.getByRole("button", { name: "Register" });
+
+    const usernameInput = screen.getByTestId('username-input')
+    fireEvent.change(usernameInput, { target: { value: "testUsername"}})
+
+    const emailInput = screen.getByTestId('email-input');
+    fireEvent.change(emailInput, {target: { value: 'testEmail@gmail.com'}});
+
+    const passwordInput = screen.getByTestId('password-input');
+    fireEvent.change(passwordInput, {target: { value: '123456'}});
+
+    const rePassInput = screen.getByTestId('repass-input');
+    fireEvent.change(rePassInput, {target: { value: '1234567'}});
+
+    const phoneInput = screen.getByTestId('phone-input');
+    fireEvent.change(phoneInput, {target: { value: '+359 111111111'}});
+
+    fireEvent.click(registerBtn)
+    expect(
+        screen.getByText("Passwords must match!")
+      ).toBeInTheDocument();
+  })
 });
