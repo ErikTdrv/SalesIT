@@ -29,7 +29,7 @@ export default function Login() {
   }
   function validateInput(e) {
     if (e.target.type === "password") {
-      if (e.target.value.length < 4) {
+      if (e.target.value.length < 6) {
         setError({
           ...error,
           passwordErr: "Password must contain minimum 6 characters!",
@@ -80,6 +80,7 @@ export default function Login() {
               </div>
               <div className="password">
                 <input
+                  data-testid="password-input"
                   type="password"
                   onChange={(e) =>
                     setAuthInfo({ ...authInfo, password: e.target.value })

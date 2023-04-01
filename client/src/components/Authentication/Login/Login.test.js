@@ -1,14 +1,13 @@
-import {
-  fireEvent,
-  getByLabelText,
-  render,
-  screen,
-} from "@testing-library/react";
+import { rest } from "msw";
+import { setupServer } from "msw/node";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import Login from "./Login";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
-import Login from "./Login";
 
 describe("Login component", () => {
+
   const mockUserAuth = {
     userAuth: false,
   };
@@ -102,7 +101,7 @@ describe("Login component", () => {
         <Login />
       </AuthContext.Provider>
     </Router>);
-    
+
     //Different Cases
     const loginBtn = screen.getByRole("button", { name: "Login" });
     expect(loginBtn).toBeDisabled();
@@ -123,4 +122,8 @@ describe("Login component", () => {
     fireEvent.change(screen.getByTestId("password-input"), { target: { value: "" } });
     expect(loginBtn).toBeDisabled();
   });
+  it("sends email and password to the backend and receives a response", async () => {
+   //TO DO!
+  });
+  
 });
