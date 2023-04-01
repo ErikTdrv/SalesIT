@@ -33,6 +33,7 @@ export default function Monitor({ mode, data }) {
       request = await editOneProduct(products, products._id, "Monitors");
     }
     if (request.message) {
+      setIsLoading(false)
       return setMainError(request.message.split(": ")[2].split(", ")[0] || request.message);
     }
     if (request._id && mode === undefined) {
@@ -180,7 +181,8 @@ export default function Monitor({ mode, data }) {
           value="Add Product"
           disabled={
             Object.values(error).some((e) => e.length > 0) ||
-            Object.values(products).some((e) => e.length === 0)
+            Object.values(products).some((e) => e.length === 0) || 
+            isLoading
           }
           className="add-btn"
           onClick={() => setMainError("")}

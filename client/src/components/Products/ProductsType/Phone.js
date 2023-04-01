@@ -5,10 +5,12 @@ import { addProduct, editOneProduct } from "../../../services/productService";
 import { convertToBase64 } from "../../../services/userService";
 
 export default function PhoneProduct({ mode, data }) {
-  let [products, setProducts] = useState({phonename: '',capacity: '', displaysize: '',color:'', camera:'',price: '', battery: '', os:'',images:[]});
-  let [error, setError] = useState({});
-  let [mainError, setMainError] = useState("");
-  let navigate = useNavigate();
+  const [products, setProducts] = useState({phonename: '',capacity: '', displaysize: '',color:'', camera:'',price: '', battery: '', os:'',images:[]});
+  const [error, setError] = useState({});
+  const [mainError, setMainError] = useState("");
+  const [isLoading, setIsLoading] = useState(false)
+  const formClassName = isLoading ? "add-form blurred" : "add-form";
+  const navigate = useNavigate();
   useEffect(() => {
     if (data !== undefined) {
       setProducts(data);
@@ -25,6 +27,7 @@ export default function PhoneProduct({ mode, data }) {
   }
   async function addPhoneProduct(e) {
     e.preventDefault();
+    setIsLoading(true)
     let request;
     if (mode === undefined) {
       request = await addProduct(products, "Phones");
@@ -32,16 +35,21 @@ export default function PhoneProduct({ mode, data }) {
       request = await editOneProduct(products, products._id, "Phones");
     }
     if (request.message) {
+      setIsLoading(false)
       return setMainError(request.message.split(": ")[2].split(", ")[0] || request.message);
     }
     if (request._id && mode === undefined) {
+      setIsLoading(false)
       navigate("/");
     } else if (mode === "edit") {
+      setIsLoading(false)
       navigate(`/all-products/${products._id}`);
     }
   }
   return (
-    <form className="add-form" onSubmit={addPhoneProduct}>
+    <>
+    {isLoading && <span className="loader"></span>}
+    <form className={formClassName} onSubmit={addPhoneProduct}>
       {mainError && <p className="main-error">{mainError}</p>}
       <div className="inputs">
         <div className="left-input">
@@ -204,10 +212,12 @@ export default function PhoneProduct({ mode, data }) {
         onClick={() => setMainError("")}
         disabled={
           Object.values(error).some((e) => e.length > 0) ||
-          Object.values(products).some((e) => e.length === 0)
+          Object.values(products).some((e) => e.length === 0) || 
+          isLoading
         }
         className="add-btn"
       />
     </form>
+    </>
   );
 }

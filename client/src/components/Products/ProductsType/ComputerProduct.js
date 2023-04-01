@@ -45,6 +45,7 @@ export default function ComputerProduct({ mode, data }) {
         request = await editOneProduct(products, products._id, "Computers");
       }
       if (request.message) {
+        setIsLoading(false)
         return setMainError(request.message.split(": ")[2].split(", ")[0] || request.message);
       }
       if (request._id && mode === undefined) {
@@ -230,7 +231,7 @@ export default function ComputerProduct({ mode, data }) {
 
         <input
           type="submit"
-          disabled={Object.values(error).some((e) => e.length > 0) || Object.values(products).some((e) => e.length === 0)}
+          disabled={Object.values(error).some((e) => e.length > 0) || Object.values(products).some((e) => e.length === 0) || isLoading}
           onClick={() => setMainError("")}
           value="Add Product"
           className="add-btn"
