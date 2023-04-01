@@ -30,21 +30,21 @@ export default function Profile({mode}) {
       <div className="product__all">
         <div className="profile__info">
           <img
-            src={userInfo.avatarImg}
+            src={userInfo?.avatarImg}
             alt="avatar-img"
           />
           <div className="profile__info__auth">
             <li>
               Username:
-              <span> {userInfo.username}</span>
+              <span> {userInfo?.username}</span>
             </li>
             <li>
               Email:
-              <span> {userInfo.email}</span>
+              <span> {userInfo?.email}</span>
             </li>
             <li>
               Phone Number:
-              <span> {userInfo.phone}</span>
+              <span> {userInfo?.phone}</span>
             </li>
           </div>
         </div>
