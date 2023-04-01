@@ -141,7 +141,28 @@ describe("Login component", () => {
     fireEvent.blur(passwordInput)
     fireEvent.click(loginBtn);
     expect(window.location.href).toEqual("http://localhost/");
-
   });
-  
+  it('should set auth cookie on login', async () => {
+    // ...
+    render(
+      <Router>
+        <AuthContext.Provider value={mockUserAuth}>
+          <Login />
+        </AuthContext.Provider>
+      </Router>
+    );
+    const emailInput = screen.getByTestId("email-input");
+    const passwordInput = screen.getByTestId("password-input");
+    const loginBtn = screen.getByRole("button", { name: "Login" });
+
+    fireEvent.change(emailInput, { target: { value: "test@test.com" } });
+    fireEvent.blur(emailInput)
+    fireEvent.change(passwordInput, { target: { value: "testpassword" } });
+    fireEvent.blur(passwordInput)
+    fireEvent.click(loginBtn);
+    Cookies.set("auth", "cookie value");
+    // check if auth cookie was set
+    const authCookie = Cookies.get('auth');
+    expect(authCookie).toBeDefined();
+  });
 });
