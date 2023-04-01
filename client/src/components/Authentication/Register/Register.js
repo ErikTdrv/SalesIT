@@ -8,12 +8,18 @@ import "./Register.css";
 
 export default function Register() {
   const navigate = useNavigate();
-  const [auth, setAuth] = useState({email: '', username: '', password: '', repass: '', phone: ''});
+  const [auth, setAuth] = useState({
+    email: "",
+    username: "",
+    password: "",
+    repass: "",
+    phone: "",
+  });
   const [mainError, setMainError] = useState();
   const [error, setError] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   let { userAuth } = useContext(AuthContext);
-  const registerClass = isLoading ? 'register-blur' : ''
+  const registerClass = isLoading ? "register-blur" : "";
   async function onSubmitHandler(e) {
     e.preventDefault();
     setIsLoading(true);
@@ -53,13 +59,14 @@ export default function Register() {
       <div className="register">
         <h1>Register</h1>
         <form onSubmit={onSubmitHandler} className={registerClass}>
-        {mainError ? <p className="main-error">{mainError}</p> : ""}
+          {mainError ? <p className="main-error">{mainError}</p> : ""}
           {auth?.avatarImg && (
             <img className="avatarImg" src={auth.avatarImg} alt="" />
           )}
           <div className="register-inputs">
             <div className="register-username">
               <input
+                data-testid="username-input"
                 type="text"
                 className="first"
                 onChange={(e) => setAuth({ ...auth, username: e.target.value })}
@@ -72,6 +79,7 @@ export default function Register() {
             </div>
             <div className="register-email">
               <input
+                data-testid="email-input"
                 type="text"
                 className="second"
                 onChange={(e) => setAuth({ ...auth, email: e.target.value })}
@@ -82,6 +90,7 @@ export default function Register() {
             </div>
             <div className="register-password">
               <input
+                data-testid="password-input"
                 type="password"
                 className="third"
                 onChange={(e) => setAuth({ ...auth, password: e.target.value })}
@@ -94,6 +103,7 @@ export default function Register() {
             </div>
             <div className="re-password">
               <input
+                data-testid="repass-input"
                 type="password"
                 className="fourth"
                 onChange={(e) => setAuth({ ...auth, repass: e.target.value })}
@@ -108,6 +118,7 @@ export default function Register() {
             </div>
             <div className="phone">
               <input
+                data-testid="phone-input"
                 type="text"
                 className="fifth"
                 onChange={(e) => setAuth({ ...auth, phone: e.target.value })}
@@ -121,6 +132,7 @@ export default function Register() {
             <div className="avatarDiv">
               <label htmlFor="avatar">
                 <input
+                  data-testid="avatar-input"
                   id="avatar"
                   type="file"
                   name="avatar"
