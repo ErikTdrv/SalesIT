@@ -1,7 +1,8 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
 import Register from "./Register";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor, getByTestId } from "@testing-library/react";
+import Cookies from 'js-cookie';
 
 describe("Register Component", () => {
   const mockUserAuth = {
@@ -85,40 +86,41 @@ describe("Register Component", () => {
     );
     const emailInput = screen.getByTestId("email-input");
     fireEvent.change(emailInput, { target: { value: "testEmail" } });
-    fireEvent.blur(emailInput)
+    fireEvent.blur(emailInput);
     expect(screen.getByText("Email must be valid!")).toBeInTheDocument();
   });
   it("should give error when empty fields", () => {
     render(
-        <Router>
-          <AuthContext.Provider value={mockUserAuth}>
-            <Register />
-          </AuthContext.Provider>
-        </Router>
+      <Router>
+        <AuthContext.Provider value={mockUserAuth}>
+          <Register />
+        </AuthContext.Provider>
+      </Router>
     );
     const usernameInput = screen.getByTestId("username-input");
     fireEvent.change(usernameInput, { target: { value: "" } });
-    fireEvent.blur(usernameInput)
-    expect(screen.getByText('Username is required!')).toBeInTheDocument();
+    fireEvent.blur(usernameInput);
+    expect(screen.getByText("Username is required!")).toBeInTheDocument();
 
     const emailInput = screen.getByTestId("email-input");
-    fireEvent.change(emailInput, { target: {value: ""}});
+    fireEvent.change(emailInput, { target: { value: "" } });
     fireEvent.blur(emailInput);
-    expect(screen.getByText('Email is required!')).toBeInTheDocument();
+    expect(screen.getByText("Email is required!")).toBeInTheDocument();
 
     const passwordInput = screen.getByTestId("password-input");
-    fireEvent.change(passwordInput, { target: {value: ""}});
+    fireEvent.change(passwordInput, { target: { value: "" } });
     fireEvent.blur(passwordInput);
-    expect(screen.getByText('Password is required!')).toBeInTheDocument();
-    
+    expect(screen.getByText("Password is required!")).toBeInTheDocument();
+
     const rePassInput = screen.getByTestId("repass-input");
-    fireEvent.change(rePassInput, { target: {value: ""}});
+    fireEvent.change(rePassInput, { target: { value: "" } });
     fireEvent.blur(rePassInput);
-    expect(screen.getByText('Re-Password is required!')).toBeInTheDocument();
+    expect(screen.getByText("Re-Password is required!")).toBeInTheDocument();
 
     const phoneInput = screen.getByTestId("phone-input");
-    fireEvent.change(phoneInput, { target: { value: ""}});
+    fireEvent.change(phoneInput, { target: { value: "" } });
     fireEvent.blur(phoneInput);
-    expect(screen.getByText('Phone is required!')).toBeInTheDocument();
-  })
+    expect(screen.getByText("Phone is required!")).toBeInTheDocument();
+  });
+ 
 });
