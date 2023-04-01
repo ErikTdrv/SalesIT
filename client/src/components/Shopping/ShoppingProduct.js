@@ -2,9 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function ShoppingProduct({ product, removeProduct, mode,  products }) {
+
   return (
     <article className="card__product">
-      <img src={product.images[0].imageUrl} alt="product-img" />
+      <img src={product?.images[0]?.imageUrl} alt="product-img" />
       <h1>
         {product?.manufacturer}
         {product?.phonename}

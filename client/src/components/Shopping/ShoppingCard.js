@@ -18,7 +18,7 @@ export default function ShoppingCard({ mode, user }) {
       if (mode === "profile") {
         products = await getProfileProducts();
       }else if(mode === 'global'){
-        products = user.createdProducts;
+        products = [...user?.createdComputers, ...user?.createdMonitors, ...user?.createdPhones];
       }else {
         products = await getProductCard();
       }
