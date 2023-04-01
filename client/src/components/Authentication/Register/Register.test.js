@@ -27,54 +27,98 @@ describe("Register Component", () => {
         </AuthContext.Provider>
       </Router>
     );
-    const usernameInput = screen.getByTestId('username-input')
-    fireEvent.change(usernameInput, { target: { value: "testUsername"}})
-    expect(usernameInput.value).toBe("testUsername")
+    const usernameInput = screen.getByTestId("username-input");
+    fireEvent.change(usernameInput, { target: { value: "testUsername" } });
+    expect(usernameInput.value).toBe("testUsername");
 
-    const emailInput = screen.getByTestId('email-input');
-    fireEvent.change(emailInput, {target: { value: 'testEmail@gmail.com'}});
-    expect(emailInput.value).toBe('testEmail@gmail.com')
+    const emailInput = screen.getByTestId("email-input");
+    fireEvent.change(emailInput, { target: { value: "testEmail@gmail.com" } });
+    expect(emailInput.value).toBe("testEmail@gmail.com");
 
-    const passwordInput = screen.getByTestId('password-input');
-    fireEvent.change(passwordInput, {target: { value: '123456'}});
-    expect(passwordInput.value).toBe('123456')
+    const passwordInput = screen.getByTestId("password-input");
+    fireEvent.change(passwordInput, { target: { value: "123456" } });
+    expect(passwordInput.value).toBe("123456");
 
-    const rePassInput = screen.getByTestId('repass-input');
-    fireEvent.change(rePassInput, {target: { value: '123456'}});
-    expect(rePassInput.value).toBe('123456')
+    const rePassInput = screen.getByTestId("repass-input");
+    fireEvent.change(rePassInput, { target: { value: "123456" } });
+    expect(rePassInput.value).toBe("123456");
 
-    const phoneInput = screen.getByTestId('phone-input');
-    fireEvent.change(phoneInput, {target: { value: '+359 111111111'}});
-    expect(phoneInput.value).toBe('+359 111111111')
+    const phoneInput = screen.getByTestId("phone-input");
+    fireEvent.change(phoneInput, { target: { value: "+359 111111111" } });
+    expect(phoneInput.value).toBe("+359 111111111");
   });
   it("should give an error if password mismatch", () => {
+    render(
+      <Router>
+        <AuthContext.Provider value={mockUserAuth}>
+          <Register />
+        </AuthContext.Provider>
+      </Router>
+    );
+    const registerBtn = screen.getByRole("button", { name: "Register" });
+
+    const usernameInput = screen.getByTestId("username-input");
+    fireEvent.change(usernameInput, { target: { value: "testUsername" } });
+
+    const emailInput = screen.getByTestId("email-input");
+    fireEvent.change(emailInput, { target: { value: "testEmail@gmail.com" } });
+
+    const passwordInput = screen.getByTestId("password-input");
+    fireEvent.change(passwordInput, { target: { value: "123456" } });
+
+    const rePassInput = screen.getByTestId("repass-input");
+    fireEvent.change(rePassInput, { target: { value: "1234567" } });
+
+    const phoneInput = screen.getByTestId("phone-input");
+    fireEvent.change(phoneInput, { target: { value: "+359 111111111" } });
+
+    fireEvent.click(registerBtn);
+    expect(screen.getByText("Passwords must match!")).toBeInTheDocument();
+  });
+  it("should give error for invalid email", () => {
+    render(
+      <Router>
+        <AuthContext.Provider value={mockUserAuth}>
+          <Register />
+        </AuthContext.Provider>
+      </Router>
+    );
+    const emailInput = screen.getByTestId("email-input");
+    fireEvent.change(emailInput, { target: { value: "testEmail" } });
+    fireEvent.blur(emailInput)
+    expect(screen.getByText("Email must be valid!")).toBeInTheDocument();
+  });
+  it("should give error when empty fields", () => {
     render(
         <Router>
           <AuthContext.Provider value={mockUserAuth}>
             <Register />
           </AuthContext.Provider>
         </Router>
-      );
-    const registerBtn = screen.getByRole("button", { name: "Register" });
+    );
+    const usernameInput = screen.getByTestId("username-input");
+    fireEvent.change(usernameInput, { target: { value: "" } });
+    fireEvent.blur(usernameInput)
+    expect(screen.getByText('Username is required!')).toBeInTheDocument();
 
-    const usernameInput = screen.getByTestId('username-input')
-    fireEvent.change(usernameInput, { target: { value: "testUsername"}})
+    const emailInput = screen.getByTestId("email-input");
+    fireEvent.change(emailInput, { target: {value: ""}});
+    fireEvent.blur(emailInput);
+    expect(screen.getByText('Email is required!')).toBeInTheDocument();
 
-    const emailInput = screen.getByTestId('email-input');
-    fireEvent.change(emailInput, {target: { value: 'testEmail@gmail.com'}});
+    const passwordInput = screen.getByTestId("password-input");
+    fireEvent.change(passwordInput, { target: {value: ""}});
+    fireEvent.blur(passwordInput);
+    expect(screen.getByText('Password is required!')).toBeInTheDocument();
+    
+    const rePassInput = screen.getByTestId("repass-input");
+    fireEvent.change(rePassInput, { target: {value: ""}});
+    fireEvent.blur(rePassInput);
+    expect(screen.getByText('Re-Password is required!')).toBeInTheDocument();
 
-    const passwordInput = screen.getByTestId('password-input');
-    fireEvent.change(passwordInput, {target: { value: '123456'}});
-
-    const rePassInput = screen.getByTestId('repass-input');
-    fireEvent.change(rePassInput, {target: { value: '1234567'}});
-
-    const phoneInput = screen.getByTestId('phone-input');
-    fireEvent.change(phoneInput, {target: { value: '+359 111111111'}});
-
-    fireEvent.click(registerBtn)
-    expect(
-        screen.getByText("Passwords must match!")
-      ).toBeInTheDocument();
+    const phoneInput = screen.getByTestId("phone-input");
+    fireEvent.change(phoneInput, { target: { value: ""}});
+    fireEvent.blur(phoneInput);
+    expect(screen.getByText('Phone is required!')).toBeInTheDocument();
   })
 });
