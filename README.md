@@ -49,7 +49,7 @@ And the server will start listening on port 8080.
 
 ### Tests
 * The application have unit tests for the following components: Login, Register
-** To run the tests: 
+* To run the tests: 
 ```
 $ cd ./client
 $ npm test
