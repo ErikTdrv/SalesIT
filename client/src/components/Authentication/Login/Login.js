@@ -1,19 +1,20 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../../contexts/AuthContext";
 import { login } from "../../../services/userService";
 import Copyright from "../../Main/Copyright/Copyright";
 
 import "./Login.css";
+import { useDispatch } from "react-redux";
 
 export default function Login() {
+  const dispatch = useDispatch();
   const [authInfo, setAuthInfo] = useState({email: '', password: ''});
   const [error, setError] = useState({});
   const [mainError, setMainError] = useState();
   const [isLoading, setIsLoading] = useState(false);
-  const { userAuth } = useContext(AuthContext);
   const navigate = useNavigate();
   const loginClassName = isLoading ? 'login-form login-blur' : 'login-form ';
+
   async function loginHandler(e) {
     e.preventDefault();
     setIsLoading(true)
@@ -22,7 +23,8 @@ export default function Login() {
       setMainError(data.message);
       setIsLoading(false)
     }else if(data.username){
-      userAuth(data)
+      console.log(data)
+      dispatch({type: "SET_USER", payload: data})
       navigate('/')
       setIsLoading(false)
     }
