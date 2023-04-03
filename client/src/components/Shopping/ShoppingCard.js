@@ -97,7 +97,6 @@ export default function ShoppingCard({ mode, user }) {
           </div>
         </div>
       )}
-      <Copyright/>
     </>
   );
 }
