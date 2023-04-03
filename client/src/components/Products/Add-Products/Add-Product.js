@@ -3,6 +3,7 @@ import ComputerProduct from "../ProductsType/ComputerProduct";
 import MonitorProduct from "../ProductsType/Monitor";
 import PhoneProduct from "../ProductsType/Phone";
 import "./Add-Product.css";
+import Copyright from "../../Main/Copyright/Copyright";
 
 export default function AddProduct() {
   let [type, setType] = useState("none");
@@ -13,6 +14,7 @@ export default function AddProduct() {
   }
 
   return (
+    <>
     <div className="add-container">
       <h1>Add Product</h1>
       <div className="choosable">
@@ -26,5 +28,7 @@ export default function AddProduct() {
       { type === 'monitor' ? <MonitorProduct/> : null}
       { type === 'phone' ? <PhoneProduct/> : null}
     </div>
+    <Copyright/>
+    </>
   );
 }
