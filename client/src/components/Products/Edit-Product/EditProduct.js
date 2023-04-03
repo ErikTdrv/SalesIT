@@ -4,6 +4,7 @@ import { getOneProduct } from "../../../services/productService";
 import ComputerProduct from "../ProductsType/ComputerProduct";
 import Monitor from "../ProductsType/Monitor";
 import PhoneProduct from "../ProductsType/Phone";
+import Copyright from "../../Main/Copyright/Copyright";
 
 export default function EditProduct() {
   let { productId } = useParams();
@@ -37,6 +38,7 @@ export default function EditProduct() {
           <PhoneProduct key={productId} mode={"edit"} data={product} />
         )}
       </div>
+      <Copyright/>
     </>
   );
 }
