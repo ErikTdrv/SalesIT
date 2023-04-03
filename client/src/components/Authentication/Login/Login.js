@@ -23,7 +23,6 @@ export default function Login() {
       setMainError(data.message);
       setIsLoading(false)
     }else if(data.username){
-      console.log(data)
       dispatch({type: "SET_USER", payload: data})
       navigate('/')
       setIsLoading(false)
