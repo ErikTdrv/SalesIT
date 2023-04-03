@@ -6,6 +6,7 @@ import {
 import "./Shopping.css";
 import { getProfileProducts } from "../../services/userService";
 import ShoppingProduct from "./ShoppingProduct";
+import Copyright from "../Main/Copyright/Copyright";
 
 export default function ShoppingCard({ mode, user }) {
   let [products, setProducts] = useState();
@@ -96,6 +97,7 @@ export default function ShoppingCard({ mode, user }) {
           </div>
         </div>
       )}
+      <Copyright/>
     </>
   );
 }
