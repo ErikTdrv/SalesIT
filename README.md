@@ -9,10 +9,11 @@ Sales app made for educational purpose, created with React as Front-End, Node.js
 * The main purpose of the app is to view/add products for sale.
 * Guests are only able to see Home Page, All Products and Product Details.
 * Logged in users have access to Add Product, Shopping Card and Profile information, as well they have the ability to Edit/Delete their own products.
-
+* State Management - Redux
 ## Technologies 
 * Client
     * React: 18.2.0
+    * Redux: 8.0.5
 * Server
     * Node: 18.12.0
     * ExpressJS: 4.18.2
