@@ -1,6 +1,8 @@
 import "./App.css";
-
+import { Provider, useDispatch, useSelector } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 import Home from "./components/Home/Home";
 import Login from "./components/Authentication/Login/Login";
 import Register from "./components/Authentication/Register/Register";
@@ -14,34 +16,25 @@ import Profile from "./components/Profile/Profile";
 import Header from "./components/Main/Header/Header";
 
 import { AuthContext } from "./contexts/AuthContext";
-import { useEffect, useState } from "react";
 import { getCurrentUser, logoutUser } from "./services/userService";
 import { AuthGuard, UserGuard } from "./components/Main/RouteGuard";
+import store from "./Redux/store";
 
 function App() {
+  const dispatch = useDispatch();
   useEffect(() => {
     async function getUser() {
       let user = await getCurrentUser();
-      setUser(user);
+      if(user?._id){
+        dispatch({ type: "SET_USER", payload: user });
+      }else {
+        dispatch({ type: "SET_USER", payload: null });
+      }
     }
     getUser();
   }, []);
-  let navigate = useNavigate();
-  let [user, setUser] = useState({});
-  const isAuth = user?._id ? true : false;
-  const userAuth = (authData) => {
-    setUser(authData);
-  };
-
-  const userLogout = async () => {
-    await logoutUser();
-    setUser({});
-    navigate("/");
-  };
   return (
-    <AuthContext.Provider
-      value={{ user, setUser, userAuth, userLogout, isAuth }}
-    >
+    <>
       <Header />
       <Routes>
         <Route exact path="/" element={<Home />} />
@@ -63,7 +56,7 @@ function App() {
         <Route path="/all-products" exact element={<AllItems />} />
         <Route path="/all-products/:productId" element={<ProductDetails />} />
       </Routes>
-    </AuthContext.Provider>
+    </>
   );
 }
 
