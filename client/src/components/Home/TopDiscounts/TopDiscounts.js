@@ -37,7 +37,7 @@ export default function TopDiscounts() {
   return (
     <div className="top-discounts">
       <div className="title">
-        { allDiscounts.length > 0 ? <><h1>Top Discounts</h1><h4>Reccomended</h4></>  : <h1>No Current Discounts</h1>}
+        { allDiscounts.length > 0 ? <><h1>Discounts</h1><h4>Reccomended</h4></>  : <h1>No Current Discounts</h1>}
       </div>
       {allDiscounts && (
         <section className="discounts-section">
