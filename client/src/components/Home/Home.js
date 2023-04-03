@@ -4,9 +4,10 @@ import { AuthContext } from "../../contexts/AuthContext";
 import HomeFooter from "../Main/Home-Footer/Footer";
 import "./Home.css";
 import TopDiscounts from "./TopDiscounts/TopDiscounts";
+import { useSelector } from "react-redux";
 
 export default function Home() {
-  const { isAuth } = useContext(AuthContext);
+  const isAuth = useSelector(state => state.user.isAuth);
   
   return (
     <>
