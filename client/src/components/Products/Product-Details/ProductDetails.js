@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { AuthContext } from "../../../contexts/AuthContext";
 import {
   addProductToCard,
   deleteOneProduct,
@@ -11,9 +10,10 @@ import { getCurrentUser } from "../../../services/userService";
 import { DetailsInfo } from "./DetailsInfo";
 import "./ProductDetails.css";
 import Copyright from "../../Main/Copyright/Copyright";
+import { useSelector } from "react-redux";
 
 export default function ProductDetails() {
-  const { isAuth } = useContext(AuthContext);
+  const isAuth = useSelector(state => state.user.isAuth);
   const { productId } = useParams();
   const [index, setIndex] = useState(0);
   const [product, setProduct] = useState({});
