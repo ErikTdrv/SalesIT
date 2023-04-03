@@ -10,6 +10,7 @@ import {
 import { getCurrentUser } from "../../../services/userService";
 import { DetailsInfo } from "./DetailsInfo";
 import "./ProductDetails.css";
+import Copyright from "../../Main/Copyright/Copyright";
 
 export default function ProductDetails() {
   const { isAuth } = useContext(AuthContext);
@@ -150,6 +151,7 @@ export default function ProductDetails() {
       ) : (
         <span className="loader"></span>
       )}
+      <Copyright/>
     </>
   );
 }
