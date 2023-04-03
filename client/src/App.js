@@ -15,10 +15,8 @@ import AddDiscount from "./components/Products/Product-Details/Add-Discount/AddD
 import Profile from "./components/Profile/Profile";
 import Header from "./components/Main/Header/Header";
 
-import { AuthContext } from "./contexts/AuthContext";
 import { getCurrentUser, logoutUser } from "./services/userService";
 import { AuthGuard, UserGuard } from "./components/Main/RouteGuard";
-import store from "./Redux/store";
 
 function App() {
   const dispatch = useDispatch();
