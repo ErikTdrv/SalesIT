@@ -1,17 +1,16 @@
-import { useContext } from "react";
+
 import { Navigate, Outlet, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext";
+import { useSelector } from "react-redux";
 
 export const AuthGuard = ({ children }) => {
-  const { isAuth } = useContext(AuthContext);
-
+  const isAuth = useSelector(state => state.user.isAuth)
   if (isAuth) {
     return <Navigate to="/" replace />;
   } 
   return <Outlet/>;
 };
 export const UserGuard = ({ children }) => {
-  const { isAuth } = useContext(AuthContext);
+  const isAuth = useSelector(state => state.user.isAuth)
 
   if (isAuth) {
     return <Outlet/>;
