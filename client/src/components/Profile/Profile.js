@@ -5,11 +5,12 @@ import { getUserById } from "../../services/userService";
 import Copyright from "../Main/Copyright/Copyright";
 import ShoppingCard from "../Shopping/ShoppingCard";
 import "./Profile.css";
+import { useSelector } from "react-redux";
 
 export default function Profile({mode}) {
   const [userInfo, setUserInfo] = useState({})
   const [isLoading, setIsLoading] = useState(true)
-  const { user } = useContext(AuthContext);
+  const user = useSelector(state => state.user.user);
 
   const {userId} = useParams();
   useEffect(() => {
