@@ -1,9 +1,19 @@
 import './Header.css';
 import React, { useContext } from 'react'
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from '../../../contexts/AuthContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutUser } from '../../../services/userService';
 export default function Header(){
-    let { isAuth, userLogout } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const isAuth = useSelector(state => state.user.isAuth)
+    
+    async function userLogout(){
+        await logoutUser()
+        dispatch({ type: "LOGOUT_USER" });
+        navigate('/')
+    }
     return (
         <header className="navigation">
         <div className="mainlogo">
