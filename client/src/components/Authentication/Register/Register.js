@@ -1,12 +1,13 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../../contexts/AuthContext";
 import Copyright from "../../Main/Copyright/Copyright";
 import { convertToBase64, register } from "../../../services/userService";
 
 import "./Register.css";
+import { useDispatch } from "react-redux";
 
 export default function Register() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [auth, setAuth] = useState({
     email: "",
@@ -18,7 +19,6 @@ export default function Register() {
   const [mainError, setMainError] = useState();
   const [error, setError] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  let { userAuth } = useContext(AuthContext);
   const registerClass = isLoading ? "register-blur" : "";
   async function onSubmitHandler(e) {
     e.preventDefault();
@@ -30,7 +30,7 @@ export default function Register() {
     let response = await register(auth);
     if (response?.username) {
       setIsLoading(false);
-      userAuth(response);
+      dispatch({type: "SET_USER", payload: response})
       navigate("/");
     } else if (response?.message) {
       setIsLoading(false);
