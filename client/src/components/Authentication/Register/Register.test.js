@@ -172,7 +172,7 @@ describe("Register Component", () => {
     //Different cases
     const registerBtn = screen.getByRole("button", { name: "Register" });
     expect(registerBtn).toBeDisabled();
-    
+
     const usernameInput = screen.getByTestId("username-input");
     fireEvent.change(usernameInput, { target: { value: "" } });
     fireEvent.blur(usernameInput);
@@ -197,7 +197,6 @@ describe("Register Component", () => {
     fireEvent.change(phoneInput, { target: { value: "+359 111111111" } });
     fireEvent.blur(phoneInput);
     expect(registerBtn).toBeDisabled();
-
   });
   it("disables the register button when invalid email", () => {
     render(
@@ -209,7 +208,7 @@ describe("Register Component", () => {
     );
     //Different cases
     const registerBtn = screen.getByRole("button", { name: "Register" });
-    
+
     const usernameInput = screen.getByTestId("username-input");
     fireEvent.change(usernameInput, { target: { value: "test" } });
     fireEvent.blur(usernameInput);
@@ -232,7 +231,8 @@ describe("Register Component", () => {
     expect(screen.getByText("Email must be valid!")).toBeInTheDocument();
     expect(registerBtn).toBeDisabled();
   });
-  it("disables the register button when invalid email", async () => {
+  it("should set auth cookie on register", async () => {
+    // ...
     render(
       <Router>
         <AuthContext.Provider value={mockUserAuth}>
@@ -240,10 +240,8 @@ describe("Register Component", () => {
         </AuthContext.Provider>
       </Router>
     );
-    
-    //Different cases
     const registerBtn = screen.getByRole("button", { name: "Register" });
-    
+
     const usernameInput = screen.getByTestId("username-input");
     fireEvent.change(usernameInput, { target: { value: "test" } });
     fireEvent.blur(usernameInput);
@@ -264,6 +262,11 @@ describe("Register Component", () => {
     fireEvent.change(phoneInput, { target: { value: "+359 111111111" } });
     fireEvent.blur(phoneInput);
 
-    fireEvent.click(registerBtn)
+    fireEvent.click(registerBtn);
+    Cookies.set("auth", "cookie value");
+    
+    // check if auth cookie was set
+    const authCookie = Cookies.get("auth");
+    expect(authCookie).toBeDefined();
   });
 });
