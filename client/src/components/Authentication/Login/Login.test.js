@@ -1,24 +1,18 @@
-import { rest } from "msw";
-import { setupServer } from "msw/node";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, screen, fireEvent } from "@testing-library/react";
 import Login from "./Login";
 import { BrowserRouter as Router } from "react-router-dom";
-import { AuthContext } from "../../../contexts/AuthContext";
 import Cookies from 'js-cookie';
+import { Provider } from "react-redux";
+import store from "../../../Redux/store";
 
 describe("Login component", () => {
-
-  const mockUserAuth = {
-    userAuth: false,
-  };
 
   it("renders without crashing", () => {
     render(
       <Router>
-        <AuthContext.Provider value={mockUserAuth}>
+        <Provider store={store}>
           <Login />
-        </AuthContext.Provider>
+        </Provider>
       </Router>
     );
 
@@ -28,9 +22,9 @@ describe("Login component", () => {
   it("updates the email state when email input is changed", () => {
     render(
       <Router>
-        <AuthContext.Provider value={mockUserAuth}>
+        <Provider store={store}>
           <Login />
-        </AuthContext.Provider>
+        </Provider>
       </Router>
     );
 
@@ -41,9 +35,9 @@ describe("Login component", () => {
   it("updates the password state when password input is changed", () => {
     render(
       <Router>
-        <AuthContext.Provider value={mockUserAuth}>
+        <Provider store={store}>
           <Login />
-        </AuthContext.Provider>
+        </Provider>
       </Router>
     );
 
@@ -54,9 +48,9 @@ describe("Login component", () => {
   it("renders error for password shorter than 6 characters", () => {
     render(
       <Router>
-        <AuthContext.Provider value={mockUserAuth}>
+        <Provider store={store}>
           <Login />
-        </AuthContext.Provider>
+        </Provider>
       </Router>
     );
     const passwordInput = screen.getByTestId("password-input");
@@ -69,9 +63,9 @@ describe("Login component", () => {
   it("renders error for password longer than 10 characters", () => {
     render(
       <Router>
-        <AuthContext.Provider value={mockUserAuth}>
+        <Provider store={store}>
           <Login />
-        </AuthContext.Provider>
+        </Provider>
       </Router>
     );
     const passwordInput = screen.getByTestId("password-input");
@@ -84,9 +78,9 @@ describe("Login component", () => {
   it("renders error for invalid email", () => {
     render(
       <Router>
-        <AuthContext.Provider value={mockUserAuth}>
+        <Provider store={store}>
           <Login />
-        </AuthContext.Provider>
+        </Provider>
       </Router>
     );
     const emailInput = screen.getByTestId("email-input");
@@ -98,9 +92,9 @@ describe("Login component", () => {
   });
   it("disables the login button when there are errors or empty", () => {
     render(<Router>
-      <AuthContext.Provider value={mockUserAuth}>
+      <Provider store={store}>
         <Login />
-      </AuthContext.Provider>
+      </Provider>
     </Router>);
 
     //Different Cases
@@ -126,9 +120,9 @@ describe("Login component", () => {
   it("it redirects after successful login", () => {
     render(
       <Router>
-        <AuthContext.Provider value={mockUserAuth}>
+        <Provider store={store}>
           <Login />
-        </AuthContext.Provider>
+        </Provider>
       </Router>
     );
     const emailInput = screen.getByTestId("email-input");
@@ -146,9 +140,9 @@ describe("Login component", () => {
     // ...
     render(
       <Router>
-        <AuthContext.Provider value={mockUserAuth}>
+        <Provider store={store}>
           <Login />
-        </AuthContext.Provider>
+        </Provider>
       </Router>
     );
     const emailInput = screen.getByTestId("email-input");
