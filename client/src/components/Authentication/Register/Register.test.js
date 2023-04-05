@@ -5,21 +5,19 @@ import {
   render,
   screen,
   fireEvent,
-  waitFor,
-  getByTestId,
 } from "@testing-library/react";
 import Cookies from "js-cookie";
+import { Provider } from "react-redux";
+import store from "../../../Redux/store";
 
 describe("Register Component", () => {
-  const mockUserAuth = {
-    userAuth: false,
-  };
+
   it("should render without crashing", () => {
     render(
       <Router>
-        <AuthContext.Provider value={mockUserAuth}>
+        <Provider store={store}>
           <Register />
-        </AuthContext.Provider>
+        </Provider>
       </Router>
     );
 
@@ -29,9 +27,9 @@ describe("Register Component", () => {
   it("should update value states when changing the inputs", () => {
     render(
       <Router>
-        <AuthContext.Provider value={mockUserAuth}>
+        <Provider store={store}>
           <Register />
-        </AuthContext.Provider>
+        </Provider>
       </Router>
     );
     const usernameInput = screen.getByTestId("username-input");
@@ -57,9 +55,9 @@ describe("Register Component", () => {
   it("should give an error if password mismatch", () => {
     render(
       <Router>
-        <AuthContext.Provider value={mockUserAuth}>
+        <Provider store={store}>
           <Register />
-        </AuthContext.Provider>
+        </Provider>
       </Router>
     );
     const registerBtn = screen.getByRole("button", { name: "Register" });
@@ -85,9 +83,9 @@ describe("Register Component", () => {
   it("should give error for invalid email", () => {
     render(
       <Router>
-        <AuthContext.Provider value={mockUserAuth}>
+        <Provider store={store}>
           <Register />
-        </AuthContext.Provider>
+        </Provider>
       </Router>
     );
     const emailInput = screen.getByTestId("email-input");
@@ -98,9 +96,9 @@ describe("Register Component", () => {
   it("should give error when empty fields", () => {
     render(
       <Router>
-        <AuthContext.Provider value={mockUserAuth}>
+        <Provider store={store}>
           <Register />
-        </AuthContext.Provider>
+        </Provider>
       </Router>
     );
     const usernameInput = screen.getByTestId("username-input");
@@ -131,9 +129,9 @@ describe("Register Component", () => {
   it("it redirects after successful register", () => {
     render(
       <Router>
-        <AuthContext.Provider value={mockUserAuth}>
+        <Provider store={store}>
           <Register />
-        </AuthContext.Provider>
+        </Provider>
       </Router>
     );
     const registerBtn = screen.getByRole("button", { name: "Register" });
@@ -164,9 +162,9 @@ describe("Register Component", () => {
   it("disables the register button when empty field", () => {
     render(
       <Router>
-        <AuthContext.Provider value={mockUserAuth}>
+        <Provider store={store}>
           <Register />
-        </AuthContext.Provider>
+        </Provider>
       </Router>
     );
     //Different cases
@@ -201,9 +199,9 @@ describe("Register Component", () => {
   it("disables the register button when invalid email", () => {
     render(
       <Router>
-        <AuthContext.Provider value={mockUserAuth}>
+        <Provider store={store}>
           <Register />
-        </AuthContext.Provider>
+        </Provider>
       </Router>
     );
     //Different cases
@@ -235,9 +233,9 @@ describe("Register Component", () => {
     // ...
     render(
       <Router>
-        <AuthContext.Provider value={mockUserAuth}>
+        <Provider store={store}>
           <Register />
-        </AuthContext.Provider>
+        </Provider>
       </Router>
     );
     const registerBtn = screen.getByRole("button", { name: "Register" });
