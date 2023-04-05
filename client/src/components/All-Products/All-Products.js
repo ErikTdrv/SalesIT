@@ -164,7 +164,7 @@ export default function AllItems() {
           <HomeFooter />
         </>
       ) : (
-        <span className="loader"></span>
+        <span data-testid={'loader'} className="loader"></span>
       )}
     </>
   );
