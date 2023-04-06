@@ -60,7 +60,7 @@ export default function ShoppingCard({ mode, user }) {
           {mode === "profile" ? (
             <h1>Profile Products</h1>
           ) : (
-            <h1>Shopping Card</h1>
+            <h1>Shopping Cart</h1>
           )}
           <div className="card__products">
             <h3>All Added Products</h3>
