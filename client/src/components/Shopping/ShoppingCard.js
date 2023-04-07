@@ -86,7 +86,7 @@ export default function ShoppingCard({ mode, user }) {
       ) : (
         <div className="shopping-container">
           {mode === 'global' || mode === "profile" && <h1>Profile Products</h1>}
-          {mode !== 'global' && mode !== 'profile' && <h1>Shopping Card</h1>}
+          {mode !== 'global' && mode !== 'profile' && <h1>Shopping Cart</h1>}
           <div className="card__products">
             {products?.length === 0 ? (
               <h3>No Added Products</h3>
