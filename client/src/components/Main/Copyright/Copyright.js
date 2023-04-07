@@ -1,8 +1,7 @@
 import React from "react";
 import "./Copyright.css";
-
 export default function Copyright() {
-  const areCookiesEnabled = navigator.cookieEnabled;
+  const areCookiesEnabled = navigator.cookieEnabled; 
   return (
     <div className="copyright">
       {!areCookiesEnabled && (
