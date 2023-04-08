@@ -6,23 +6,6 @@ import "./TopDiscounts.css";
 export default function TopDiscounts() {
   const [allDiscounts, setAllDiscounts] = useState([]);
   const [index, setIndex] = useState(0);
-  function changeIndex(type) {
-    if (
-      index === 0 &&
-      type === "+" &&
-      index + 1 < allDiscounts.length &&
-      allDiscounts.length > 3
-    ) {
-      setIndex(index + 1);
-    } else if (
-      index > 0 &&
-      type === "-" &&
-      index + 1 < allDiscounts.length &&
-      allDiscounts.length > 3
-    ) {
-      setIndex(index - 1);
-    }
-  }
   useEffect(() => {
     async function getData() {
       let data = await getAllProducts();
@@ -30,10 +13,26 @@ export default function TopDiscounts() {
       const filteredProducts = Object.values(data)
         .flatMap((category) => category)
         .filter((product) => product.discount > 0);
+        console.log(filteredProducts)
       setAllDiscounts(filteredProducts);
     }
     getData();
   }, []);
+  function changeIndex(type) {
+    if (
+      type === "+" &&
+      index + 3 < allDiscounts.length &&
+      allDiscounts.length > 3
+    ) {
+      setIndex(index + 1);
+    } else if (
+      index > 0 &&
+      type === "-" &&
+      allDiscounts.length > 3
+    ) {
+      setIndex(index - 1);
+    }
+  }
   return (
     <div className="top-discounts">
       <div className="title">
