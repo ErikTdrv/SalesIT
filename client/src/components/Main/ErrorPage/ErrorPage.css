@@ -1,0 +1,33 @@
+.error__div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.error__div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.error__div p {
+    margin: 0px;
+    font-size: 50px;
+    font-weight: 900;
+    color: rgb(255, 83, 83);
+}
+.error__div h1 {
+    margin: 0px;
+}
+.error__div button {
+    margin-top: 30px;
+    padding: 10px 30px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(252, 94, 94);
+    color: white;
+}
+.error__div button:hover {
+
+    background-color: rgb(255, 0, 0);
+}
