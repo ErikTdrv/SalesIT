@@ -30,7 +30,7 @@ export default function Profile({mode}) {
       <div className="product__all">
         <div className="profile__info">
           <img
-            src={userInfo?.avatarImg}
+            src={userInfo?.avatarImg || '/defaultprofile.webp'}
             alt="avatar-img"
           />
           <div className="profile__info__auth">
