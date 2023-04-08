@@ -28,7 +28,8 @@ export default function Login() {
       setIsLoading(false)
     }
   }
-  function validateInput(e) {
+  function validateInput(e, type) {
+    console.log(type)
     if (e.target.type === "password") {
       if (e.target.value.length < 6) {
         setError({
@@ -43,7 +44,7 @@ export default function Login() {
       } else {
         setError({ ...error, passwordErr: "" });
       }
-    } else {
+    } else if(type === 'Email' && e.target.value !== ''){
       const emailRegex = /^[a-zA-Z0-9.-]{4,}@[a-z]+.[a-z]+$/;
       const isValidEmail = emailRegex.test(authInfo.email);
       if (!isValidEmail) {
@@ -51,6 +52,12 @@ export default function Login() {
       } else {
         setError({ ...error, emailErr: "" });
       }
+    }else if(type === 'Email' && e.target.value === ''){
+      console.log('here')
+      setError({...error, emailErr: 'Email is required!'})
+    }else if(type === 'Email' && e.target.value !== ''){
+
+      setError({...error, emailErr: ''})
     }
   }
   return (
@@ -68,7 +75,7 @@ export default function Login() {
                   onChange={(e) =>
                     setAuthInfo({ ...authInfo, email: e.target.value })
                   }
-                  onBlur={validateInput}
+                  onBlur={(e) => validateInput(e, 'Email')}
                 />
                 <span className={authInfo.email ? "value-there" : ""}>
                   Email
