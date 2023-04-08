@@ -17,6 +17,7 @@ import Header from "./components/Main/Header/Header";
 
 import { getCurrentUser, logoutUser } from "./services/userService";
 import { AuthGuard, UserGuard } from "./components/Main/RouteGuard";
+import ErrorPage from "./components/Main/ErrorPage/ErrorPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ function App() {
         </Route>
         <Route path="/all-products" exact element={<AllItems />} />
         <Route path="/all-products/:productId" element={<ProductDetails />} />
+        <Route path='*' element={<ErrorPage/>}/>
       </Routes>
     </>
   );
