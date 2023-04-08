@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { addProduct, editOneProduct } from "../../../services/productService";
@@ -16,15 +16,18 @@ export default function PhoneProduct({ mode, data }) {
       setProducts(data);
     }
   }, []);
-  function validateInput(e, type) {
-    if (e.target.value === "") {
-      setError({ ...error, [type]: `${type} is required` });
-    }else if(type === 'price' && isNaN(Number(e.target.value))){
-      setError({...error, [type]: `Price must be a valid number!`})
-    } else {
-      setError({ ...error, [type]: "" });
-    }
-  }
+  const validateInput = useCallback(
+    (e, type) => {
+      if (e.target.value === "") {
+        setError({ ...error, [type]: `${type} is required` });
+      } else if(type === 'Price' && isNaN(Number(e.target.value))){
+        setError({...error, [type]: `Price must be a valid number!`})
+      }else {
+        setError({ ...error, [type]: "" });
+      }
+    },
+    [error]
+  );
   async function addPhoneProduct(e) {
     e.preventDefault();
     setIsLoading(true)
@@ -126,11 +129,11 @@ export default function PhoneProduct({ mode, data }) {
                   images: await Promise.all(
                     Array.from(e.target.files).map(
                       async (e) => await convertToBase64(e)
-                    )
-                  ),
-                })
-              }
-            />
+                      )
+                      ),
+                    })
+                  }
+                  />
           </div>
         </div>
         <div className="right-input">
@@ -178,11 +181,11 @@ export default function PhoneProduct({ mode, data }) {
               onChange={(e) =>
                 setProducts({ ...products, price: e.target.value })
               }
-              onBlur={(e) => validateInput(e, "price")}
+              onBlur={(e) => validateInput(e, "Price")}
               value={products.price || ""}
             />
             <span className={products.price ? "value-there" : ""}>Price</span>
-            {error.price && <p className="error">{error.price}</p>}
+            {error.Price && <p className="error">{error.Price}!</p>}
           </div>
         </div>
       </div>

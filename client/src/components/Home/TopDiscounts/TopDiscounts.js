@@ -69,7 +69,7 @@ export default function TopDiscounts() {
           </section>
           {allDiscounts.length > 3 && (
             <button className="switchers" onClick={() => changeIndex("+")}>
-              &#60;
+              &#62;
             </button>
           )}
         </section>
