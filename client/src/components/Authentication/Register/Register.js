@@ -34,7 +34,7 @@ export default function Register() {
       navigate("/");
     } else if (response?.message) {
       setIsLoading(false);
-      setMainError(response.message.split(": ")[2].split(", ")[0]);
+      setMainError(response.message);
     }
   }
 
