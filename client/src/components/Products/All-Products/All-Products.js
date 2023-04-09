@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { getAllProducts } from "../../services/productService";
-import HomeFooter from "../Main/Home-Footer/Footer";
+import { getAllProducts } from "../../../services/productService";
+import HomeFooter from "../../Main/Home-Footer/Footer";
 import "./All-Products.css";
 import Filter from "./Filter";
-import Product from "../Products/Product/Product";
+import Product from "../Product/Product";
 
-export default function AllItems() {
+export default function AllProducts() {
   const [productFilter, setProductFilter] = useState("all");
   const [computers, setComputers] = useState([]);
   const [monitors, setMonitors] = useState([]);

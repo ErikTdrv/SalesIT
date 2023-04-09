@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import Home from "./components/Home/Home";
 import Login from "./components/Authentication/Login/Login";
 import Register from "./components/Authentication/Register/Register";
-import AllItems from "./components/All-Products/All-Products";
+import AllProducts from "./components/Products/All-Products/All-Products";
 import AddProduct from "./components/Products/Add-Products/Add-Product";
 import ShoppingCard from "./components/Shopping/ShoppingCard";
 import ProductDetails from "./components/Products/Product-Details/ProductDetails";
@@ -53,7 +53,7 @@ function App() {
             element={<AddDiscount />}
           />
         </Route>
-        <Route path="/all-products" exact element={<AllItems />} />
+        <Route path="/all-products" exact element={<AllProducts />} />
         <Route path="/all-products/:productId" element={<ProductDetails />} />
         <Route path='*' element={<ErrorPage/>}/>
       </Routes>
