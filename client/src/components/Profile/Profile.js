@@ -31,6 +31,7 @@ export default function Profile({mode}) {
         <div className="profile__info">
           <img
             src={userInfo?.avatarImg || '/defaultprofile.webp'}
+            // || '/defaultprofile.webp'
             alt="avatar-img"
           />
           <div className="profile__info__auth">
