@@ -127,7 +127,7 @@ export default function ProductDetails() {
                     setAlreadyAdded(true);
                   }}
                 >
-                  Add to Card
+                  Add to Cart
                 </button>
               ) : (
                 ""
@@ -139,7 +139,7 @@ export default function ProductDetails() {
                     setAlreadyAdded(false);
                   }}
                 >
-                  Remove From Card
+                  Remove From Cart
                 </button>
               ) : (
                 ""
