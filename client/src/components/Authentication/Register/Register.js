@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Copyright from "../../Main/Copyright/Copyright";
 import { convertToBase64, register } from "../../../services/userService";

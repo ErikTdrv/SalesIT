@@ -9,7 +9,6 @@ export default function TopDiscounts() {
   useEffect(() => {
     async function getData() {
       let data = await getAllProducts();
-      const { computers, phones, monitors } = data;
       const filteredProducts = Object.values(data)
         .flatMap((category) => category)
         .filter((product) => product.discount > 0);

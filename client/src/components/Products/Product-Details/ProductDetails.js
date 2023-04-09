@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   addProductToCard,
@@ -48,7 +48,7 @@ export default function ProductDetails() {
       setIsLoading(false);
     }
     getData();
-  }, []);
+  }, [productId]);
 
   function changeIndex(type) {
     if (type === "+" && index + 3 < product.images.length) {

@@ -1,7 +1,7 @@
 import "./App.css";
-import { Provider, useDispatch, useSelector } from "react-redux";
-import { Route, Routes, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
 
 import Home from "./components/Home/Home";
 import Login from "./components/Authentication/Login/Login";
@@ -15,7 +15,7 @@ import AddDiscount from "./components/Products/Product-Details/Add-Discount/AddD
 import Profile from "./components/Profile/Profile";
 import Header from "./components/Main/Header/Header";
 
-import { getCurrentUser, logoutUser } from "./services/userService";
+import { getCurrentUser } from "./services/userService";
 import { AuthGuard, UserGuard } from "./components/Main/RouteGuard";
 import ErrorPage from "./components/Main/ErrorPage/ErrorPage";
 

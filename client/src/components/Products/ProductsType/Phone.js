@@ -1,6 +1,5 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { AuthContext } from "../../../contexts/AuthContext";
 import { addProduct, editOneProduct } from "../../../services/productService";
 import { convertToBase64 } from "../../../services/userService";
 
@@ -15,7 +14,7 @@ export default function PhoneProduct({ mode, data }) {
     if (data !== undefined) {
       setProducts(data);
     }
-  }, []);
+  }, [data]);
   const validateInput = useCallback(
     (e, type) => {
       if (e.target.value === "") {
