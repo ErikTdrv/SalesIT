@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { getAllProducts } from "../../services/productService";
-import Product from "../Product/Product";
 import HomeFooter from "../Main/Home-Footer/Footer";
 import "./All-Products.css";
 import Filter from "./Filter";
+import Product from "../Products/Product/Product";
 
 export default function AllItems() {
   const [productFilter, setProductFilter] = useState("all");

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getAllProducts } from "../../../services/productService";
-import Product from "../../Product/Product";
 import "./TopDiscounts.css";
+import Product from "../../Products/Product/Product";
 
 export default function TopDiscounts() {
   const [allDiscounts, setAllDiscounts] = useState([]);
