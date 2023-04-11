@@ -24,9 +24,9 @@ function App() {
   useEffect(() => {
     async function getUser() {
       let user = await getCurrentUser();
-      if(user?._id){
+      if (user?._id) {
         dispatch({ type: "SET_USER", payload: user });
-      }else {
+      } else {
         dispatch({ type: "SET_USER", payload: null });
       }
     }
@@ -42,12 +42,18 @@ function App() {
           <Route path="/register" element={<Register />} />
         </Route>
         <Route element={<UserGuard />}>
-          <Route path="/all-products/:productId/edit" element={<EditProduct />}/>
+          <Route
+            path="/all-products/:productId/edit"
+            element={<EditProduct />}
+          />
           <Route path="/add-product" element={<AddProduct />} />
           <Route path="/card" element={<ShoppingCard />} />
-          <Route path="/profile" element={<Profile key='profile' />} />
-          <Route path="/global-profile/:userId" element={<Profile key='global' mode={'global'}/>} />
-          
+          <Route path="/profile" element={<Profile key="profile" />} />
+          <Route
+            path="/global-profile/:userId"
+            element={<Profile key="global" mode={"global"} />}
+          />
+
           <Route
             path="/all-products/:productId/add-discount"
             element={<AddDiscount />}
@@ -55,7 +61,7 @@ function App() {
         </Route>
         <Route path="/all-products" exact element={<AllProducts />} />
         <Route path="/all-products/:productId" element={<ProductDetails />} />
-        <Route path='*' element={<ErrorPage/>}/>
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>
   );
