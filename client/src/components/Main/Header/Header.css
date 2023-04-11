@@ -91,6 +91,7 @@ ul {
     }
 
     div .more {
+        position: absolute;
         margin-top: 10px;
         width: 100%;
         min-height: 5px;
