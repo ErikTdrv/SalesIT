@@ -54,3 +54,23 @@ ul {
 .logout {
     color: white;
 }
+.bar {
+    display: none;
+}
+@media screen and (max-width: 610px) {
+    .bar {
+        display: block;
+        transition: 0.5s;
+        margin-top: 9px;
+    }
+    .bar:hover {
+        color: red;
+    }
+    .mainul {
+        display: none;
+    }
+    .authul{
+        padding-inline-start: 0px;
+        margin-left: -40px;
+    }
+}

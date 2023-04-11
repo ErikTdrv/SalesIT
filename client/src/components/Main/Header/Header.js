@@ -42,6 +42,7 @@ export default function Header(){
             </>
             }
         </ul>
+        <i class="fa-solid fa-bars bar"></i>
     </header>   
     );
 }
