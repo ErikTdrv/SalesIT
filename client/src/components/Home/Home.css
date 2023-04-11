@@ -40,3 +40,15 @@
 .titles .second {
     font-size: 15px;
 }
+@media screen and (max-width: 500px) {
+    .titles .first{
+        font-size: 18px;
+    }
+    .titles .second {
+        font-size: 10px;
+    }
+    .home-buttons button {
+    margin: 6px 22px 0px 0px;
+    font-size: 12px;
+    }
+}
