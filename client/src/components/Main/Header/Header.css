@@ -99,9 +99,10 @@ ul {
 
     .more .mainul {
         display: flex;
-        justify-content: space-around;
         flex-direction: column;
-        align-items: center;
+        justify-content: center;
+        align-items: end;
+        text-align: center;
     }
 
     .more ul li {
@@ -112,6 +113,7 @@ ul {
         margin: 8px;
         font-weight: 550;
         font-size: 15px;
+
     }
     .more ul li::after {
         content: '';
