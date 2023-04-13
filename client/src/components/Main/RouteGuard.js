@@ -1,5 +1,4 @@
-
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export const AuthGuard = ({ children }) => {
