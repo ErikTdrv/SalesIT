@@ -1,7 +1,6 @@
 .navigation {
     display: flex;
     justify-content: space-around;
-    /* background-color: black; */
     color: black;
     height: 25px;
 }
@@ -91,7 +90,7 @@ ul {
     }
 
     div .more {
-        position: absolute;
+        /* position: absolute; */
         margin-top: 10px;
         width: 100%;
         min-height: 5px;
