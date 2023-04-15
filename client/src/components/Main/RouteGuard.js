@@ -1,14 +1,14 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-export const AuthGuard = ({ children }) => {
+export const AuthGuard = () => {
   const isAuth = useSelector(state => state.user.isAuth)
   if (isAuth) {
     return <Navigate to="/" replace />;
   } 
   return <Outlet/>;
 };
-export const UserGuard = ({ children }) => {
+export const UserGuard = () => {
   const isAuth = useSelector(state => state.user.isAuth)
 
   if (isAuth) {
