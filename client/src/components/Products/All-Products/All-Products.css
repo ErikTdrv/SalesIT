@@ -90,3 +90,20 @@ h4 {
 .reset-btn:hover {
     background-color: #f44336;
 }
+@media screen and (max-width: 600px) {
+    .choosable {
+        flex-direction: column;
+        width: 90%;
+        margin: 0 auto;
+    }
+    .choosable button {
+        border-radius: 0px;
+    }
+    .choosable button:first-child{
+        border-radius: 0px;
+    }
+    .choosable button:last-child {
+        border-radius: 0px;
+    
+    }
+}
