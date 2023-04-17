@@ -42,7 +42,7 @@ export default function Product({
           <span id="deletedPrice" className="price deletedPrice">{price}$<span id="newPrice" className="newPrice">{(price - (Number(discount)*0.01) * price).toFixed(2)}$</span></span>
         )}
       </div>
-      <img className="computer__image" src={images[0].imageUrl} alt="" />
+      <img className="computer__image" src={images[0].imageUrl} alt="no-image" />
       <div className="computer__info">
         {/* { product.computer} */}
         {manufacturer && <h1 className="computer__title">{manufacturer}</h1>}
