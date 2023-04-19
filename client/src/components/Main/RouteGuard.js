@@ -10,7 +10,6 @@ export const AuthGuard = () => {
 };
 export const UserGuard = () => {
   const isAuth = useSelector(state => state.user.isAuth)
-
   if (isAuth) {
     return <Outlet/>;
   }
