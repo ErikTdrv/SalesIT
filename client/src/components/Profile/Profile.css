@@ -56,5 +56,18 @@
     padding-top: 10px;
 }
 .edit-profile-btn {
-    
+    padding: 10px 35px;
+    border: none;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: rgb(253, 79, 79);
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+.edit-profile-btn i {
+    margin-right: 5px;
+}
+.edit-profile-btn:hover {
+    background-color: red;
 }
