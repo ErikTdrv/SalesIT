@@ -48,6 +48,10 @@ export default function Profile({mode}) {
               <span> {userInfo?.phone}</span>
             </li>
           </div>
+          <button className="edit-profile-btn">
+            <i class="fa-solid fa-gear"></i>
+            Edit Profile
+          </button>
         </div>
         <div className="profile__products">
           {mode === undefined && <ShoppingCard mode={'profile'}/>}
