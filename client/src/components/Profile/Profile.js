@@ -10,7 +10,13 @@ export default function Profile({ mode }) {
   const [userInfo, setUserInfo] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   const user = useSelector(state => state.user.user);
+  
+  async function editProfile(){
 
+  }
+  async function deleteProfile(){
+    
+  }
   const { userId } = useParams();
   useEffect(() => {
     if (mode === 'global') {
@@ -49,11 +55,11 @@ export default function Profile({ mode }) {
               </li>
             </div>
             <div className="profile__buttons">
-              <button className="edit-profile-btn">
+              <button onClick={editProfile} className="edit-profile-btn">
                 <i class="fa-solid fa-gear"></i>
                 Edit Profile
               </button>
-              <button className="edit-profile-btn">
+              <button onClick={deleteProfile} className="edit-profile-btn">
               <i class="fa-solid fa-trash"></i>
                 Delete Profile
               </button>
