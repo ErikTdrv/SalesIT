@@ -56,6 +56,13 @@ const login = async (email, password) => {
 const getUser = async (id) => {
     return await User.findById(id).populate('createdComputers').populate('createdMonitors').populate('createdPhones');
 }
+const editUserProfile = async (user) => {
+    // TO DO...
+}
+const deleteUserProfile = async (userId) => {
+    // TO DO...
+}
+
 module.exports = {
     login,
     register,
