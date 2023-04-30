@@ -57,7 +57,7 @@ const getUser = async (id) => {
     return await User.findById(id).populate('createdComputers').populate('createdMonitors').populate('createdPhones');
 }
 const editUserProfile = async (user) => {
-    // TO DO...
+    
 }
 const deleteUserProfile = async (userId) => {
     // TO DO...
