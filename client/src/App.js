@@ -49,6 +49,7 @@ function App() {
           <Route path="/add-product" element={<AddProduct />} />
           <Route path="/card" element={<ShoppingCard />} />
           <Route path="/profile" element={<Profile key="profile" />} />
+          <Route path="/profile/edit" element={<Register mode={'edit'} />} />
           <Route
             path="/global-profile/:userId"
             element={<Profile key="global" mode={"global"} />}
