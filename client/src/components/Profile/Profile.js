@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { getUserById } from "../../services/userService";
 import Copyright from "../Main/Copyright/Copyright";
 import ShoppingCard from "../Shopping/ShoppingCard";
@@ -10,12 +10,12 @@ export default function Profile({ mode }) {
   const [userInfo, setUserInfo] = useState({})
   const [isLoading, setIsLoading] = useState(true)
   const user = useSelector(state => state.user.user);
-  
+  const navigate = useNavigate();
   async function editProfile(){
 
   }
   async function deleteProfile(){
-    
+
   }
   const { userId } = useParams();
   useEffect(() => {
@@ -55,7 +55,7 @@ export default function Profile({ mode }) {
               </li>
             </div>
             <div className="profile__buttons">
-              <button onClick={editProfile} className="edit-profile-btn">
+              <button onClick={() => navigate('edit')} className="edit-profile-btn">
                 <i class="fa-solid fa-gear"></i>
                 Edit Profile
               </button>
