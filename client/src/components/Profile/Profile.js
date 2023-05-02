@@ -71,7 +71,7 @@ export default function Profile({ mode }) {
             {mode === 'global' && <ShoppingCard mode={'global'} user={userInfo} />}
           </div>
         </div>
-          <Copyright />
+        <Copyright />
         </>
       ) : <span className="loader"></span>}
     </>
