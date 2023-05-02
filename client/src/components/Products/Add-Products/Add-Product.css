@@ -43,6 +43,7 @@
     border-radius: 0px 20px 20px 0px;
 
 }
+
 .add-container .choosable .clicked {
     background-color: #f44336;
 
@@ -60,15 +61,19 @@
     width: 100%;
     margin: 50px 0px;
 }
-.add-form .left-input div:first-child{
+
+.add-form .left-input div:first-child {
     margin-top: 0px;
 }
-.add-form .right-input div:first-child{
+
+.add-form .right-input div:first-child {
     margin-top: 0px;
 }
+
 .left-input div:last-child {
     margin-top: -20px;
 }
+
 .add-form span {
     position: absolute;
     left: 0px;
@@ -86,19 +91,23 @@
 .add-form input:focus+span {
     transform: translateY(-80%);
 }
+
 .add-container .value-there {
     transform: translateY(-80%);
-} 
-.add-form .inputs input{
+}
+
+.add-form .inputs input {
     border: none;
     border-bottom: 2px solid gray;
     width: 95%;
     height: 35px;
 }
+
 .add-form .inputs input:focus {
     border-bottom: 2px solid rgb(89, 0, 255);
     border-bottom: 2px solid #f44336;
 }
+
 .add-btn {
     text-align: center;
     position: absolute;
@@ -113,25 +122,30 @@
     color: white;
     background-color: #444444;
 }
+
 .add-btn:hover {
     transition: 0.3s;
     background-color: rgb(89, 0, 255);
     background-color: #f44336;
-    
+
 }
+
 .add-btn:disabled {
     background-color: gray;
 }
+
 .add-container .images {
     position: absolute;
     top: 80%;
     right: 2%;
 }
+
 .add-container .mini-img {
     margin: 2px;
     width: 50px;
     height: 50px;
 }
+
 .add-form .main-error {
     position: relative;
     text-align: center;
@@ -139,6 +153,7 @@
     margin: 0px;
     font-weight: 700;
 }
+
 .add-form .error {
     position: absolute;
     font-size: 12px;
@@ -146,14 +161,43 @@
     color: red;
     font-weight: 700;
 }
+
 .add-form .avatar {
     cursor: pointer;
 }
-.add-form label .fa-solid{
+
+.add-form label .fa-solid {
     transition: 0.3s ease-in-out;
 
 }
-.add-form label:hover .fa-solid{
+
+.add-form label:hover .fa-solid {
     cursor: pointer;
     transform: rotate(45deg);
+}
+
+@media screen and (max-width: 600px) {
+    .add-container {
+        width: 85%;
+    }
+
+    .add-container .choosable button {
+        padding: 10px 8%;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .add-container .choosable {
+        flex-direction: column;
+        width: 80%;
+        margin: 0 auto;
+        margin-bottom: 15px;
+    }
+
+    .add-container .choosable button,
+    .add-container .choosable button:first-child,
+    .add-container .choosable button:last-child {
+        border-radius: 0px;
+    }
+
 }
