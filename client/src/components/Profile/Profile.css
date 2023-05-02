@@ -24,6 +24,8 @@
     border-radius: 48px 48px 0px 0px;
 }
 .profile__info .profile__info__auth {
+    background-color: aliceblue;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -58,6 +60,8 @@
 .profile__buttons {
     display: flex;
     justify-content: space-around;
+    background-color: aliceblue;
+
 }
 .edit-profile-btn {
     padding: 7px 25px;
@@ -73,4 +77,20 @@
 }
 .edit-profile-btn:hover {
     background-color: red;
+}
+@media screen and (max-width: 1000px) {
+    .product__all {
+        flex-direction: column;
+        min-height: calc(100vh - 33px - 40px);
+    }
+    .profile__products .shopping-container {
+        position: relative;
+        transform: translate(0%, 0%);
+        /* top: 0px; */
+        left: 0px;
+    }
+    .profile__buttons button{
+        font-size: 12px;
+        padding: 10px 10px;
+    }
 }

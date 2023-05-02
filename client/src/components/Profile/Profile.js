@@ -33,6 +33,7 @@ export default function Profile({ mode }) {
   return (
     <>
       {!isLoading ? (
+        <>
         <div className="product__all">
           <div className="profile__info">
             <img
@@ -70,8 +71,9 @@ export default function Profile({ mode }) {
             {mode === 'global' && <ShoppingCard mode={'global'} user={userInfo} />}
           </div>
         </div>
+          <Copyright />
+        </>
       ) : <span className="loader"></span>}
-      <Copyright />
     </>
 
   );
