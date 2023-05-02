@@ -91,18 +91,18 @@ h4 {
     background-color: #f44336;
 }
 @media screen and (max-width: 600px) {
-    .choosable {
+    .all-container .choosable {
         flex-direction: column;
         width: 90%;
         margin: 0 auto;
     }
-    .choosable button {
+    .all-container .choosable button {
         border-radius: 0px;
     }
-    .choosable button:first-child{
+    .all-container .choosable button:first-child{
         border-radius: 0px;
     }
-    .choosable button:last-child {
+    .all-container .choosable button:last-child {
         border-radius: 0px;
     
     }
